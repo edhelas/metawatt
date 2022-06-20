@@ -33,6 +33,98 @@ const data = {
       tension: 0.3
     },
     {
+      label: 'Eolien (2011)',
+      backgroundColor: 'teal',
+      borderColor: 'teal',
+      borderDash: [3, 3],
+      data: [10, 41, 115, 179, 209],
+      tension: 0.3
+    },
+    {
+      label: 'Eolien (2017)',
+      backgroundColor: 'teal',
+      borderColor: 'teal',
+      borderDash: [10, 10],
+      data: [10, 34, 123, 219, 247],
+      tension: 0.3
+    },
+    {
+      label: 'Eolien (2022)',
+      backgroundColor: 'teal',
+      borderColor: 'teal',
+      data: [null, 40, 114, 231, 305],
+      tension: 0.3
+    },
+    {
+      label: 'Photovoltaïque (2011)',
+      backgroundColor: 'skyblue',
+      borderColor: 'skyblue',
+      borderDash: [3, 3],
+      data: [1, 21, 51, 76, 90],
+      tension: 0.3
+    },
+    {
+      label: 'Photovoltaïque (2017)',
+      backgroundColor: 'skyblue',
+      borderColor: 'skyblue',
+      borderDash: [10, 10],
+      data: [1, 16, 59, 108, 147],
+      tension: 0.3
+    },
+    {
+      label: 'Photovoltaïque (2022)',
+      backgroundColor: 'skyblue',
+      borderColor: 'skyblue',
+      data: [null, 13, 59, 119, 168],
+      tension: 0.3
+    },
+    {
+      label: 'Biogaz (2011)',
+      backgroundColor: 'green',
+      borderColor: 'green',
+      borderDash: [3, 3],
+      data: [4, 27, 73, 123, 157],
+      tension: 0.3
+    },
+    {
+      label: 'Biogaz (2017)',
+      backgroundColor: 'green',
+      borderColor: 'green',
+      borderDash: [10, 10],
+      data: [4, 10, 54, 115, 134],
+      tension: 0.3
+    },
+    {
+      label: 'Biogaz (2022)',
+      backgroundColor: 'green',
+      borderColor: 'green',
+      data: [null, 13, 45, 108, 139],
+      tension: 0.3
+    },
+    {
+      label: 'Biomasse solide (2011)',
+      backgroundColor: 'maroon',
+      borderColor: 'maroon',
+      borderDash: [3, 3],
+      data: [136, 165, 212, 259, 263],
+      tension: 0.3
+    },
+    {
+      label: 'Biomasse solide (2017)',
+      backgroundColor: 'maroon',
+      borderColor: 'maroon',
+      borderDash: [10, 10],
+      data: [127, 160, 203, 240, 247],
+      tension: 0.3
+    },
+    {
+      label: 'Biomasse solide (2022)',
+      backgroundColor: 'maroon',
+      borderColor: 'maroon',
+      data: [null, 131, 148, 183, 196],
+      tension: 0.3
+    },
+    {
       label: 'Pétrole (2011)',
       backgroundColor: 'chocolate',
       borderColor: 'chocolate',
@@ -103,24 +195,24 @@ const data = {
     },
     {
       label: 'Gaz fossile (2011)',
-      backgroundColor: 'yellow',
-      borderColor: 'yellow',
+      backgroundColor: 'gold',
+      borderColor: 'gold',
       borderDash: [3, 3],
       data: [501, 543, 432, 197, 42],
       tension: 0.3
     },
     {
       label: 'Gaz fossile (2017)',
-      backgroundColor: 'yellow',
-      borderColor: 'yellow',
+      backgroundColor: 'gold',
+      borderColor: 'gold',
       borderDash: [10, 10],
       data: [515, 386, 354, 168, 1],
       tension: 0.3
     },
     {
       label: 'Gaz fossile (2022)',
-      backgroundColor: 'yellow',
-      borderColor: 'yellow',
+      backgroundColor: 'gold',
+      borderColor: 'gold',
       data: [null, 526, 311, 120, 12],
       tension: 0.3
     }

@@ -222,15 +222,25 @@ const data = {
 const config = {
   type: 'line',
   data: data,
-  options: {/*
+  options: {
     scales: {
-      x: {
-        stacked: true,
-      },
       y: {
-        stacked: true
+        title: {
+          display: true,
+          text: 'TWh',
+        }
       }
-    }*/
+    },
+    plugins: {
+      tooltip: {
+        mode: 'index',
+        intersect: false
+      }
+    },
+    hover: {
+      mode: 'nearest',
+      intersect: false
+    }
   }
 };
 

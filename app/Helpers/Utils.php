@@ -33,6 +33,64 @@ function typeName(string $type): string
         : 'Capacité';
 }
 
+function resourceIntensityRTE(string $category, string $resource): float
+{
+    // Annexes 12-3
+    $intensity = [
+        'copper' => [
+            'nuc'       => 1.6,
+            'hydro'     => 0.18,
+            'wind'      => 2.6,
+            'gas'       => 1.2, // combiné, combustion: 0.79
+            'sun'       => 3.1,
+            'hydrowind' => 8.5,
+            'coal'      => 0.79,
+            'methane'   => 0,
+            'h2'        => 0,
+            'oil'       => 0.79,
+        ],
+        'steel' => [
+            'nuc'       => 67,
+            'hydro'     => 98,
+            'wind'      => 200,
+            'gas'       => 29, // combiné, combustion:6.3
+            'sun'       => 23, // mediane PV sol-toiture
+            'hydrowind' => 320, // mediane posé-flottant
+            'coal'      => 6.3,
+            'methane'   => 0,
+            'h2'        => 0,
+            'oil'       => 6.3,
+        ],
+        'concrete' => [
+            'nuc'       => 533,
+            'hydro'     => 21,
+            'wind'      => 450,
+            'gas'       => 36, // combiné, combustion:6.3
+            'sun'       => 32, // mediane PV sol-toiture
+            'hydrowind' => 1300, // mediane posé-flottant
+            'coal'      => 41,
+            'methane'   => 0,
+            'h2'        => 0,
+            'oil'       => 41,
+        ],
+    ];
+
+    if (array_key_exists($resource, $intensity) && array_key_exists($category, $intensity[$resource])) {
+        return $intensity[$resource][$category];
+    }
+
+    return 0;
+}
+
+function resources(): array
+{
+    return [
+        'copper' => 'Cuivre',
+        'concrete' => 'Béton',
+        'steel' => 'Acier',
+    ];
+}
+
 function catColor(string $category): string
 {
     $colors = [

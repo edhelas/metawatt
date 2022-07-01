@@ -46,6 +46,7 @@ class CategoryController extends Controller
                 'datasets' => array_values($scenarios)
             ],
             'options' => [
+                'maintainAspectRatio'=> false,
                 'spanGaps' => true,
                 'scales' => [
                     'y' => [

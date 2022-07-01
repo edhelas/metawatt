@@ -63,8 +63,7 @@ class ScenarioController extends Controller
                 'datasets' => array_values($categories)
             ],
             'options' => [
-                //'responsive' => true,
-                'aspectRatio' => 1.5,
+                'maintainAspectRatio'=> false,
                 'spanGaps' => true,
                 'scales' => [
                     'y' => [

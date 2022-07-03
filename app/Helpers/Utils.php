@@ -73,6 +73,18 @@ function resourceIntensityRTE(string $category, string $resource): float
             'h2'        => 0,
             'oil'       => 41,
         ],
+        'aluminium' => [
+            'nuc'       => 0.35,
+            'hydro'     => 0.52,
+            'wind'      => 1,
+            'gas'       => 1.1, // combiné, combustion:6.3
+            'sun'       => 25, // mediane PV sol-toiture
+            'hydrowind' => 1.05, // mediane posé-flottant
+            'coal'      => 0.75,
+            'methane'   => 0,
+            'h2'        => 0,
+            'oil'       => 0.75,
+        ],
     ];
 
     if (array_key_exists($resource, $intensity) && array_key_exists($category, $intensity[$resource])) {
@@ -88,6 +100,7 @@ function resources(): array
         'copper' => 'Cuivre',
         'concrete' => 'Béton',
         'steel' => 'Acier',
+        'aluminium' => 'Aluminium',
     ];
 }
 

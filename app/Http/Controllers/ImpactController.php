@@ -31,7 +31,7 @@ class ImpactController extends Controller
     public function resources(Request $request, string $resource)
     {
         $referenceItems = Data::where('year', $this->referenceYear)
-            ->where('scenario_id', 1)
+            ->where('scenario_id', 2)
             ->with(['category', 'scenario'])
             ->orderBy('category_id')
             ->get();
@@ -79,7 +79,7 @@ class ImpactController extends Controller
                         'stacked' => true,
                         'title' => [
                             'display' => true,
-                            'text' => 'T'
+                            'text' => $resource == 'space' ? 'ha' : 'T'
                         ]
                     ],
                     'x' => [

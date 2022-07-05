@@ -35,8 +35,22 @@ function typeName(string $type): string
 
 function resourceIntensityRTE(string $category, string $resource): float
 {
-    // Annexes 12-3
     $intensity = [
+        // Annexes 12-4
+        'space' => [
+            'nuc'       => 0.06,
+            'hydro'     => 0.01,
+            'wind'      => 0.15,
+            'gas'       => 0.02,
+            'sun'       => 0.05, // moyenne sol 0.10 toiture 0.05
+            'hydrowind' => 0.0,
+            'coal'      => 0.02,
+            'methane'   => 0,
+            'h2'        => 0,
+            'oil'       => 0.02,
+        ],
+
+        // Annexes 12-3
         'copper' => [
             'nuc'       => 1.6,
             'hydro'     => 0.18,
@@ -101,6 +115,7 @@ function resources(): array
         'concrete' => 'Béton',
         'steel' => 'Acier',
         'aluminium' => 'Aluminium',
+        'space' => 'Artificialisation',
     ];
 }
 

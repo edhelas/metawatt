@@ -56,7 +56,9 @@ class ImpactController extends Controller
         }
 
         foreach ($items as $item) {
-            array_push($categories[$item->category->name]['data'], (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource));
+            if (isset($categories[$item->category->name])) {
+                array_push($categories[$item->category->name]['data'], (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource));
+            }
         }
 
         $labels = Scenario::get()->pluck('name')->toArray();

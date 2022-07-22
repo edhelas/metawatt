@@ -14,6 +14,7 @@ function catIcon(string $category): string
         'methane' => 'fa-fire-flame-curved text-warning',
         'h2' => 'fa-heading text-info',
         'oil' => 'fa-gas-pump text-danger',
+        'biomass' => 'fa-tree text-success',
     ];
 
     return (array_key_exists($category, $icons))
@@ -132,6 +133,7 @@ function catColor(string $category): string
         'methane' => '#009688',
         'h2' => '#9C27B0',
         'oil' => '#795548',
+        'biomass' => '#009688',
     ];
 
     return (array_key_exists($category, $colors))
@@ -152,6 +154,7 @@ function catName(string $category): string
         'methane' => 'Méthane',
         'h2' => 'Hydrogène',
         'oil' => 'Pétrole',
+        'biomass' => 'Biomasse',
     ];
 
     return (array_key_exists($category, $names))

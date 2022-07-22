@@ -34,6 +34,56 @@ function typeName(string $type): string
         : 'Capacité';
 }
 
+function groupName(string $group): string
+{
+    $groups = [
+        'rte' => 'RTE',
+        'belfort' => 'Belfort',
+        'nw' => 'negaWatt'
+    ];
+
+    return (array_key_exists($group, $groups))
+        ? $groups[$group]
+        : 'Groupe';
+}
+
+function groupNameSecond(string $group): string
+{
+    $groups = [
+        'rte' => 'Futurs énergétiques 2050',
+        'belfort' => 'Scénarios du discours de Belfort',
+        'nw' => 'Scénarios negaWatt'
+    ];
+
+    return (array_key_exists($group, $groups))
+        ? $groups[$group]
+        : 'Groupe';
+}
+
+function carbonIntensity(string $category): float
+{
+    // IPCC 2014
+    $intensity =  [
+        'nuc'       => 4, // EDF 2022
+        'hydro'     => 24,
+        'wind'      => 11,
+        'gas'       => 490,
+        'sun'       => 45,
+        'hydrowind' => 11,
+        'coal'      => 820,
+        'methane'   => 0,
+        'h2'        => 0,
+        'oil'       => 650,
+        'biomass'   => 230,
+    ];
+
+    if (array_key_exists($category, $intensity)) {
+        return $intensity[$category]*1000;
+    }
+
+    return 0;
+}
+
 function resourceIntensityRTE(string $category, string $resource): float
 {
     $intensity = [
@@ -103,7 +153,7 @@ function resourceIntensityRTE(string $category, string $resource): float
     ];
 
     if (array_key_exists($resource, $intensity) && array_key_exists($category, $intensity[$resource])) {
-        return $intensity[$resource][$category];
+        return $intensity[$resource][$category]*1000;
     }
 
     return 0;
@@ -118,6 +168,19 @@ function resources(): array
         'aluminium' => 'Aluminium',
         'space' => 'Artificialisation',
     ];
+}
+
+function groupColor(string $group): string
+{
+    $groups = [
+        'belfort' => '#28a745',
+        'rte' => '#2196F3',
+        'nw' => '#009688',
+    ];
+
+    return (array_key_exists($group, $groups))
+        ? $groups[$group]
+        : 'white';
 }
 
 function catColor(string $category): string

@@ -10,7 +10,7 @@ class ScenarioController extends Controller
 {
     public function index(Request $request)
     {
-        return view('scenarios.index', ['scenarios' => Scenario::all()]);
+        return view('scenarios.index', ['groups' => Scenario::all()->groupBy('group')]);
     }
 
     public function show(int $id)

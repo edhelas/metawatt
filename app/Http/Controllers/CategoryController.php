@@ -18,6 +18,7 @@ class CategoryController extends Controller
     public function show(string $category)
     {
         $items = Data::where('category_id', Category::where('key', $category)->first()->id)
+            ->orderBy('scenario_id')
             ->orderBy('year')
             ->with('scenario')
             ->get();
@@ -29,7 +30,7 @@ class CategoryController extends Controller
                 $scenarios[$item->scenario->name] = [
                     'label' => $item->scenario->name,
                     'tension' => 0.3,
-                    'borderColor' => catColor($category),
+                    'borderColor' => groupColor($item->scenario->group),
                     'data' => []
                 ];
             }

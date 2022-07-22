@@ -32,7 +32,7 @@
             </div>
         </div>
     </header>
-    <main>
+    <main class="@if (isset($mainclass)) {{ $mainclass }} @endif">
         <div class="container">
             @if ($errors->any())
             <div class="alert alert-danger">
@@ -48,8 +48,10 @@
     </main>
     <footer class="mt-auto text-white-50">
         <div class="container mt-5">
-            <p class="text-center">Metawatt by <a
-                    href="https://edhelas.movim.eu" class="text-white">Timothée Jaussoin</a>.</p>
+            <p class="text-center">Metawatt by
+                <a href="https://edhelas.movim.eu" class="text-white">Timothée Jaussoin</a>
+                - <a href="https://github.com/edhelas/metawatt" class="text-white">Fork me on Github</a>
+            </p>
         </div>
     </footer>
 </body>

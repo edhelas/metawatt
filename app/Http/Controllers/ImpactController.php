@@ -61,7 +61,7 @@ class ImpactController extends Controller
             } else if($item->category->key != $categoryKey
             || $item->scenario_id != $scenarioId) {
                 // We just switched to a new category we stack the data
-                array_push($categories[$categoryKey]['data'], $totalArea * carbonIntensity($categoryKey));
+                array_push($categories[$categoryKey]['data'], ($totalArea * carbonIntensity($categoryKey)) / 1000000);
                 $totalArea = 0;
             }
 
@@ -72,7 +72,7 @@ class ImpactController extends Controller
         }
 
         // And we push the last one
-        array_push($categories[$categoryKey]['data'], $totalArea * carbonIntensity($categoryKey));
+        array_push($categories[$categoryKey]['data'], ($totalArea * carbonIntensity($categoryKey)) / 1000000);
 
         $labels = Scenario::orderBy('id')->get()->pluck('name')->toArray();
 
@@ -93,7 +93,7 @@ class ImpactController extends Controller
                         'stacked' => true,
                         'title' => [
                             'display' => true,
-                            'text' => 'T'
+                            'text' => 'MT'
                         ]
                     ],
                     'x' => [

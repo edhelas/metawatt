@@ -21,7 +21,7 @@ main.welcome:before {
         #191d21,
         rgba(0,0,0, 0),
         #191d21
-      ), url('/img/welcome.png');
+      ), url('/img/welcome.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;

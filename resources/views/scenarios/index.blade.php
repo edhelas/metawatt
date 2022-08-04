@@ -1,19 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-@foreach ($groups as $group => $scenarios)
 
+@foreach ($groups as $group => $scenarios)
     <h2>{{ groupName($group) }} <small class="text-muted">{{ groupNameSecond($group) }}</small></h2>
 
-    <ul class="list-group mb-3 mt-3">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
         @foreach($scenarios as $scenario)
-        <li class="list-group-item list-group-item">
-            <h5>{{$scenario->name}}</h5>
-            <p class="mb-0"><a href="{{ route('scenarios.show.production', $scenario->id) }}">Production</a> - <a
-                    href="{{ route('scenarios.show.capacity', $scenario->id) }}">Capacité</a></p>
-        </li>
+            <div class="col">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$scenario->name}}</h5>
+                        <p class="card-text">
+                            <a href="{{ route('scenarios.show.production', $scenario->id) }}">
+                                <i class="fa-solid fa-chart-line"></i> Production
+                            </a><br />
+                            <a href="{{ route('scenarios.show.capacity', $scenario->id) }}">
+                                <i class="fa-solid fa-chart-line"></i> Capacité
+                            </a><br />
+                        </p>
+                    </div>
+                </div>
+            </div>
         @endforeach
-    </ul>
+    </div>
 @endforeach
 
 @endsection

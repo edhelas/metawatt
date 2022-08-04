@@ -110,7 +110,74 @@ class ImpactController extends Controller
         ]);
     }
 
-    public function resources(Request $request, string $resource)
+    public function resource(Request $request, string $resource)
+    {
+        $items = Data::orderBy('scenario_id')
+            ->orderBy('year')
+            ->orderBy('category_id')
+            ->with(['scenario', 'category'])
+            ->get();
+
+        $scenarios = [];
+
+        $capacitySum = 0;
+        $oldYear = $items->first()->year;
+        $oldScenario = null;
+
+        foreach ($items as $item) {
+            if (!in_array($item->scenario->name, array_keys($scenarios))) {
+                $scenarios[$item->scenario->name] = [
+                    'label' => $item->scenario->name,
+                    'tension' => 0.3,
+                    'borderColor' => groupColor($item->scenario->group),
+                    'data' => []
+                ];
+            }
+
+            if ($item->year == $oldYear) {
+                $capacitySum += (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource);
+            } else {
+                array_push($scenarios[$oldScenario]['data'], $capacitySum/1000);
+
+                $capacitySum = (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource);
+            }
+
+            $oldYear = $item->year;
+            $oldScenario = $item->scenario->name;
+        }
+
+        array_push($scenarios[$items->last()->scenario->name]['data'], $capacitySum/1000);
+
+        $labels = Data::distinct('year')->get()->pluck('year');
+
+        $config = [
+            'type' => 'line',
+            'data' => [
+                'labels' => $labels,
+                'datasets' => array_values($scenarios)
+            ],
+            'options' => [
+                'maintainAspectRatio'=> false,
+                'spanGaps' => true,
+                'scales' => [
+                    'y' => [
+                        'title' => [
+                            'display' => true,
+                            'text' => $resource == 'space' ? 'kha' : 'kT'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return view('impacts.show', [
+            'resource' => $resource,
+            'jsonConfig' => json_encode($config),
+            'resources' => resources()
+        ]);
+    }
+
+    public function resourceFinal(Request $request, string $resource)
     {
         $referenceItems = Data::where('year', $this->referenceYear)
             ->where('scenario_id', 2)
@@ -132,14 +199,14 @@ class ImpactController extends Controller
                     'label' => $item->category->key,
                     'borderColor' => catColor($item->category->key),
                     'backgroundColor' => catColor($item->category->key),
-                    'data' => [(float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource)]
+                    'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource))/1000]
                 ];
             }
         }
 
         foreach ($items as $item) {
             if (isset($categories[$item->category->name])) {
-                array_push($categories[$item->category->name]['data'], (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource));
+                array_push($categories[$item->category->name]['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource))/1000);
             }
         }
 
@@ -163,7 +230,7 @@ class ImpactController extends Controller
                         'stacked' => true,
                         'title' => [
                             'display' => true,
-                            'text' => $resource == 'space' ? 'ha' : 'T'
+                            'text' => $resource == 'space' ? 'kha' : 'kT'
                         ]
                     ],
                     'x' => [
@@ -173,7 +240,7 @@ class ImpactController extends Controller
             ]
         ];
 
-        return view('impacts.show', [
+        return view('impacts.show_final', [
             'year' => $this->year,
             'resource' => $resource,
             'jsonConfig' => json_encode($config),

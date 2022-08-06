@@ -212,7 +212,7 @@ function catName(string $category): string
         'wind' => 'Éolien',
         'gas' => 'Gas',
         'sun' => 'Photovoltaïque',
-        'hydrowind' => 'Hydrolien',
+        'hydrowind' => 'Éolien marin',
         'coal' => 'Charbon',
         'methane' => 'Méthane',
         'h2' => 'Hydrogène',

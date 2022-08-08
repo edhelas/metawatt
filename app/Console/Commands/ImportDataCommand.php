@@ -17,11 +17,12 @@ class ImportDataCommand extends Command
     {
         // Clear all scenarios
         Scenario::truncate();
-
-        // Get the categories
-        $categories = Category::all()->keyBy('key');
+        Category::truncate();
 
         foreach (glob('data/*.json') as $scenarioPath) {
+            // Get the categories
+            $categories = Category::all()->keyBy('key');
+
             $this->info('Importing '.$scenarioPath);
 
             $json = json_decode(file_get_contents($scenarioPath));

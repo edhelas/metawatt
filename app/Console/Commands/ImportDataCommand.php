@@ -31,17 +31,13 @@ class ImportDataCommand extends Command
             $scenario->group = $json->group;
             $scenario->save();
 
-            $newCategory = false;
-
             foreach ($json->data->volume as $key => $years) {
-
                 if (!in_array($key, $categories->keys()->toArray())) {
                     $category = new Category;
                     $category->key = $key;
                     $category->name = $key;
                     $category->save();
 
-                    $newCategory = true;
                     $categories = Category::all()->keyBy('key');
                 }
 

@@ -18,6 +18,58 @@ class ImpactController extends Controller
         ]);
     }
 
+    public function showTotalProduction()
+    {
+        $items = Data::selectRaw('scenario_id, year, sum(production) as sum')
+            ->groupBy('scenario_id')
+            ->groupBy('year')
+            ->orderBy('scenario_id')
+            ->orderBy('year')
+            ->with('scenario')
+            ->get();
+
+        $scenarios = [];
+
+        foreach ($items as $item) {
+            if (!in_array($item->scenario->name, array_keys($scenarios))) {
+                $scenarios[$item->scenario->name] = [
+                    'label' => $item->scenario->name,
+                    'tension' => 0.3,
+                    'borderColor' => groupColor($item->scenario->group),
+                    'data' => []
+                ];
+            }
+
+            array_push($scenarios[$item->scenario->name]['data'], (float)$item->sum);
+        }
+
+        $labels = Data::distinct('year')->get()->pluck('year');
+
+        $config = [
+            'type' => 'line',
+            'data' => [
+                'labels' => $labels,
+                'datasets' => array_values($scenarios)
+            ],
+            'options' => [
+                'maintainAspectRatio'=> false,
+                'spanGaps' => true,
+                'scales' => [
+                    'y' => [
+                        'title' => [
+                            'display' => true,
+                            'text' => 'TWh'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return view('impacts.show_total_production', [
+            'jsonConfig' => json_encode($config)
+        ]);
+    }
+
     public function carbon(Request $request)
     {
         $items = Data::with(['category', 'scenario'])

@@ -21,6 +21,7 @@ Route::get('scenarios/{scenario}', 'ScenarioController@show')->name('scenarios.s
 Route::get('categories', 'CategoryController@index')->name('categories.index');
 Route::get('categories/{category}', 'CategoryController@show')->name('categories.show');
 
+Route::get('impact/total-production', 'ImpactController@showTotalProduction')->name('impacts.show.production.total');
 Route::get('impact/carbon', 'ImpactController@carbon')->name('impacts.carbon.show');
 Route::get('impact/resources', 'ImpactController@index')->name('impacts.resources.index');
 Route::get('impact/resources/{resource}', 'ImpactController@resource')->name('impacts.resources.show');

@@ -77,6 +77,8 @@ function carbonIntensity(string $category): float
         'biomass'   => 230,
     ];
 
+    // Autre chiffres RTE 12-2 ACV_GES
+
     if (array_key_exists($category, $intensity)) {
         return $intensity[$category]*1000;
     }
@@ -96,7 +98,6 @@ function resourceIntensityRTE(string $category, string $resource): float
             'sun'       => 0.05, // moyenne sol 0.10 toiture 0.05
             'hydrowind' => 0.0,
             'coal'      => 0.02,
-            'methane'   => 0,
             'h2'        => 0,
             'oil'       => 0.02,
         ],
@@ -110,7 +111,6 @@ function resourceIntensityRTE(string $category, string $resource): float
             'sun'       => 3.1,
             'hydrowind' => 8.5,
             'coal'      => 0.79,
-            'methane'   => 0,
             'h2'        => 0,
             'oil'       => 0.79,
         ],
@@ -122,7 +122,6 @@ function resourceIntensityRTE(string $category, string $resource): float
             'sun'       => 23, // mediane PV sol-toiture
             'hydrowind' => 320, // mediane posé-flottant
             'coal'      => 6.3,
-            'methane'   => 0,
             'h2'        => 0,
             'oil'       => 6.3,
         ],
@@ -134,7 +133,6 @@ function resourceIntensityRTE(string $category, string $resource): float
             'sun'       => 32, // mediane PV sol-toiture
             'hydrowind' => 1300, // mediane posé-flottant
             'coal'      => 41,
-            'methane'   => 0,
             'h2'        => 0,
             'oil'       => 41,
         ],
@@ -146,7 +144,6 @@ function resourceIntensityRTE(string $category, string $resource): float
             'sun'       => 25, // mediane PV sol-toiture
             'hydrowind' => 1.05, // mediane posé-flottant
             'coal'      => 0.75,
-            'methane'   => 0,
             'h2'        => 0,
             'oil'       => 0.75,
         ],
@@ -193,7 +190,6 @@ function catColor(string $category): string
         'sun' => '#FDD835',
         'hydrowind' => '#00bcd4',
         'coal' => '#607d8b',
-        'methane' => '#009688',
         'h2' => '#9C27B0',
         'oil' => '#795548',
         'biomass' => '#009688',
@@ -214,7 +210,6 @@ function catName(string $category): string
         'sun' => 'Photovoltaïque',
         'hydrowind' => 'Éolien marin',
         'coal' => 'Charbon',
-        'methane' => 'Méthane',
         'h2' => 'Hydrogène',
         'oil' => 'Pétrole',
         'biomass' => 'Biomasse',

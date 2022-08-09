@@ -93,7 +93,8 @@ class ImpactController extends Controller
                     'label' => $item->category->key . ' ('.(carbonIntensity($item->category->key)/1000).'g)',
                     'borderColor' => catColor($item->category->key),
                     'backgroundColor' => catColor($item->category->key),
-                    'data' => []
+                    'data' => [],
+                    'order' => 1
                 ];
             }
 
@@ -128,6 +129,8 @@ class ImpactController extends Controller
 
         $labels = Scenario::orderBy('id')->get()->pluck('name')->toArray();
 
+        $categories['production'] = $this->getProductionDots();
+
         $config = [
             'type' => 'bar',
             'data' => [
@@ -148,6 +151,7 @@ class ImpactController extends Controller
                             'text' => 'MT'
                         ]
                     ],
+                    'y1' => $this->getProductionDotsScale(),
                     'x' => [
                         'stacked' => true,
                     ]
@@ -181,6 +185,8 @@ class ImpactController extends Controller
                 $scenarios[$item->scenario->name] = [
                     'label' => $item->scenario->name,
                     'tension' => 0.3,
+                    'hitRadius' => 4,
+                    'pointRadius' => 6,
                     'borderColor' => groupColor($item->scenario->group),
                     'data' => []
                 ];
@@ -298,5 +304,49 @@ class ImpactController extends Controller
             'jsonConfig' => json_encode($config),
             'resources' => resources()
         ]);
+    }
+
+    private function getProductionDots(): array
+    {
+        return [
+            'label' => 'Production',
+            'data' =>
+                (array)Data::selectRaw('scenario_id, sum(production) as sum')
+                    ->groupBy('scenario_id')
+                    ->orderBy('scenario_id')
+                    ->get()
+                    ->pluck('sum')
+                    ->each(function($item) {
+                        return (int)$item*10; // Approximation
+                    })
+                    ->toArray(),
+            'borderColor' => 'transparent',
+            'backgroundColor' => 'white',
+            'pointStyle' => 'rectRot',
+            'hitRadius' => 4,
+            'pointRadius' => 6,
+            'type' => 'line',
+            'order' => 0,
+            'yAxisID' => 'y1',
+        ];
+    }
+
+    private function getProductionDotsScale(): array
+    {
+        return [
+            'type' => 'linear',
+            'display' => true,
+            'position' => 'right',
+
+            'title' => [
+                'display' => true,
+                'text' => 'TWh'
+            ],
+
+            // grid line settings
+            'grid' => [
+                'drawOnChartArea' => false, // only want the grid lines for one axis to show up
+            ],
+        ];
     }
 }

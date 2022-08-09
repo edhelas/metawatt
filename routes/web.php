@@ -20,6 +20,7 @@ Route::get('scenarios/{scenario}/production', 'ScenarioController@showProduction
 Route::get('scenarios/{scenario}', 'ScenarioController@show')->name('scenarios.show');
 Route::get('categories', 'CategoryController@index')->name('categories.index');
 Route::get('categories/{category}', 'CategoryController@show')->name('categories.show');
+Route::get('categories/{category}/load-factor', 'CategoryController@showLoadFactor')->name('categories.show.load.factor');
 
 Route::get('impact/total-production', 'ImpactController@showTotalProduction')->name('impacts.show.production.total');
 Route::get('impact/carbon', 'ImpactController@carbon')->name('impacts.carbon.show');

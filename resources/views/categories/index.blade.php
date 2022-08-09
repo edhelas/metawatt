@@ -11,6 +11,9 @@
                     <p class="card-text">
                         <a href="{{ route('categories.show', $category->key) }}" >
                             <i class="fa-solid fa-chart-line"></i> Évolution dans le temps
+                        </a><br />
+                        <a href="{{ route('categories.show.load.factor', $category->key) }}" >
+                            <i class="fa-solid fa-chart-line"></i> Évolution du facteur de charge
                         </a>
                     </p>
                 </div>

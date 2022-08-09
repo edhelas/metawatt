@@ -13,6 +13,7 @@ function catIcon(string $category): string
         'coal' => 'fa-leaf text-danger',
         'h2' => 'fa-heading text-info',
         'oil' => 'fa-gas-pump text-danger',
+        'tidal' => 'fa-water text-info',
         'biomass' => 'fa-tree text-success',
     ];
 
@@ -70,6 +71,7 @@ function carbonIntensity(string $category): float
         'sun'       => 45,
         'hydrowind' => 11,
         'coal'      => 820,
+        'tidal'     => 0, // To be found
         'h2'        => 0,
         'oil'       => 650,
         'biomass'   => 230,
@@ -97,6 +99,7 @@ function resourceIntensityRTE(string $category, string $resource): float
             'hydrowind' => 0.0,
             'coal'      => 0.02,
             'h2'        => 0,
+            'tidal'     => 0, // To be found
             'oil'       => 0.02,
         ],
 
@@ -110,6 +113,7 @@ function resourceIntensityRTE(string $category, string $resource): float
             'hydrowind' => 8.5,
             'coal'      => 0.79,
             'h2'        => 0,
+            'tidal'     => 0, // To be found
             'oil'       => 0.79,
         ],
         'steel' => [
@@ -121,6 +125,7 @@ function resourceIntensityRTE(string $category, string $resource): float
             'hydrowind' => 320, // mediane posé-flottant
             'coal'      => 6.3,
             'h2'        => 0,
+            'tidal'     => 0, // To be found
             'oil'       => 6.3,
         ],
         'concrete' => [
@@ -132,6 +137,7 @@ function resourceIntensityRTE(string $category, string $resource): float
             'hydrowind' => 1300, // mediane posé-flottant
             'coal'      => 41,
             'h2'        => 0,
+            'tidal'     => 0, // To be found
             'oil'       => 41,
         ],
         'aluminium' => [
@@ -143,6 +149,7 @@ function resourceIntensityRTE(string $category, string $resource): float
             'hydrowind' => 1.05, // mediane posé-flottant
             'coal'      => 0.75,
             'h2'        => 0,
+            'tidal'     => 0, // To be found
             'oil'       => 0.75,
         ],
     ];
@@ -170,7 +177,7 @@ function groupColor(string $group): string
     $groups = [
         'belfort' => '#28a745',
         'rte' => '#2196F3',
-        'nw' => '#009688',
+        'nw' => '#ff5722',
     ];
 
     return (array_key_exists($group, $groups))
@@ -190,6 +197,7 @@ function catColor(string $category): string
         'coal' => '#607d8b',
         'h2' => '#9C27B0',
         'oil' => '#795548',
+        'tidal' => '#03a9f4',
         'biomass' => '#009688',
     ];
 
@@ -210,10 +218,18 @@ function catName(string $category): string
         'coal' => 'Charbon',
         'h2' => 'Hydrogène',
         'oil' => 'Pétrole',
+        'tidal' => 'Hydrolien',
         'biomass' => 'Biomasse',
     ];
 
     return (array_key_exists($category, $names))
         ? $names[$category]
         : 'Catégorie';
+}
+
+function loadFactor(float $capacity, float $production): int
+{
+    if ($capacity == 0) return 0;
+
+    return (int) ($production * 1000 * 100) / ($capacity * 354 * 24);
 }

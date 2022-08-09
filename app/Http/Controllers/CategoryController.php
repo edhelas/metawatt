@@ -30,6 +30,8 @@ class CategoryController extends Controller
                 $scenarios[$item->scenario->name] = [
                     'label' => $item->scenario->name,
                     'tension' => 0.3,
+                    'hitRadius' => 4,
+                    'pointRadius' => 6,
                     'borderColor' => groupColor($item->scenario->group),
                     'data' => []
                 ];
@@ -61,6 +63,61 @@ class CategoryController extends Controller
         ];
 
         return view('categories.show', [
+            'category' => Category::where('key', $category)->firstOrFail(),
+            'jsonConfig' => json_encode($config)
+        ]);
+    }
+
+    function showLoadFactor(string $category)
+    {
+        $items = Data::where('category_id', Category::where('key', $category)->first()->id)
+            ->orderBy('scenario_id')
+            ->orderBy('year')
+            ->with('scenario')
+            ->get();
+
+        $scenarios = [];
+
+        foreach ($items as $item) {
+            if (!in_array($item->scenario->name, array_keys($scenarios))) {
+                $scenarios[$item->scenario->name] = [
+                    'label' => $item->scenario->name,
+                    'tension' => 0.3,
+                    'hitRadius' => 4,
+                    'pointRadius' => 6,
+                    'borderColor' => groupColor($item->scenario->group),
+                    'data' => []
+                ];
+            }
+
+            array_push($scenarios[$item->scenario->name]['data'], loadFactor((float)$item->capacity, (float)$item->production));
+        }
+
+        $labels = Data::distinct('year')->get()->pluck('year');
+
+        $config = [
+            'type' => 'line',
+            'data' => [
+                'labels' => $labels,
+                'datasets' => array_values($scenarios)
+            ],
+            'options' => [
+                'maintainAspectRatio'=> false,
+                'spanGaps' => true,
+                'scales' => [
+                    'y' => [
+                        'title' => [
+                            'display' => true,
+                            'text' => '%',
+                        ],
+                        'min' => 0,
+                        'max' => 100
+                    ]
+                ]
+            ]
+        ];
+
+        return view('categories.load_factor_show', [
             'category' => Category::where('key', $category)->firstOrFail(),
             'jsonConfig' => json_encode($config)
         ]);

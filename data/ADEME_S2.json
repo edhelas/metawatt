@@ -1,0 +1,35 @@
+{
+    "name": "ADEME S2",
+    "group": "ademe",
+    "years": [2020, 2030, "*2040", 2050],
+    "_source": "https://librairie.ademe.fr/cadic/6843/feuilleton_mix_electrique_transitions2050_ademe.pdf",
+    "_comment": "RTE as a reference for 2020 volume",
+    "data": {
+        "volume": {
+            "hydro":     [59.5,0,"*",63.5],
+            "wind":      [33.9,0,"*",175.1],
+            "hydrowind": [0,0,"*",80.6],
+            "sun":       [11.6,0,"*",123.5],
+            "nuc":       [379,0,"*",74.7],
+            "gas":       [0,0,"*",0],
+            "oil":       [0,0,"*",0],
+            "coal":      [0,0,"*",0],
+            "biomass":   [0,0,"*",0],
+            "tidal":     [0,0,"*",0],
+            "h2":        [0,0,"*",0]
+        },
+        "capacity": {
+            "hydro":     [25.5,25.5,"*",30], "_comment_hydro": "Feuilleton p43 9.3",
+            "wind":      [17.5,30,"*",62.5],
+            "hydrowind": [0,5,"*",23],
+            "sun":       [9.5,30,"*",92],
+            "nuc":       [61,59,"*",12],
+            "gas":       [0,0,"*",0],
+            "oil":       [0,0,"*",0],
+            "coal":      [0,0,"*",0],
+            "biomass":   [0,0,"*",0],
+            "tidal":     [0,0,"*",0],
+            "h2":        [0,0,"*",0]
+        }
+    }
+}

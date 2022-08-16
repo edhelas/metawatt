@@ -39,7 +39,8 @@ function groupName(string $group): string
     $groups = [
         'rte' => 'RTE',
         'belfort' => 'Belfort',
-        'nw' => 'negaWatt'
+        'nw' => 'negaWatt',
+        'ademe' => 'ADEME',
     ];
 
     return (array_key_exists($group, $groups))
@@ -52,7 +53,8 @@ function groupNameSecond(string $group): string
     $groups = [
         'rte' => 'Futurs énergétiques 2050',
         'belfort' => 'Scénarios du discours de Belfort',
-        'nw' => 'Scénarios negaWatt'
+        'nw' => 'Scénarios negaWatt',
+        'ademe' => 'Transition(s) 2050',
     ];
 
     return (array_key_exists($group, $groups))
@@ -178,6 +180,7 @@ function groupColor(string $group): string
         'belfort' => '#28a745',
         'rte' => '#2196F3',
         'nw' => '#ff5722',
+        'ademe' => '#FF9800',
     ];
 
     return (array_key_exists($group, $groups))
@@ -232,4 +235,21 @@ function loadFactor(float $capacity, float $production): int
     if ($capacity == 0) return 0;
 
     return (int) ($production * 1000 * 100) / ($capacity * 354 * 24);
+}
+
+// Calculated from the capacity and production in 2050
+// production*1000/365/24*100/capacity
+function ademeLoadFactor(string $category): float
+{
+    $names = [
+        'nuc' => 76.86,
+        'hydro' => 23.38,
+        'wind' => 31.65,
+        'sun' => 14,66,
+        'hydrowind' => 41.42,
+    ];
+
+    return (array_key_exists($category, $names))
+        ? $names[$category]
+        : 0;
 }

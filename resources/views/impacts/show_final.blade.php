@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
-@section('content')
+@section('title', 'Impact final')
+@section('subtitle', $resources[$resource])
 
-<h1><i class="fa-graph"></i> Impact final <small class="text-muted">{{ $resources[$resource] }}</small></h1>
+@section('content')
 
 @if ($resource == 'space')
     <p>Artificialisation au sol en hectares final pour chaque scénario envisagé en {{ $year }}</p>

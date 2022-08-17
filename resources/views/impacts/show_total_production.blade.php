@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('content')
+@section('title', 'Énergie totale produite')
 
-<h1>Énergie totale produite</h1>
+@section('content')
 
 @include('parts.graph')
 

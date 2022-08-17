@@ -56,12 +56,14 @@ class ImportDataCommand extends Command
                         : $json->data->volume->{$key}[$i];
 
                     if ($scenario->group == 'ademe' && $year == 2030) {
-                        $resolvedProduction = $json->data->capacity->{$key}[$i] * ademeLoadFactor($key) / 10;
+                        $resolvedProduction = capacityToProduction($json->data->capacity->{$key}[$i]) * ademeLoadFactor($key);
                     }
 
                     if ($scenario->group == 'ademe' && $year == 2040) {
-                        // TODO Fixme for hydro
-                        $resolvedProduction = (($json->data->capacity->{$key}[$i - 1] + $json->data->capacity->{$key}[$i + 1]) / 2 * ademeLoadFactor($key) / 10);
+                        $resolvedProduction = (
+                            (capacityToProduction($json->data->capacity->{$key}[$i - 1]) +
+                             capacityToProduction($json->data->capacity->{$key}[$i + 1])
+                            ) / 2 * ademeLoadFactor($key));
                     }
 
                     $data = new Data;

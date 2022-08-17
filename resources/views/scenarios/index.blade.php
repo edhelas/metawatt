@@ -1,9 +1,14 @@
 @extends('layouts.app')
 
+@section('title', 'Scénarios')
+
 @section('content')
+
+<p>Retrouvez tous les scénarios compilés par Metawatt ainsi que leurs caractéristiques</p>
 
 @foreach ($groups as $group => $scenarios)
     <h2>{{ groupName($group) }} <small class="text-muted">{{ groupNameSecond($group) }}</small></h2>
+
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
         @foreach($scenarios as $scenario)

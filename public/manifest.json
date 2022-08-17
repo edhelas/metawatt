@@ -1,0 +1,18 @@
+{
+    "name": "Metawatt",
+    "short_name": "Metawatt",
+    "description": "Découvrez et comparez les scénarios de transition énergétique électrique",
+    "icons": [
+      {
+        "src": "img/bolt.png",
+        "sizes": "128x128",
+        "type": "image/png",
+        "purpose": "maskable"
+      }
+    ],
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "background_color": "#191d21",
+    "theme_color": "#191d21",
+    "start_url": "/"
+  }

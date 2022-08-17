@@ -6,7 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>
+        {{ config('app.name', 'Laravel') }}
+        @hasSection('title')• @yield('title')@endif
+        @hasSection('subtitle')- @yield('subtitle')@endif
+    </title>
+
+    <meta property="og:title" content="{{ config('app.name', 'Laravel') }} @hasSection('title')• @yield('title')@endif @hasSection('subtitle')- @yield('subtitle')@endif"/>
+    <meta name="twitter:title" content="{{ config('app.name', 'Laravel') }} @hasSection('title')• @yield('title')@endif @hasSection('subtitle')- @yield('subtitle')@endif"/>
+    <meta name="description" content="Découvrez et comparez les scénarios de transition énergétique électrique"/>
+    <meta property="og:type" content="article"/>
+    <meta property="twitter:card" content="summary"/>
+    <meta property="twitter:site" content="Metawatt"/>
+
+    <link rel="icon" type="image/svg" href="img/bolt.png" sizes="128x128">
+    <link rel="manifest" href="manifest.json" />
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet"
@@ -28,7 +42,6 @@
                     <li><a href="{{route('categories.index')}}" class="nav-link px-2 text-white">Catégories</a></li>
                     <li><a href="{{route('impacts.resources.index')}}" class="nav-link px-2 text-white">Impacts</a></li>
                 </ul>
-
             </div>
         </div>
     </header>
@@ -42,6 +55,17 @@
                     @endforeach
                 </ul>
             </div>
+            @endif
+            @hasSection('title')
+                <h1>
+                    @hasSection('title-icon')
+                        <i class="fa-solid @yield('title-icon')"></i>
+                    @endif
+                    @yield('title')
+                    @hasSection('subtitle')
+                    <small class="text-muted">@yield('subtitle')</small>
+                    @endif
+                </h1>
             @endif
             @yield('content')
         </div>

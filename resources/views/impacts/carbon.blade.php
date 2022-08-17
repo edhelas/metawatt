@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
-@section('content')
+@section('title', 'Impact')
+@section('subtitle', 'Carbone')
 
-<h1><i class="fa-graph"></i> Impact <small class="text-muted">Carbone</small></h1>
+@section('content')
 
 <p>Émissions totales en tonnes de CO2 à l'issue de la transition en {{ $year}}.<br />
     Sources en gCO2eq/kWh (données IPCC 2014).</p>

@@ -26,3 +26,13 @@ main.welcome:before {
     background-size: cover;
     background-position: center center;
 }
+
+#logos a {
+    display: inline-block;
+    line-height: 5rem;
+    margin: 1rem;
+}
+
+#logos img {
+    width: 3rem;
+}

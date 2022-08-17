@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
-@section('content')
+@section('title', catName($category->key))
+@section('title-icon', catIcon($category->key))
 
-<h1><i class="fa-solid {{ catIcon($category->key)}}"></i> {{ catName($category->key) }}</h1>
+@section('content')
 
 @include('parts.graph')
 

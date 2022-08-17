@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Impact')
+
 @section('content')
 
 <h3>Production totale</h3>

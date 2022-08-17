@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
-@section('content')
+@section('title', $scenario->name)
+@section('subtitle', typeName($type))
 
-<h1><i class="fa-graph"></i> {{ $scenario->name }} <small class="text-muted">{{ typeName($type) }}</small></h1>
+@section('content')
 
 @include('parts.graph')
 

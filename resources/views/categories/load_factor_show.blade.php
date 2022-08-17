@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('content')
+@section('title', catName($category->key))
+@section('subtitle', 'Facteur de charge')
+@section('title-icon', catIcon($category->key))
 
-<h1><i class="fa-solid {{ catIcon($category->key)}}"></i> {{ catName($category->key) }}
-    <small class="text-muted">Facteur de charge</small>
-</h1>
+@section('content')
 
 <p>Évolution du facteur de charge en pourcent au fil des décennies.</p>
 

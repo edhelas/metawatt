@@ -52,7 +52,7 @@ class ImpactController extends Controller
                 'datasets' => array_values($scenarios)
             ],
             'options' => [
-                'maintainAspectRatio'=> false,
+                'maintainAspectRatio' => false,
                 'spanGaps' => true,
                 'scales' => [
                     'y' => [
@@ -90,7 +90,7 @@ class ImpactController extends Controller
             // Intialize
             if (!in_array($item->category->key, array_keys($categories))) {
                 $categories[$item->category->key] = [
-                    'label' => $item->category->key . ' ('.(carbonIntensity($item->category->key)/1000).'g)',
+                    'label' => $item->category->key . ' (' . (carbonIntensity($item->category->key) / 1000) . 'g)',
                     'borderColor' => catColor($item->category->key),
                     'backgroundColor' => catColor($item->category->key),
                     'data' => [],
@@ -105,16 +105,19 @@ class ImpactController extends Controller
             }
 
             // Seed
-            if ($item->scenario_id == $scenarioId
-             && $item->category->key == $categoryKey
-             && $item->year != $previousYear) {
+            if (
+                $item->scenario_id == $scenarioId
+                && $item->category->key == $categoryKey
+                && $item->year != $previousYear
+            ) {
                 // We are in between two years for a scenario, for a category, we interpolate
                 $totalArea += (($item->production + $previousProduction) / 2) * ($item->year - $previousYear);
-
-            } else if($item->category->key != $categoryKey
-            || $item->scenario_id != $scenarioId) {
+            } else if (
+                $item->category->key != $categoryKey
+                || $item->scenario_id != $scenarioId
+            ) {
                 // We just switched to a new category we stack the data
-                array_push($categories[$categoryKey]['data'], ($totalArea * carbonIntensity($categoryKey)) / 1000000);
+                array_push($categories[$categoryKey]['data'], round(($totalArea * carbonIntensity($categoryKey)) / 1000000, 2));
                 $totalArea = 0;
             }
 
@@ -125,7 +128,7 @@ class ImpactController extends Controller
         }
 
         // And we push the last one
-        array_push($categories[$categoryKey]['data'], ($totalArea * carbonIntensity($categoryKey)) / 1000000);
+        array_push($categories[$categoryKey]['data'], round(($totalArea * carbonIntensity($categoryKey)) / 1000000, 2));
 
         $labels = Scenario::orderBy('id')->get()->pluck('name')->toArray();
 
@@ -155,7 +158,12 @@ class ImpactController extends Controller
                     'x' => [
                         'stacked' => true,
                     ]
-                ]
+                ],
+                'interaction' => [
+                    'mode' => 'nearest',
+                    'axis' => 'x',
+                    'intersect' => false
+                ],
             ]
         ];
 
@@ -195,7 +203,7 @@ class ImpactController extends Controller
             if ($item->year == $oldYear) {
                 $capacitySum += (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource);
             } else {
-                array_push($scenarios[$oldScenario]['data'], $capacitySum/1000);
+                array_push($scenarios[$oldScenario]['data'], $capacitySum / 1000);
 
                 $capacitySum = (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource);
             }
@@ -204,7 +212,7 @@ class ImpactController extends Controller
             $oldScenario = $item->scenario->name;
         }
 
-        array_push($scenarios[$items->last()->scenario->name]['data'], $capacitySum/1000);
+        array_push($scenarios[$items->last()->scenario->name]['data'], $capacitySum / 1000);
 
         $labels = Data::distinct('year')->get()->pluck('year');
 
@@ -215,7 +223,7 @@ class ImpactController extends Controller
                 'datasets' => array_values($scenarios)
             ],
             'options' => [
-                'maintainAspectRatio'=> false,
+                'maintainAspectRatio' => false,
                 'spanGaps' => true,
                 'scales' => [
                     'y' => [
@@ -257,14 +265,14 @@ class ImpactController extends Controller
                     'label' => $item->category->key,
                     'borderColor' => catColor($item->category->key),
                     'backgroundColor' => catColor($item->category->key),
-                    'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource))/1000]
+                    'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource)) / 1000]
                 ];
             }
         }
 
         foreach ($items as $item) {
             if (isset($categories[$item->category->name])) {
-                array_push($categories[$item->category->name]['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource))/1000);
+                array_push($categories[$item->category->name]['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource)) / 1000);
             }
         }
 
@@ -294,7 +302,12 @@ class ImpactController extends Controller
                     'x' => [
                         'stacked' => true,
                     ]
-                ]
+                ],
+                'interaction' => [
+                    'mode' => 'nearest',
+                    'axis' => 'x',
+                    'intersect' => false
+                ],
             ]
         ];
 
@@ -311,15 +324,15 @@ class ImpactController extends Controller
         return [
             'label' => 'Production',
             'data' =>
-                (array)Data::selectRaw('scenario_id, sum(production) as sum')
-                    ->groupBy('scenario_id')
-                    ->orderBy('scenario_id')
-                    ->get()
-                    ->pluck('sum')
-                    ->each(function($item) {
-                        return (int)$item*10; // Approximation
-                    })
-                    ->toArray(),
+            (array)Data::selectRaw('scenario_id, sum(production) as sum')
+                ->groupBy('scenario_id')
+                ->orderBy('scenario_id')
+                ->get()
+                ->pluck('sum')
+                ->each(function ($item) {
+                    return (int)$item * 10; // Approximation
+                })
+                ->toArray(),
             'borderColor' => 'transparent',
             'backgroundColor' => 'white',
             'pointStyle' => 'rectRot',

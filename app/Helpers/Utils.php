@@ -234,7 +234,12 @@ function loadFactor(float $capacity, float $production): int
 {
     if ($capacity == 0) return 0;
 
-    return (int) ($production * 1000 * 100) / ($capacity * 354 * 24);
+    return (int) ($production * 1000 * 100) / ($capacity * 365 * 24);
+}
+
+function capacityToProduction(float $capacity): float
+{
+    return ($capacity * 365 * 24) / 1000;
 }
 
 // Calculated from the capacity and production in 2050
@@ -242,11 +247,11 @@ function loadFactor(float $capacity, float $production): int
 function ademeLoadFactor(string $category): float
 {
     $names = [
-        'nuc' => 76.86,
-        'hydro' => 23.38,
-        'wind' => 31.65,
-        'sun' => 14,66,
-        'hydrowind' => 41.42,
+        'nuc' => 0.7686,
+        'hydro' => 0.2338,
+        'wind' => 0.3165,
+        'sun' => 0.1466,
+        'hydrowind' => 0.4142,
     ];
 
     return (array_key_exists($category, $names))

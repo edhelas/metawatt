@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
-@section('content')
+@section('title', 'Impact')
+@section('subtitle', $resources[$resource])
 
-<h1><i class="fa-graph"></i> Impact <small class="text-muted">{{ $resources[$resource] }}</small></h1>
+@section('content')
 
 @if ($resource == 'space')
     <p>Surface artificialisée au fil du temps</p>

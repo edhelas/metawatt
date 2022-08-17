@@ -43,18 +43,33 @@ class ScenarioController extends Controller
                     'label' => catName($item->category->name),
                     'tension' => 0.3,
                     'borderColor' => catColor($item->category->name),
-                    'data' => []
+                    'backgroundColor' => catColor($item->category->name),
+                    'data' => [],
+                    'fill' => $type == 'production'
                 ];
             }
 
-            array_push($categories[$item->category->name]['data'],
+            array_push(
+                $categories[$item->category->name]['data'],
                 $type == 'capacity'
                     ? (float)$item->capacity
                     : (float)$item->production
             );
         }
 
-        $labels = Data::distinct('year')->get()->pluck('year');
+        $labels = Data::distinct('year')->where('scenario_id', $id)->get()->pluck('year');
+
+        foreach ($categories as $key => $dataset) {
+            $notEmpty = false;
+            foreach($dataset['data'] as $value) {
+                if ($value != 0) {
+                    $notEmpty = true;
+                    break;
+                }
+            }
+
+            if (!$notEmpty) unset($categories[$key]);
+        }
 
         $config = [
             'type' => 'line',
@@ -63,16 +78,23 @@ class ScenarioController extends Controller
                 'datasets' => array_values($categories)
             ],
             'options' => [
-                'maintainAspectRatio'=> false,
+                'maintainAspectRatio' => false,
                 'spanGaps' => true,
+                'radius' => $type == 'production' ? 0 : 6,
                 'scales' => [
                     'y' => [
+                        'stacked' => $type == 'production',
                         'title' => [
                             'display' => true,
                             'text' => $type == 'capacity' ? 'GW' : 'TWh'
                         ]
                     ]
-                ]
+                ],
+                'interaction' => [
+                    'mode' => 'nearest',
+                    'axis' => 'x',
+                    'intersect' => false
+                ],
             ]
         ];
 

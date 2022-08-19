@@ -27,6 +27,14 @@ main.welcome:before {
     background-position: center center;
 }
 
+img.group_logo {
+    float: left;
+    width: 4rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    margin-right: 1rem;
+}
+
 #logos a {
     display: inline-block;
     line-height: 5rem;

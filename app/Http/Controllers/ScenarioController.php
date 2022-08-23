@@ -15,7 +15,66 @@ class ScenarioController extends Controller
 
     public function show(int $id)
     {
-        return redirect()->route('scenarios.show.production', ['scenario' => $id]);
+        $scenario = Scenario::where('id', $id)->firstOrFail();
+
+        $items = Data::where('scenario_id', $id)
+            ->where('year', 2050)
+            ->with('category')
+            ->get();
+
+        $configCapacity = [
+            'type' => 'doughnut',
+            'data' => [
+                'labels' => $items->map(function ($item) {
+                    return (string)$item->category->name;
+                })->toArray(),
+                'datasets' => [
+                    [
+                        'label' => 'Capacity in 2050',
+                        'data' => $items->map(function ($item) {
+                            return (string)$item->capacity;
+                        })->toArray(),
+                        'backgroundColor' => $items->map(function ($item) {
+                            return catColor($item->category->name);
+                        })->toArray(),
+                        'borderColor' => 'transparent'
+                    ],
+                ]
+            ],
+            'options' => [
+                'maintainAspectRatio' => false,
+            ]
+        ];
+
+        $configProduction = [
+            'type' => 'doughnut',
+            'data' => [
+                'labels' => $items->map(function ($item) {
+                    return (string)$item->category->name;
+                })->toArray(),
+                'datasets' => [
+                    [
+                        'label' => 'Production in 2050',
+                        'data' => $items->map(function ($item) {
+                            return (string)$item->production;
+                        })->toArray(),
+                        'backgroundColor' => $items->map(function ($item) {
+                            return catColor($item->category->name);
+                        })->toArray(),
+                        'borderColor' => 'transparent',
+                    ],
+                ]
+            ],
+            'options' => [
+                'maintainAspectRatio' => false,
+            ]
+        ];
+
+        return view('scenarios.show', [
+            'scenario' => $scenario,
+            'jsonConfig' => json_encode($configCapacity),
+            'jsonConfig2' => json_encode($configProduction),
+        ]);
     }
 
     public function showCapacity(int $id)
@@ -61,7 +120,7 @@ class ScenarioController extends Controller
 
         foreach ($categories as $key => $dataset) {
             $notEmpty = false;
-            foreach($dataset['data'] as $value) {
+            foreach ($dataset['data'] as $value) {
                 if ($value != 0) {
                     $notEmpty = true;
                     break;
@@ -98,7 +157,7 @@ class ScenarioController extends Controller
             ]
         ];
 
-        return view('scenarios.show', [
+        return view('scenarios.show_graph', [
             'scenario' => Scenario::where('id', $id)->firstOrFail(),
             'jsonConfig' => json_encode($config),
             'type' => $type

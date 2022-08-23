@@ -1,6 +1,8 @@
 {
     "name": "RTE M23",
     "group": "rte",
+    "introduction": "EnR grands parcs",
+    "description": "Développement très important de toutes les filières renouvelables, porté notamment par l’installation de grands parcs éoliens sur terre et en mer. Logique d’optimisation économique et ciblage sur les technologies et les zones bénéficiant des meilleurs rendements et permettant des économies d’échelle.",
     "years": [2020, 2030, 2040, 2050, 2060],
     "data": {
         "volume": {

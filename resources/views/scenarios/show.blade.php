@@ -1,10 +1,26 @@
 @extends('layouts.app')
 
 @section('title', $scenario->name)
-@section('subtitle', typeName($type))
+@section('subtitle', $scenario->introduction)
 
 @section('content')
 
-@include('parts.graph')
+<p>{{ $scenario->description }}</p>
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col" style="width: 50%;">
+            <h5>Capacité in 2050</h5>
+            <p class="text-muted">en GW</p>
+            @include('parts.graph')
+        </div>
+        <div class="col" style="width: 50%;">
+            <h5>Production en 2050</h5>
+            <p class="text-muted">en TWh</p>
+            @include('parts.graph2')
+        </div>
+    </div>
+</div>
+
 
 @endsection

@@ -30,6 +30,8 @@ class ImportDataCommand extends Command
             $scenario = new Scenario;
             $scenario->name = $json->name;
             $scenario->group = $json->group;
+            if (!empty($json->introduction)) $scenario->introduction = $json->introduction;
+            if (!empty($json->description)) $scenario->description = $json->description;
             $scenario->save();
 
             foreach ($json->data->volume as $key => $values) {

@@ -1,6 +1,8 @@
 {
     "name": "RTE M1",
     "group": "rte",
+    "introduction": "Répartition diffuse",
+    "description": "Développement très important des énergies renouvelables réparties de manière diffuse sur le territoire national et en grande partie porté par la filière photovoltaïque. Cet essor sous-tend une mobilisation forte des acteurs locaux participatifs et des collectivités locales.",
     "years": [2020, 2030, 2040, 2050, 2060],
     "data": {
         "volume": {

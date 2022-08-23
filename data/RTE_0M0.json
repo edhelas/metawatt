@@ -1,6 +1,8 @@
 {
     "name": "RTE M0",
     "group": "rte",
+    "introduction": "100 % EnR en 2050",
+    "description": "Sortie du nucléaire en 2050 : le déclassement des réacteurs nucléaires existants est accéléré, tandis que les rythmes de développement du photovoltaïque, de l’éolien et des énergies marines sont poussés à leur maximum.",
     "years": [2020, 2030, 2040, 2050, 2060],
     "data": {
         "volume": {

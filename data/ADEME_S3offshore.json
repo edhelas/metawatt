@@ -1,6 +1,8 @@
 {
     "name": "ADEME S3 Offshore",
     "group": "ademe",
+    "introduction": "",
+    "description": "",
     "years": [2020, 2030, "*2040", 2050],
     "_source": "https://librairie.ademe.fr/cadic/6843/feuilleton_mix_electrique_transitions2050_ademe.pdf",
     "_comment": "RTE as a reference for 2020 volume",

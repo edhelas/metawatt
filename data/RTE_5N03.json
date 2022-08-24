@@ -2,7 +2,7 @@
     "name": "RTE N03",
     "group": "rte",
     "introduction": "EnR + nouveau nucléaire 3",
-    "description": "Le mix de production repose à parts égales sur les énergies renouvelables et sur le nucléaire à l’horizon 2050. Cela implique d’exploiter le plus longtemps possible le parc nucléaire existant, et de développer de manière volontariste et diversifié le nouveau nucléaire (EPR 2 + SMR)",
+    "description": "Le mix de production repose à parts égales sur les énergies renouvelables et sur le nucléaire à l’horizon 2050.\n\n Cela implique d’exploiter le plus longtemps possible le parc nucléaire existant, et de développer de manière volontariste et diversifié le nouveau nucléaire (EPR 2 + SMR)",
     "years": [2020, 2030, 2040, 2050, 2060],
     "data": {
         "volume": {

@@ -1,4 +1,4 @@
-<div id="chart2" style="height: 70vh; position: relative;" class="mt-4"></div>
+<div id="chart2" style="height: 70vh; position: relative;"></div>
 
 <script>
     const config2 = {!! $jsonConfig2 !!};

@@ -1,8 +1,8 @@
 {
     "name": "ADEME S1",
     "group": "ademe",
-    "introduction": "",
-    "description": "",
+    "introduction": "Génération frugale",
+    "description": "Des transformations importantes dans les façons de se déplacer, de se chauffer, de s’alimenter, d’acheter et d’utiliser des équipements, permettent l’atteinte de la neutralité carbone sans impliquer de technologies de captage et stockage de carbone, non éprouvées et incertaines à grande échelle. \n\n La transition est conduite principalement par la contrainte et par la sobriété. De nouvelles attentes des consommateurs, mais surtout de nouvelles pratiques, s’expriment rapidement dans les modes de consommation. La croissance de la demande énergétique qui épuise les ressources s’interrompt grâce à des innovations comportementales, organisationnelles autant que technologiques.",
     "years": [2020, 2030, "*2040", 2050],
     "_source": "https://librairie.ademe.fr/cadic/6843/feuilleton_mix_electrique_transitions2050_ademe.pdf",
     "_comment": "RTE as a reference for 2020 volume",

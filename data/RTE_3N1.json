@@ -2,7 +2,7 @@
     "name": "RTE N1",
     "group": "rte",
     "introduction": "EnR + nouveau nucléaire 1",
-    "description": "Lancement d’un programme de construction de nouveaux réacteurs, développés par paire sur des sites existants tous les 5 ans à partir de 2035. Développement des énergies renouvelables à un rythme soutenu afin de compenser le déclassement des réacteurs de deuxième génération.",
+    "description": "Lancement d’un programme de construction de nouveaux réacteurs, développés par paire sur des sites existants tous les 5 ans à partir de 2035.\n\n Développement des énergies renouvelables à un rythme soutenu afin de compenser le déclassement des réacteurs de deuxième génération.",
     "years": [2020, 2030, 2040, 2050, 2060],
     "data": {
         "volume": {

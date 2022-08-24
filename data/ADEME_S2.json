@@ -1,8 +1,8 @@
 {
     "name": "ADEME S2",
     "group": "ademe",
-    "introduction": "",
-    "description": "",
+    "introduction": "Coopérations territoriales",
+    "description": "La société se transforme dans le cadre d’une gouvernance partagée et de coopérations territoriales. Organisations non gouvernementales, institutions publiques, secteur privé et société civile trouvent des voies de coopération pragmatique qui permettent de maintenir la cohésion sociale \n\n Pour atteindre la neutralité carbone, la société mise sur une évolution progressive mais à un rythme soutenu du système économique vers une voie durable alliant sobriété et efficacité. La consommation de biens devient mesurée et responsable, le partage se généralise. L’évolution des valeurs de la société permet des investissements massifs dans les solutions d’efficacité et d’énergies renouvelables.",
     "years": [2020, 2030, "*2040", 2050],
     "_source": "https://librairie.ademe.fr/cadic/6843/feuilleton_mix_electrique_transitions2050_ademe.pdf",
     "_comment": "RTE as a reference for 2020 volume",

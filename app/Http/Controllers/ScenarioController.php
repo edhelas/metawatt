@@ -25,48 +25,60 @@ class ScenarioController extends Controller
         $configCapacity = [
             'type' => 'doughnut',
             'data' => [
-                'labels' => $items->map(function ($item) {
+                'labels' => $items->filter(function ($item, $key) {
+                    return $item->capacity > 0;
+                })->map(function ($item) {
                     return (string)$item->category->name;
-                })->toArray(),
+                })->values()->toArray(),
                 'datasets' => [
                     [
                         'label' => 'Capacity in 2050',
-                        'data' => $items->map(function ($item) {
+                        'data' => $items->filter(function ($item, $key) {
+                            return $item->capacity > 0;
+                        })->map(function ($item) {
                             return (string)$item->capacity;
-                        })->toArray(),
-                        'backgroundColor' => $items->map(function ($item) {
+                        })->values()->toArray(),
+                        'backgroundColor' => $items->filter(function ($item, $key) {
+                            return $item->capacity > 0;
+                        })->map(function ($item) {
                             return catColor($item->category->name);
-                        })->toArray(),
+                        })->values()->toArray(),
                         'borderColor' => 'transparent'
                     ],
                 ]
             ],
             'options' => [
-                'maintainAspectRatio' => false,
+                //'maintainAspectRatio' => false,
             ]
         ];
 
         $configProduction = [
             'type' => 'doughnut',
             'data' => [
-                'labels' => $items->map(function ($item) {
+                'labels' => $items->filter(function ($item, $key) {
+                    return $item->production > 0;
+                })->map(function ($item) {
                     return (string)$item->category->name;
-                })->toArray(),
+                })->values()->toArray(),
                 'datasets' => [
                     [
                         'label' => 'Production in 2050',
-                        'data' => $items->map(function ($item) {
+                        'data' => $items->filter(function ($item, $key) {
+                            return $item->production > 0;
+                        })->map(function ($item) {
                             return (string)$item->production;
-                        })->toArray(),
-                        'backgroundColor' => $items->map(function ($item) {
+                        })->values()->toArray(),
+                        'backgroundColor' => $items->filter(function ($item, $key) {
+                            return $item->production > 0;
+                        })->map(function ($item) {
                             return catColor($item->category->name);
-                        })->toArray(),
+                        })->values()->toArray(),
                         'borderColor' => 'transparent',
                     ],
                 ]
             ],
             'options' => [
-                'maintainAspectRatio' => false,
+                //'maintainAspectRatio' => false,
             ]
         ];
 

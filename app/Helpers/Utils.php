@@ -73,7 +73,7 @@ function groupLogo(string $group): string
     ];
 
     return (array_key_exists($group, $groups))
-        ? 'img/' . $groups[$group]
+        ? '/img/' . $groups[$group]
         : '';
 }
 
@@ -94,14 +94,21 @@ Partant du principe que l’énergie la moins polluante est celle qu’on ne con
 Imaginés pour la France métropolitaine, ils reposent sur les mêmes données macroéconomiques, démographiques et d’évolution climatique (+2,1°C en 2100). Cependant, ils empruntent des voies distinctes et correspondent à des choix de société différents.',
     ];
 
+
+
+    return (array_key_exists($group, $groups))
+        ? markdown($groups[$group])
+        : '';
+}
+
+function markdown(string $string)
+{
     $converter = new CommonMarkConverter([
         'html_input' => 'strip',
         'allow_unsafe_links' => false,
     ]);
 
-    return (array_key_exists($group, $groups))
-        ? $converter->convert($groups[$group])
-        : '';
+    return $converter->convert($string);
 }
 
 function groupSources(string $group): array

@@ -25,13 +25,14 @@ class ImportDataCommand extends Command
 
             $this->info('Importing ' . $scenarioPath);
 
-            $json = json_decode(file_get_contents($scenarioPath));
+            $content = file_get_contents($scenarioPath);
+            $json = json_decode($content);
 
             $scenario = new Scenario;
             $scenario->name = $json->name;
             $scenario->group = $json->group;
             if (!empty($json->introduction)) $scenario->introduction = $json->introduction;
-            if (!empty($json->description)) $scenario->description = $json->description;
+            if (!empty($json->description)) $scenario->description = preg_replace('/\\n/', "\n", $json->description);
             $scenario->save();
 
             foreach ($json->data->volume as $key => $values) {

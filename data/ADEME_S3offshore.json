@@ -1,8 +1,8 @@
 {
     "name": "ADEME S3 Offshore",
     "group": "ademe",
-    "introduction": "",
-    "description": "",
+    "introduction": "Technologies vertes",
+    "description": "Le développement technologique permet de répondre aux défis environnementaux. Les métropoles se développent. Les technologies et le numérique, qui permettent l’efficacité énergétique, sont dans tous les secteurs. \n\n Les meilleures technologies sont déployées largement et accessibles de manière généralisée aux populations solvables. Les manières d’habiter, de se déplacer ou de travailler se rapprochent beaucoup de celles d’aujourd’hui mais gagnent en sobriété.",
     "years": [2020, 2030, "*2040", 2050],
     "_source": "https://librairie.ademe.fr/cadic/6843/feuilleton_mix_electrique_transitions2050_ademe.pdf",
     "_comment": "RTE as a reference for 2020 volume",

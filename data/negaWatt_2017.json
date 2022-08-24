@@ -1,8 +1,8 @@
 {
     "name": "negaWatt 2017",
     "group": "nw",
-    "introduction": "",
-    "description": "",
+    "introduction": "Sobriété, efficacité et renouvelables",
+    "description": "Entre dérèglement climatique, tensions économiques et géopolitiques liées aux ressources énergétiques, aggravation des risques  et technologiques et précarité énergétique, la France doit rapidement s’orienter vers un nouveau système énergétique. \n\n Le scénario négaWatt répond à cet impératif en proposant une trajectoire vers un avenir énergétique souhaitable et soutenable, accompagnée de mesures à mettre en œuvre pour y parvenir. \n\n Pour cela, il étudie en détail les différents secteurs de consommation (bâtiment, transport, industrie, agriculture) et de production d’énergie (renouvelables, fossiles, nucléaire) afin d’envisager une évolution possible du système énergétique. Il montre ainsi comment la France peut - en quelques décennies - se passer totalement d’énergies fossiles et nucléaire.",
     "_source": "https://negawatt.org/IMG/pdf/scenario-negawatt_2017-2050_hypotheses-et-resultats.pdf p45",
     "years": [2020, 2030, 2040, 2050],
     "data": {

@@ -22,15 +22,7 @@
                     <div class="card-body">
                         <a href="{{ route('scenarios.show', $scenario->id) }}" class="btn btn-primary btn-sm" style="float: right;">Découvrir</a>
                         <h5 class="card-title">{{$scenario->name}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{$scenario->introduction}}</h6>
-                        <p class="card-text">
-                            <a href="{{ route('scenarios.show.production', $scenario->id) }}">
-                                <i class="fa-solid fa-chart-line"></i> Production
-                            </a><br />
-                            <a href="{{ route('scenarios.show.capacity', $scenario->id) }}">
-                                <i class="fa-solid fa-chart-line"></i> Capacité
-                            </a><br />
-                        </p>
+                        <h6 class="card-subtitle text-muted">{{$scenario->introduction}}</h6>
                     </div>
                 </div>
             </div>

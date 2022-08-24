@@ -5,18 +5,30 @@
 
 @section('content')
 
-<p>{{ $scenario->description }}</p>
+<div class="container">
+    <div class="row g-0">
+        <div class="col-12 col-lg-4">
+            @if (!empty(groupLogo($scenario->group)))
+                <img class="group_logo" src="{{ groupLogo($scenario->group) }}" />
+            @endif
 
-<div class="container text-center">
-    <div class="row">
-        <div class="col" style="width: 50%;">
-            <h5>Capacité en 2050</h5>
-            <p class="text-muted">en GW</p>
+            @if (!empty($scenario->description))
+                {!! markdown($scenario->description) !!}
+            @endif
+
+            <a href="{{ route('scenarios.show.production', $scenario->id) }}" class="btn btn-secondary mr-2">
+                <i class="fa-solid fa-chart-line"></i> Production
+            </a>
+            <a href="{{ route('scenarios.show.capacity', $scenario->id) }}" class="btn btn-secondary">
+                <i class="fa-solid fa-chart-line"></i> Capacité
+            </a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 text-center">
+            <p>Capacité en 2050 <span class="text-muted">GW</span></p>
             @include('parts.graph')
         </div>
-        <div class="col" style="width: 50%;">
-            <h5>Production en 2050</h5>
-            <p class="text-muted">en TWh</p>
+        <div class="col-12 col-md-6 col-lg-4 text-center">
+            <p>Production en 2050 <span class="text-muted">TWh</span></p>
             @include('parts.graph2')
         </div>
     </div>

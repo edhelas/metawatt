@@ -48,3 +48,8 @@ img.group_logo {
 #logos img {
     width: 3rem;
 }
+
+#chart {
+    height: 70vh;
+    position: relative;
+}

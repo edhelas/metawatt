@@ -32,44 +32,7 @@ class ScenarioController extends Controller
                 })->values()->toArray(),
                 'datasets' => [
                     [
-                        'label' => 'Capacity in 2050',
-                        'data' => $items->filter(function ($item, $key) {
-                            return $item->capacity > 0;
-                        })->map(function ($item) {
-                            return (string)$item->capacity;
-                        })->values()->toArray(),
-                        'backgroundColor' => $items->filter(function ($item, $key) {
-                            return $item->capacity > 0;
-                        })->map(function ($item) {
-                            return catColor($item->category->name);
-                        })->values()->toArray(),
-                        'borderColor' => 'transparent'
-                    ],
-                ]
-            ],
-            'options' => [
-                'plugins' => [
-                    'datalabels' => [
-                        'backgroundColor' => '#191d21',
-                        'color' => 'white',
-                        'borderRadius' => 5
-                    ]
-                ]
-                //'maintainAspectRatio' => false,
-            ]
-        ];
-
-        $configProduction = [
-            'type' => 'doughnut',
-            'data' => [
-                'labels' => $items->filter(function ($item, $key) {
-                    return $item->production > 0;
-                })->map(function ($item) {
-                    return (string)$item->category->name;
-                })->values()->toArray(),
-                'datasets' => [
-                    [
-                        'label' => 'Production in 2050',
+                        'label' => 'TW',
                         'data' => $items->filter(function ($item, $key) {
                             return $item->production > 0;
                         })->map(function ($item) {
@@ -81,6 +44,21 @@ class ScenarioController extends Controller
                             return catColor($item->category->name);
                         })->values()->toArray(),
                         'borderColor' => 'transparent',
+                    ],
+                    [
+                        'label' => 'GW',
+                        'data' => $items->filter(function ($item, $key) {
+                            return $item->capacity > 0;
+                        })->map(function ($item) {
+                            return (string)$item->capacity;
+                        })->values()->toArray(),
+                        'backgroundColor' => $items->filter(function ($item, $key) {
+                            return $item->capacity > 0;
+                        })->map(function ($item) {
+                            return catColor($item->category->name);
+                        })->values()->toArray(),
+                        'borderColor' => 'transparent',
+                        'spacing' => '2',
                     ],
                 ]
             ],
@@ -100,9 +78,9 @@ class ScenarioController extends Controller
             'scenario' => $scenario,
             'withDataLabel' => true,
             'jsonConfig' => json_encode($configCapacity),
-            'jsonConfig2' => json_encode($configProduction),
             'previousScenario' => $scenario->previous(),
             'nextScenario' => $scenario->next(),
+            'showLabel' => true,
             'totalCapacity' => (int)$items->sum(function ($item) {
                 return $item->capacity;
             }),

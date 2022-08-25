@@ -1,4 +1,4 @@
-<div id="chart" style="height: 70vh; position: relative;"></div>
+<div id="chart" @if (isset($style))style="{{ $style }}" @endif></div>
 
 <script>
     const config = {!! $jsonConfig !!};
@@ -12,6 +12,12 @@
 
     @if (isset($withDataLabel) && $withDataLabel)
         config.plugins = [ChartDataLabels];
+    @endif
+
+    @if (isset($showLabel) && $showLabel)
+        config.options.plugins.datalabels.formatter = function(value, context) {
+            return value + ' ' + context.dataset.label;
+        }
     @endif
 
     new Chart(

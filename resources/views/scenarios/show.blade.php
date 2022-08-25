@@ -7,7 +7,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-12 col-lg-4 mb-4 nopadding">
+        <div class="col-12 col-lg-8 mb-4 nopadding">
             @if (!empty(groupLogo($scenario->group)))
             <img class="group_logo" src="{{ groupLogo($scenario->group) }}" />
             @endif
@@ -18,10 +18,10 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-12 text-center">
-                        <h3>L'année 2050</h3>
+                    <div class="col-12 nopadding">
+                        <p>En 2050</p>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 nopadding">
                         <h4 class="card-title">
                             {{ $totalCapacity }}
                             <small class="text-muted">GW déployé</small>
@@ -31,7 +31,7 @@
                             <i class="fa-solid fa-chart-line"></i> Capacité
                         </a>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 nopadding">
                         <h4 class="card-title">
                             {{ $totalProduction }}
                             <small class="text-muted">TWh produit</small>
@@ -41,7 +41,7 @@
                             <i class="fa-solid fa-chart-line"></i> Production
                         </a>
                     </div>
-                    <div class="col-12 mt-2">
+                    <div class="col-12 mt-2 nopadding">
                         <h3 class="card-title">
                             {{ $totalCarbon }}
                             <small class="text-muted">TCO2eq/TWh émis</small>
@@ -54,12 +54,8 @@
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-4 text-center nopadding">
-            <p>Capacité en 2050 <span class="text-muted">GW</span></p>
-            @include('parts.graph')
-        </div>
-        <div class="col-12 col-md-6 col-lg-4 mb-4 text-center nopadding">
-            <p>Production en 2050 <span class="text-muted">TWh</span></p>
-            @include('parts.graph2')
+            <p>En 2050</p>
+            @include('parts.graph', ['style' => 'height: 60vh;'])
         </div>
 
         <div class="col-12 col-md-6">

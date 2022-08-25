@@ -48,6 +48,13 @@ class ScenarioController extends Controller
                 ]
             ],
             'options' => [
+                'plugins' => [
+                    'datalabels' => [
+                        'backgroundColor' => '#191d21',
+                        'color' => 'white',
+                        'borderRadius' => 5
+                    ]
+                ]
                 //'maintainAspectRatio' => false,
             ]
         ];
@@ -78,14 +85,39 @@ class ScenarioController extends Controller
                 ]
             ],
             'options' => [
+                'plugins' => [
+                    'datalabels' => [
+                        'backgroundColor' => '#191d21',
+                        'color' => 'white',
+                        'borderRadius' => 5
+                    ]
+                ]
                 //'maintainAspectRatio' => false,
             ]
         ];
 
         return view('scenarios.show', [
             'scenario' => $scenario,
+            'withDataLabel' => true,
             'jsonConfig' => json_encode($configCapacity),
             'jsonConfig2' => json_encode($configProduction),
+            'previousScenario' => $scenario->previous(),
+            'nextScenario' => $scenario->next(),
+            'totalCapacity' => (int)$items->sum(function ($item) {
+                return $item->capacity;
+            }),
+            'totalProduction' => (int)$items->sum(function ($item) {
+                return $item->production;
+            }),
+            'totalCarbon' => (int)(
+                $items->sum(function ($item) {
+                    return carbonIntensity($item->category->key) * $item->production;
+                }) * 24 * 365
+                / $items->sum(function ($item) {
+                    return $item->production;
+                })
+                / 1000 / 1000
+            )
         ]);
     }
 

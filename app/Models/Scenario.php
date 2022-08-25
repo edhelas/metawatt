@@ -13,4 +13,14 @@ class Scenario extends Model
     {
         return $this->hasMany(Data::class);
     }
+
+    public function previous()
+    {
+        return Scenario::where('id', '<', $this->attributes['id'])->orderBy('id', 'desc')->first();
+    }
+
+    public function next()
+    {
+        return Scenario::where('id', '>', $this->attributes['id'])->orderBy('id', 'asc')->first();
+    }
 }

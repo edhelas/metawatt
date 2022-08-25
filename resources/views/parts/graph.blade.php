@@ -10,6 +10,10 @@
     canvas.id = 'myChart';
     chart.appendChild(canvas);
 
+    @if (isset($withDataLabel) && $withDataLabel)
+        config.plugins = [ChartDataLabels];
+    @endif
+
     new Chart(
         document.getElementById('myChart'),
         config

@@ -19,10 +19,11 @@
     <meta property="twitter:card" content="summary"/>
     <meta property="twitter:site" content="Metawatt"/>
 
-    <link rel="icon" type="image/svg" href="img/bolt.png" sizes="128x128">
+    <link rel="icon" type="image/svg" href="/img/bolt.png" sizes="128x128">
     <link rel="manifest" href="manifest.json" />
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark@1.0.0/dist/css/bootstrap-dark.min.css" />
     <link href="{{ asset('css/style.css?1') }}" rel="stylesheet">

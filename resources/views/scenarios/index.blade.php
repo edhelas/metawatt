@@ -18,13 +18,7 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
         @foreach($scenarios as $scenario)
             <div class="col">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <a href="{{ route('scenarios.show', $scenario->id) }}" class="btn btn-primary btn-sm" style="float: right;">Découvrir</a>
-                        <h5 class="card-title">{{$scenario->name}}</h5>
-                        <h6 class="card-subtitle text-muted">{{$scenario->introduction}}</h6>
-                    </div>
-                </div>
+                @include('parts.scenario_card', ['scenario' => $scenario])
             </div>
         @endforeach
     </div>

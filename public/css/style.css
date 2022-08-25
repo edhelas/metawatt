@@ -35,6 +35,10 @@ img.group_logo {
     margin-right: 1rem;
 }
 
+.nopadding {
+    padding: 0;
+}
+
 #logos a {
     display: inline-block;
     line-height: 5rem;

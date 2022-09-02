@@ -53,3 +53,8 @@ img.group_logo {
     height: 70vh;
     position: relative;
 }
+
+div.alert a,
+p > a {
+    text-decoration: underline;
+}

@@ -28,6 +28,8 @@ Route::get('impact/resources', 'ImpactController@index')->name('impacts.resource
 Route::get('impact/resources/{resource}', 'ImpactController@resource')->name('impacts.resources.show');
 Route::get('impact/resources/{resource}/final', 'ImpactController@resourceFinal')->name('impacts.resources.show.final');
 
+Route::get('discover', 'InfoController@discover')->name('info.discover');
+
 Route::get('/', function () {
     return view('welcome');
 });

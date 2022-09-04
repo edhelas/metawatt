@@ -23,6 +23,7 @@ class InfoController extends Controller
             ],
             'options' => [
                 'plugins' => [
+                    'legend' => ['position' => 'left'],
                     'datalabels' => [
                         'backgroundColor' => '#191d21',
                         'color' => 'white',

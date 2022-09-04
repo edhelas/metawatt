@@ -41,7 +41,7 @@
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="{{route('info.discover')}}" class="nav-link px-2 text-white">Découvrir</a></li>
                     <li><a href="{{route('scenarios.index')}}" class="nav-link px-2 text-white">Scénarios</a></li>
-                    <li><a href="{{route('categories.index')}}" class="nav-link px-2 text-white">Catégories</a></li>
+                    <li><a href="{{route('categories.index')}}" class="nav-link px-2 text-white">Énergies</a></li>
                     <li><a href="{{route('impacts.resources.index')}}" class="nav-link px-2 text-white">Impacts</a></li>
                 </ul>
             </div>

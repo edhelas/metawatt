@@ -5,7 +5,7 @@
     <div class="col-md-5 p-lg-6 mx-auto my-5">
         <h1 class="display-4 fw-normal">Metawatt</h1>
         <p class="lead fw-normal">Découvrez et comparez les scénarios de transition énergétique électrique</p>
-        <a class="btn btn-secondary" href="{{route('scenarios.index')}}"><i class="fa-solid {{ catIcon('metawatt')}} mr-2"></i> Explorer les scénarios</a>
+        <a class="btn btn-secondary" href="{{route('info.discover')}}"><i class="fa-solid {{ catIcon('metawatt')}} mr-2"></i> Découvrir</a>
     </div>
     <div class="product-device shadow-sm d-none d-md-block"></div>
     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>

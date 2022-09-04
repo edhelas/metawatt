@@ -4,12 +4,14 @@
 
 @section('content')
 
-<h3>Production totale</h3>
+<div class="row">
+    <div class="col-12">
+        <p>Nous comparons ici certains des impacts en ressources ou sur l'environnement des différents scénarios compilés par Metawatt.</p>
+    </div>
 
-<p>Énergie totale produite au fil du temps</p>
-
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
+    <div class="col-12 col-lg-6">
+        <h3>Production totale</h3>
+        <p>Énergie totale produite au fil du temps</p>
         <div class="card mb-4">
             <div class="card-body">
                 <h5 class="card-title">Énergie totale produite</h5>
@@ -21,14 +23,9 @@
             </div>
         </div>
     </div>
-</div>
-
-<h3>Carbone</h3>
-
-<p>Impact carbone des différents scénarios au fil du temps</p>
-
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
+    <div class="col-12 col-lg-6">
+        <h3>Carbone</h3>
+        <p>Impact carbone des différents scénarios au fil du temps</p>
         <div class="card mb-4">
             <div class="card-body">
                 <h5 class="card-title">Carbone</h5>

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<p>Retrouvez tous les scénarios compilés par Metawatt ainsi que leurs caractéristiques</p>
+<p>Retrouvez ici tous les scénarios compilés par Metawatt ainsi que leurs caractéristiques</p>
 
 @foreach ($groups as $group => $scenarios)
     <h2>{{ groupName($group) }} <small class="text-muted">{{ groupNameSecond($group) }}</small></h2>

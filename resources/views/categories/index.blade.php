@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
+@section('title', 'Énergies')
+@section('subtitle', "Les sources d'énergies des scénarios")
+
 @section('content')
+
+<p>Les scénarios compilés par Metawatt développent différentes sources d'énergies qui sont présentées ici.</p>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
     @foreach($categories as $category)

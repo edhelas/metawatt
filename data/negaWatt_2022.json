@@ -1,0 +1,32 @@
+{
+    "name": "negaWatt 2022",
+    "group": "nw",
+    "introduction": "Sobriété, efficacité et renouvelables",
+    "years": [2020, 2030, "*2040", 2050],
+    "_source": "https://www.negawatt.org/IMG/pdf/scenario-negawatt-2022-rapport-complet-partie4.pdf",
+    "_comment": "Values extracted from the text and from re-ploted graphs",
+    "data": {
+        "volume": {
+            "hydro":     [58.7, 57.3, 55.8, 54.1],
+            "gas":       [0.0, 0.0, 0.0, 0.0],
+            "wind":      [38.4, 87.2, 136.2, 160.8],
+            "hydrowind": [0.0, 25.6, 91.8, 142.4],
+            "sun":       [13.6, 58.9, 118.3, 167.3],
+            "nuc":       [333, 223.7, 80.5, 0.0],
+            "oil":       [0.0, 0.0, 0.0, 0.0],
+            "coal":      [0.0, 0.0, 0.0, 0.0],
+            "h2":        [0.0, 0.0, 0.0, 0.0]
+        },
+        "capacity": {
+            "hydro":     [0.0, 0.0, 0.0, 0.0],
+            "gas":       [0.0, 0.0, 0.0, 0.0],
+            "wind":      [16.7, 37.2, "*", 61.3],
+            "hydrowind": [0.0, 7.8, "*", 37.8],
+            "sun":       [10.5, 49.1, 100.9, 142.9],
+            "nuc":       [63.1, 44, 15.7, 0.0],
+            "oil":       [0.0, 0.0, 0.0, 0.0],
+            "coal":      [0.0, 0.0, 0.0, 0.0],
+            "h2":        [0.0, 0.0, 0.0, 0.0]
+        }
+    }
+}

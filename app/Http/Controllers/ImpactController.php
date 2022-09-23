@@ -76,6 +76,7 @@ class ImpactController extends Controller
             ->orderBy('scenario_id')
             ->orderBy('category_id')
             ->orderBy('year')
+            ->where('year', '<=', $this->year)
             ->get();
 
         $categories = [];
@@ -90,7 +91,7 @@ class ImpactController extends Controller
             // Intialize
             if (!in_array($item->category->key, array_keys($categories))) {
                 $categories[$item->category->key] = [
-                    'label' => $item->category->key . ' (' . (carbonIntensity($item->category->key) / 1000) . 'g)',
+                    'label' => $item->category->key . ' (' . (carbonIntensity($item->category->key)) . 'g)',
                     'borderColor' => catColor($item->category->key),
                     'backgroundColor' => catColor($item->category->key),
                     'data' => [],
@@ -117,7 +118,7 @@ class ImpactController extends Controller
                 || $item->scenario_id != $scenarioId
             ) {
                 // We just switched to a new category we stack the data
-                array_push($categories[$categoryKey]['data'], round(($totalArea * carbonIntensity($categoryKey)) / 1000000, 2));
+                array_push($categories[$categoryKey]['data'], round(($totalArea * carbonIntensity($categoryKey)), 2) / 1000);
                 $totalArea = 0;
             }
 
@@ -128,7 +129,7 @@ class ImpactController extends Controller
         }
 
         // And we push the last one
-        array_push($categories[$categoryKey]['data'], round(($totalArea * carbonIntensity($categoryKey)) / 1000000, 2));
+        array_push($categories[$categoryKey]['data'], round(($totalArea * carbonIntensity($categoryKey)), 2) / 1000);
 
         $labels = Scenario::orderBy('id')->get()->pluck('name')->toArray();
 
@@ -324,15 +325,24 @@ class ImpactController extends Controller
         return [
             'label' => 'Production',
             'data' =>
-            (array)Data::selectRaw('scenario_id, sum(production) as sum')
-                ->groupBy('scenario_id')
+            (array)Data::selectRaw('scenario_id, year, sum(production) as sum')
+                ->groupBy('scenario_id', 'year')
                 ->orderBy('scenario_id')
+                ->orderBy('year')
+                ->where('year', '<=', $this->year)
                 ->get()
-                ->pluck('sum')
-                ->each(function ($item) {
-                    return (int)$item * 10; // Approximation
+                ->groupBy('scenario_id')
+                ->map(function ($item) {
+                    $sum = 0;
+
+                    for ($i = 0; $i < $item->count() - 1; $i++) {
+                        $sum += (($item[$i]->sum + $item[$i + 1]->sum) * ($item[$i + 1]->year - $item[$i]->year) / 2);
+                    }
+
+                    return $sum;
                 })
-                ->toArray(),
+                ->values()
+                ->all(),
             'borderColor' => 'transparent',
             'backgroundColor' => 'white',
             'pointStyle' => 'rectRot',

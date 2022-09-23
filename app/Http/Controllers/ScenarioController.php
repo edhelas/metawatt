@@ -93,11 +93,10 @@ class ScenarioController extends Controller
             'totalCarbon' => (int)(
                 $items->sum(function ($item) {
                     return carbonIntensity($item->category->key) * $item->production;
-                }) * 24 * 365
+                })
                 / $items->sum(function ($item) {
                     return $item->production;
                 })
-                / 1000 / 1000
             )
         ]);
     }

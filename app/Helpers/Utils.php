@@ -135,7 +135,7 @@ function groupSources(string $group): array
 
 function carbonIntensity(string $category): float
 {
-    // IPCC 2014
+    // IPCC 2014 en gCO2eq/kWh
     $intensity =  [
         'nuc'       => 4, // EDF 2022
         'hydro'     => 24,
@@ -153,7 +153,7 @@ function carbonIntensity(string $category): float
     // Autre chiffres RTE 12-2 ACV_GES
 
     if (array_key_exists($category, $intensity)) {
-        return $intensity[$category]*1000;
+        return $intensity[$category];
     }
 
     return 0;

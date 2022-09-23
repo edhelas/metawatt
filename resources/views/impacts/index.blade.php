@@ -11,14 +11,13 @@
 
     <div class="col-12 col-lg-6">
         <h3>Production totale</h3>
-        <p>Énergie totale produite au fil du temps</p>
+        <p>Électricité totale produite au fil du temps</p>
         <div class="card mb-4">
             <div class="card-body">
-                <h5 class="card-title">Énergie totale produite</h5>
+                <h5 class="card-title">Électricité totale produite</h5>
                 <p class="card-text">
-                    <a href="{{ route('impacts.show.production.total') }}">
-                        <i class="fa-solid fa-chart-line"></i> Évolution dans le temps
-                    </a>
+                    <i class="fa-solid fa-chart-line"></i>
+                    <a href="{{ route('impacts.show.production.total') }}">Évolution dans le temps</a>
                 </p>
             </div>
         </div>
@@ -30,9 +29,8 @@
             <div class="card-body">
                 <h5 class="card-title">Carbone</h5>
                 <p class="card-text">
-                    <a href="{{ route('impacts.carbon.show') }}">
-                        <i class="fa-solid fa-chart-column"></i> Impact final en 2050
-                    </a>
+                    <i class="fa-solid fa-chart-column"></i>
+                    <a href="{{ route('impacts.carbon.show') }}">Impact final en 2050</a>
                 </p>
             </div>
         </div>
@@ -50,12 +48,11 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $name }}</h5>
                     <p class="card-text">
-                        <a href="{{ route('impacts.resources.show', $key) }}">
-                            <i class="fa-solid fa-chart-line"></i> Évolution dans le temps
-                        </a><br />
-                        <a href="{{ route('impacts.resources.show.final', $key) }}">
-                            <i class="fa-solid fa-chart-column"></i> Impact final en 2050
-                        </a>
+                        <i class="fa-solid fa-chart-line"></i>
+                        <a href="{{ route('impacts.resources.show', $key) }}">Évolution dans le temps</a><br />
+
+                        <i class="fa-solid fa-chart-column"></i>
+                        <a href="{{ route('impacts.resources.show.final', $key) }}">Impact final en 2050</a>
                     </p>
                 </div>
             </div>

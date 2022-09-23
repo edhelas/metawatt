@@ -23,13 +23,7 @@
         @endforeach
     </div>
 
-    @if (!empty(groupSources($group)))
-        <p>Sources :<br />
-            @foreach (groupSources($group) as $url => $title)
-                <i class="fa-solid fa-link"></i> <a href="{{ $url }}" target="_blank">{{ $title }}</a></br>
-            @endforeach
-        </p>
-    @endif
+    @include('parts.group_sources', ['group' => $group])
 
     <hr class="mb-4 mt-4"/>
 @endforeach

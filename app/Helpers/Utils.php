@@ -234,6 +234,16 @@ function resourceIntensityRTE(string $category, string $resource): float
     return 0;
 }
 
+function compareParis(float $space): float
+{
+    return round(($space / 10540), 2);
+}
+
+function compareCarbon2021(int $carbon): float
+{
+    return round($carbon / 58, 1);
+}
+
 function resources(): array
 {
     return [
@@ -286,7 +296,7 @@ function catName(string $category): string
         'nuc' => 'Nucléaire',
         'hydro' => 'Hydraulique',
         'wind' => 'Éolien',
-        'gas' => 'Gas',
+        'gas' => 'Gas fossile',
         'sun' => 'Photovoltaïque',
         'hydrowind' => 'Éolien marin',
         'coal' => 'Charbon',

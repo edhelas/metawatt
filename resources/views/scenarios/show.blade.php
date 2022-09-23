@@ -19,7 +19,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 nopadding">
-                        <p>En 2050</p>
+                        <h5>À l'issue de la transition, l'année 2050:</h5>
                     </div>
                     <div class="col-6 nopadding">
                         <h4 class="card-title">
@@ -41,14 +41,30 @@
                             <i class="fa-solid fa-chart-line"></i> Production
                         </a>
                     </div>
-                    <div class="col-12 mt-2 nopadding">
-                        <h3 class="card-title">
+                    <div class="col-6 mt-2 nopadding">
+                        <h4 class="card-title">
                             {{ $totalCarbon }}
-                            <small class="text-muted">TCO2eq/TWh émis</small>
-                        </h3>
+                            <small class="text-muted">gCO2eq/kWh émis</small>
+                        </h4>
                         <a href="{{ route('impacts.carbon.show') }}" class="btn btn-secondary btn-sm">
-                            <i class="fa-solid fa-chart-bar"></i> Impact carbone complet
+                            <i class="fa-solid fa-chart-bar"></i> Comparateur
                         </a>
+                        <p class="mt-1">
+                            <a href="https://ourworldindata.org/grapher/carbon-intensity-electricity?tab=chart&country=~FRA">58gCO2eq/kWh en 2021</a>
+                            soit {{ compareCarbon2021($totalCarbon) }}x
+                        </p>
+                    </div>
+                    <div class="col-6 mt-2 nopadding">
+                        <h4 class="card-title">
+                            {{ $totalSpace }}
+                            <small class="text-muted">ha artificialisés</small>
+                        </h4>
+                        <a href="{{ route('impacts.resources.show', 'space') }}" class="btn btn-secondary btn-sm">
+                            <i class="fa-solid fa-chart-bar"></i> Comparateur
+                        </a>
+                        <p class="mt-1">{{ compareParis($totalSpace) }}x la superficie de
+                            <a href="https://fr.wikipedia.org/wiki/Paris" title="105,40 km2">Paris</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -58,14 +74,18 @@
             @include('parts.graph', ['style' => 'height: 60vh;'])
         </div>
 
+        <div class="col-12">
+            @include('parts.group_sources', ['group' => $scenario->group])
+        </div>
+
         <div class="col-12 col-md-6">
             @if ($previousScenario)
-                @include('parts.scenario_card', ['scenario' => $previousScenario])
+            @include('parts.scenario_card', ['scenario' => $previousScenario])
             @endif
         </div>
         <div class="col-12 col-md-6">
             @if ($nextScenario)
-                @include('parts.scenario_card', ['scenario' => $nextScenario])
+            @include('parts.scenario_card', ['scenario' => $nextScenario])
             @endif
         </div>
     </div>

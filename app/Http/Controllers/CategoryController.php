@@ -15,7 +15,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function show(string $category)
+    public function showProduction(string $category)
     {
         $items = Data::where('category_id', Category::where('key', $category)->first()->id)
             ->orderBy('scenario_id')
@@ -62,7 +62,60 @@ class CategoryController extends Controller
             ]
         ];
 
-        return view('categories.show', [
+        return view('categories.show_production', [
+            'category' => Category::where('key', $category)->firstOrFail(),
+            'jsonConfig' => json_encode($config)
+        ]);
+    }
+
+    public function showCapacity(string $category)
+    {
+        $items = Data::where('category_id', Category::where('key', $category)->first()->id)
+            ->orderBy('scenario_id')
+            ->orderBy('year')
+            ->with('scenario')
+            ->get();
+
+        $scenarios = [];
+
+        foreach ($items as $item) {
+            if (!in_array($item->scenario->name, array_keys($scenarios))) {
+                $scenarios[$item->scenario->name] = [
+                    'label' => $item->scenario->name,
+                    'tension' => 0.3,
+                    'hitRadius' => 4,
+                    'pointRadius' => 6,
+                    'borderColor' => groupColor($item->scenario->group),
+                    'data' => []
+                ];
+            }
+
+            array_push($scenarios[$item->scenario->name]['data'], (float)$item->capacity);
+        }
+
+        $labels = Data::distinct('year')->get()->pluck('year');
+
+        $config = [
+            'type' => 'line',
+            'data' => [
+                'labels' => $labels,
+                'datasets' => array_values($scenarios)
+            ],
+            'options' => [
+                'maintainAspectRatio'=> false,
+                'spanGaps' => true,
+                'scales' => [
+                    'y' => [
+                        'title' => [
+                            'display' => true,
+                            'text' => 'GW'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return view('categories.show_production', [
             'category' => Category::where('key', $category)->firstOrFail(),
             'jsonConfig' => json_encode($config)
         ]);

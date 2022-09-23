@@ -13,7 +13,7 @@ class ScenarioController extends Controller
         return view('scenarios.index', ['groups' => Scenario::all()->groupBy('group')]);
     }
 
-    public function show(int $id)
+    public function show(string $id)
     {
         $scenario = Scenario::where('id', $id)->firstOrFail();
 
@@ -86,6 +86,9 @@ class ScenarioController extends Controller
             }),
             'totalProduction' => (int)$items->sum(function ($item) {
                 return $item->production;
+            }),
+            'totalSpace' => (int)$items->sum(function ($item) {
+                return (float)$item->capacity * resourceIntensityRTE($item->category->key, 'space');
             }),
             'totalCarbon' => (int)(
                 $items->sum(function ($item) {

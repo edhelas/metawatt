@@ -19,7 +19,8 @@ Route::get('scenarios/{scenario}/capacity', 'ScenarioController@showCapacity')->
 Route::get('scenarios/{scenario}/production', 'ScenarioController@showProduction')->name('scenarios.show.production');
 Route::get('scenarios/{scenario}', 'ScenarioController@show')->name('scenarios.show');
 Route::get('energies', 'CategoryController@index')->name('categories.index');
-Route::get('energies/{category}', 'CategoryController@show')->name('categories.show');
+Route::get('energies/{category}/production', 'CategoryController@showProduction')->name('categories.show.production');
+Route::get('energies/{category}/capacity', 'CategoryController@showCapacity')->name('categories.show.capacity');
 Route::get('energies/{category}/load-factor', 'CategoryController@showLoadFactor')->name('categories.show.load.factor');
 
 Route::get('impact/total-production', 'ImpactController@showTotalProduction')->name('impacts.show.production.total');

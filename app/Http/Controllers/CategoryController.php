@@ -115,7 +115,7 @@ class CategoryController extends Controller
             ]
         ];
 
-        return view('categories.show_production', [
+        return view('categories.show_capacity', [
             'category' => Category::where('key', $category)->firstOrFail(),
             'jsonConfig' => json_encode($config)
         ]);

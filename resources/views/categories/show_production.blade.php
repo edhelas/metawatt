@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', catName($category->key))
+@section('subtitle', 'Production')
 @section('title-icon', catIcon($category->key))
 
 @section('content')

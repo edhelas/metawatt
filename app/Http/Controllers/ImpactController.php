@@ -217,6 +217,8 @@ class ImpactController extends Controller
 
         $labels = Data::distinct('year')->get()->pluck('year');
 
+        $categories['production'] = $this->getProductionDots();
+
         $config = [
             'type' => 'line',
             'data' => [
@@ -266,7 +268,8 @@ class ImpactController extends Controller
                     'label' => $item->category->key,
                     'borderColor' => catColor($item->category->key),
                     'backgroundColor' => catColor($item->category->key),
-                    'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource)) / 1000]
+                    'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource)) / 1000],
+                    'order' => 1
                 ];
             }
         }
@@ -279,6 +282,9 @@ class ImpactController extends Controller
 
         $labels = Scenario::get()->pluck('name')->toArray();
         $labels = array_merge(['Référence (2020)'], $labels);
+
+        $categories['production'] = $this->getProductionDots();
+        array_unshift($categories['production']['data'], 0);
 
         $config = [
             'type' => 'bar',
@@ -300,9 +306,10 @@ class ImpactController extends Controller
                             'text' => $resource == 'space' ? 'kha' : 'kT'
                         ]
                     ],
+                    'y1' => $this->getProductionDotsScale(),
                     'x' => [
                         'stacked' => true,
-                    ]
+                    ],
                 ],
                 'interaction' => [
                     'mode' => 'nearest',

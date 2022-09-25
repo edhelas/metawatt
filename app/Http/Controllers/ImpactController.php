@@ -204,7 +204,7 @@ class ImpactController extends Controller
             if ($item->year == $oldYear) {
                 $capacitySum += (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource);
             } else {
-                array_push($scenarios[$oldScenario]['data'], $capacitySum / 1000);
+                array_push($scenarios[$oldScenario]['data'], $capacitySum);
 
                 $capacitySum = (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource);
             }
@@ -213,7 +213,7 @@ class ImpactController extends Controller
             $oldScenario = $item->scenario->name;
         }
 
-        array_push($scenarios[$items->last()->scenario->name]['data'], $capacitySum / 1000);
+        array_push($scenarios[$items->last()->scenario->name]['data'], $capacitySum);
 
         $labels = Data::distinct('year')->get()->pluck('year');
 
@@ -268,7 +268,7 @@ class ImpactController extends Controller
                     'label' => $item->category->key,
                     'borderColor' => catColor($item->category->key),
                     'backgroundColor' => catColor($item->category->key),
-                    'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource)) / 1000],
+                    'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource))],
                     'order' => 1
                 ];
             }
@@ -276,7 +276,7 @@ class ImpactController extends Controller
 
         foreach ($items as $item) {
             if (isset($categories[$item->category->name])) {
-                array_push($categories[$item->category->name]['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource)) / 1000);
+                array_push($categories[$item->category->name]['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource)));
             }
         }
 

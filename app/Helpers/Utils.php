@@ -168,7 +168,7 @@ function resourceIntensityRTE(string $category, string $resource): float
             'hydro'     => 0.01,
             'wind'      => 0.15,
             'gas'       => 0.02,
-            'sun'       => 0.05, // moyenne sol 0.10 toiture 0.05
+            'sun'       => 0.07, // moyenne sol 0.10 toiture 0.05
             'hydrowind' => 0.0,
             'coal'      => 0.02,
             'h2'        => 0,
@@ -228,7 +228,7 @@ function resourceIntensityRTE(string $category, string $resource): float
     ];
 
     if (array_key_exists($resource, $intensity) && array_key_exists($category, $intensity[$resource])) {
-        return $intensity[$resource][$category]*1000;
+        return $intensity[$resource][$category];
     }
 
     return 0;

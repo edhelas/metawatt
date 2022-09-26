@@ -88,7 +88,7 @@ class ScenarioController extends Controller
                 return $item->production;
             }),
             'totalSpace' => (int)$items->sum(function ($item) {
-                return (float)$item->capacity * resourceIntensityRTE($item->category->key, 'space');
+                return (float)$item->capacity * resourceIntensityRTE($item->category->key, 'space') * 1000;
             }),
             'totalCarbon' => (int)(
                 $items->sum(function ($item) {

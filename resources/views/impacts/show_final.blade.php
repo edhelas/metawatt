@@ -16,16 +16,43 @@
 <p>Nous avons ici projeté la capacité de chaque source d'énergie au fil des années par scénario et estimé la quantité de
     resource nécessaire à son déploiement.</p>
 
-<p>Ci dessous le ratio par source d'énergie appliqué aux scénarios en @if ($resource == 'space')ha @else T @endif/ MW déployé:</p>
+<p>Ci dessous le ratio par source d'énergie appliqué aux scénarios en @if ($resource == 'space')ha @else T @endif/ MW déployé au fil des décennies:</p>
 
 <div class="container">
+    <div class="row">
+        <div class="col-4 text-right">
+            <b>Source</b>
+        </div>
+        <div class="col-2 text-right">
+            <b>2020</b>
+        </div>
+        <div class="col-2 text-right">
+            <b>2030</b>
+        </div>
+        <div class="col-2 text-right">
+            <b>2040</b>
+        </div>
+        <div class="col-2 text-right">
+            <b>2050</b>
+        </div>
+    </div>
+
     @foreach (['nuc', 'hydro', 'wind', 'hydrowind', 'gas', 'sun', 'coal'] as $category)
     <div class="row">
-        <div class="col-5 text-right">
+        <div class="col-4 text-right">
             {{ catName($category) }}
         </div>
-        <div class="col-3 text-right">
-            {{ resourceIntensityRTE($category, $resource) }} @if ($resource == 'space')ha @else T @endif
+        <div class="col-2 text-right">
+            {{ resourceIntensityRTE($category, $resource, 2020) }}
+        </div>
+        <div class="col-2 text-right">
+            {{ resourceIntensityRTE($category, $resource, 2030) }}
+        </div>
+        <div class="col-2 text-right">
+            {{ resourceIntensityRTE($category, $resource, 2040) }}
+        </div>
+        <div class="col-2 text-right">
+            {{ resourceIntensityRTE($category, $resource, 2050) }}
         </div>
     </div>
     @endforeach

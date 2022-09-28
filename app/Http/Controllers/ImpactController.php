@@ -202,11 +202,11 @@ class ImpactController extends Controller
             }
 
             if ($item->year == $oldYear) {
-                $capacitySum += (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource);
+                $capacitySum += (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year);
             } else {
                 array_push($scenarios[$oldScenario]['data'], $capacitySum);
 
-                $capacitySum = (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource);
+                $capacitySum = (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year);
             }
 
             $oldYear = $item->year;
@@ -268,7 +268,7 @@ class ImpactController extends Controller
                     'label' => $item->category->key,
                     'borderColor' => catColor($item->category->key),
                     'backgroundColor' => catColor($item->category->key),
-                    'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource))],
+                    'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year))],
                     'order' => 1
                 ];
             }
@@ -276,7 +276,7 @@ class ImpactController extends Controller
 
         foreach ($items as $item) {
             if (isset($categories[$item->category->name])) {
-                array_push($categories[$item->category->name]['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource)));
+                array_push($categories[$item->category->name]['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year)));
             }
         }
 

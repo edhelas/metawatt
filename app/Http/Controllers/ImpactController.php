@@ -72,6 +72,68 @@ class ImpactController extends Controller
 
     public function carbon(Request $request)
     {
+        $items = Data::orderBy('scenario_id')
+            ->orderBy('year')
+            ->orderBy('category_id')
+            ->with(['scenario', 'category'])
+            ->get();
+
+        $scenarios = [];
+
+        $productionSum = 0;
+        $oldYear = $items->first()->year;
+        $oldScenario = null;
+
+        foreach ($items as $item) {
+            if (!in_array($item->scenario->name, array_keys($scenarios))) {
+                $scenarios[$item->scenario->name] = scenarioBaseConfig($item->scenario);
+            }
+
+            if ($item->year == $oldYear) {
+                $productionSum += (float)$item->production * (float)carbonIntensity($item->category->key);
+            } else {
+                array_push($scenarios[$oldScenario]['data'], $productionSum);
+
+                $productionSum = (float)$item->production * (float)carbonIntensity($item->category->key);
+            }
+
+            $oldYear = $item->year;
+            $oldScenario = $item->scenario->name;
+        }
+
+        array_push($scenarios[$items->last()->scenario->name]['data'], $productionSum);
+
+        $labels = Data::distinct('year')->get()->pluck('year');
+
+        $categories['production'] = $this->getProductionDots();
+
+        $config = [
+            'type' => 'line',
+            'data' => [
+                'labels' => $labels,
+                'datasets' => array_values($scenarios)
+            ],
+            'options' => [
+                'maintainAspectRatio' => false,
+                'spanGaps' => true,
+                'scales' => [
+                    'y' => [
+                        'title' => [
+                            'display' => true,
+                            'text' => 'MT'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return view('impacts.carbon.show', [
+            'jsonConfig' => json_encode($config)
+        ]);
+    }
+
+    public function carbonFinal(Request $request)
+    {
         $items = Data::with(['category', 'scenario'])
             ->orderBy('scenario_id')
             ->orderBy('category_id')
@@ -168,7 +230,7 @@ class ImpactController extends Controller
             ]
         ];
 
-        return view('impacts.carbon', [
+        return view('impacts.carbon.show_final', [
             'year' => $this->year,
             'jsonConfig' => json_encode($config),
             'resources' => resources()
@@ -191,14 +253,7 @@ class ImpactController extends Controller
 
         foreach ($items as $item) {
             if (!in_array($item->scenario->name, array_keys($scenarios))) {
-                $scenarios[$item->scenario->name] = [
-                    'label' => $item->scenario->name,
-                    'tension' => 0.3,
-                    'hitRadius' => 4,
-                    'pointRadius' => 6,
-                    'borderColor' => groupColor($item->scenario->group),
-                    'data' => []
-                ];
+                $scenarios[$item->scenario->name] = scenarioBaseConfig($item->scenario);
             }
 
             if ($item->year == $oldYear) {
@@ -239,7 +294,7 @@ class ImpactController extends Controller
             ]
         ];
 
-        return view('impacts.show', [
+        return view('impacts.resource.show', [
             'resource' => $resource,
             'jsonConfig' => json_encode($config),
             'resources' => resources()
@@ -319,7 +374,7 @@ class ImpactController extends Controller
             ]
         ];
 
-        return view('impacts.show_final', [
+        return view('impacts.resource.show_final', [
             'year' => $this->year,
             'resource' => $resource,
             'jsonConfig' => json_encode($config),

@@ -70,7 +70,7 @@
         <i class="fa-solid fa-circle-info text-info mr-2"></i> Si nous électrifions massivement nos transports (gain en efficacité) et que nous réduisons certains de nos usages (sobriété) nous devons nous assurer que l'électricité utilisée dans ces véhicules émette peu de CO2 lors de sa production.
     </div>
 
-    <p>Metawatt compare donc <a href="{{ route('scenarios.index') }}">l'évolution du mix énergétique des différents scénarios</a> ainsi <a href="{{ route('impacts.resources.index')}}">que leurs différents impacts</a> (<a href="{{ route('impacts.carbon.show') }}">carbone</a>, matériaux…) au fil des décennies.</p>
+    <p>Metawatt compare donc <a href="{{ route('scenarios.index') }}">l'évolution du mix énergétique des différents scénarios</a> ainsi <a href="{{ route('impacts.resources.index')}}">que leurs différents impacts</a> (<a href="{{ route('impacts.carbon.show.final') }}">carbone</a>, matériaux…) au fil des décennies.</p>
 
     </div>
 </div>

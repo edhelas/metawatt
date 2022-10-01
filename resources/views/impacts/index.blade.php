@@ -29,8 +29,11 @@
             <div class="card-body">
                 <h5 class="card-title">Carbone</h5>
                 <p class="card-text">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <a href="{{ route('impacts.carbon.show') }}">Émissions dans le temps</a><br />
+
                     <i class="fa-solid fa-chart-column"></i>
-                    <a href="{{ route('impacts.carbon.show') }}">Impact final en 2050</a>
+                    <a href="{{ route('impacts.carbon.show.final') }}">Impact final en 2050</a>
                 </p>
             </div>
         </div>

@@ -27,14 +27,7 @@ class CategoryController extends Controller
 
         foreach ($items as $item) {
             if (!in_array($item->scenario->name, array_keys($scenarios))) {
-                $scenarios[$item->scenario->name] = [
-                    'label' => $item->scenario->name,
-                    'tension' => 0.3,
-                    'hitRadius' => 4,
-                    'pointRadius' => 6,
-                    'borderColor' => groupColor($item->scenario->group),
-                    'data' => []
-                ];
+                $scenarios[$item->scenario->name] = scenarioBaseConfig($item->scenario);
             }
 
             array_push($scenarios[$item->scenario->name]['data'], (float)$item->production);
@@ -80,14 +73,7 @@ class CategoryController extends Controller
 
         foreach ($items as $item) {
             if (!in_array($item->scenario->name, array_keys($scenarios))) {
-                $scenarios[$item->scenario->name] = [
-                    'label' => $item->scenario->name,
-                    'tension' => 0.3,
-                    'hitRadius' => 4,
-                    'pointRadius' => 6,
-                    'borderColor' => groupColor($item->scenario->group),
-                    'data' => []
-                ];
+                $scenarios[$item->scenario->name] = scenarioBaseConfig($item->scenario);
             }
 
             array_push($scenarios[$item->scenario->name]['data'], (float)$item->capacity);
@@ -133,14 +119,7 @@ class CategoryController extends Controller
 
         foreach ($items as $item) {
             if (!in_array($item->scenario->name, array_keys($scenarios))) {
-                $scenarios[$item->scenario->name] = [
-                    'label' => $item->scenario->name,
-                    'tension' => 0.3,
-                    'hitRadius' => 4,
-                    'pointRadius' => 6,
-                    'borderColor' => groupColor($item->scenario->group),
-                    'data' => []
-                ];
+                $scenarios[$item->scenario->name] = scenarioBaseConfig($item->scenario);
             }
 
             array_push($scenarios[$item->scenario->name]['data'], loadFactor((float)$item->capacity, (float)$item->production));

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Électricité totale produite')
+@section('title', 'Impact')
+@section('subtitle', 'Émissions carbones')
 
 @section('content')
 

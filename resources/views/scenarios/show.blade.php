@@ -46,7 +46,7 @@
                             {{ $totalCarbon }}
                             <small class="text-muted">gCO2eq/kWh émis</small>
                         </h4>
-                        <a href="{{ route('impacts.carbon.show') }}" class="btn btn-secondary btn-sm">
+                        <a href="{{ route('impacts.carbon.show.final') }}" class="btn btn-secondary btn-sm">
                             <i class="fa-solid fa-chart-bar"></i> Comparateur
                         </a>
                         <p class="mt-1">
@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-4 text-center nopadding">
-            <p>En 2050</p>
+            <p>L'année 2050</p>
             @include('parts.graph', ['style' => 'height: 60vh;'])
         </div>
 

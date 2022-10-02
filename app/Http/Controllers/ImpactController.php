@@ -165,9 +165,23 @@ class ImpactController extends Controller
             ]
         ];
 
+        // Extract the percentages from the data
+        $percentages = [];
+
+        foreach ($config['data']['labels'] as $key => $label) {
+            foreach($config['data']['datasets'] as $category) {
+                $percentages[$label][$category['label']] = $category['data'][$key];
+            }
+        }
+
+        foreach ($percentages as $scenario => $data) {
+            $percentages[$scenario]['total'] = array_sum(array_values($data));
+        }
+
         return view('impacts.production.show_final', [
             'year' => $this->year,
             'jsonConfig' => json_encode($config),
+            'percentages' => $percentages,
             'resources' => resources()
         ]);
     }

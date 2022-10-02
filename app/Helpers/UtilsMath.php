@@ -38,3 +38,8 @@ function compareCarbon2021(int $carbon): float
 {
     return round($carbon / 58, 1);
 }
+
+function percentage(float $value, float $total, int $precision = 1)
+{
+    return round($value * 100 / $total, $precision);
+}

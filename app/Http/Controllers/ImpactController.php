@@ -18,7 +18,7 @@ class ImpactController extends Controller
         ]);
     }
 
-    public function showTotalProduction()
+    public function production()
     {
         $items = Data::selectRaw('scenario_id, year, sum(production) as sum')
             ->groupBy('scenario_id')
@@ -65,8 +65,110 @@ class ImpactController extends Controller
             ]
         ];
 
-        return view('impacts.show_total_production', [
+        return view('impacts.production.show', [
             'jsonConfig' => json_encode($config)
+        ]);
+    }
+
+    public function productionFinal(Request $request)
+    {
+        $items = Data::with(['category', 'scenario'])
+            ->orderBy('scenario_id')
+            ->orderBy('category_id')
+            ->orderBy('year')
+            ->where('year', '<=', $this->year)
+            ->get();
+
+        $categories = [];
+        $scenarioId = null;
+        $categoryKey = null;
+        $previousProduction = 0;
+        $previousYear = 0;
+
+        $totalArea = 0;
+
+        foreach ($items as $item) {
+            // Intialize
+            if (!in_array($item->category->key, array_keys($categories))) {
+                $categories[$item->category->key] = [
+                    'label' => $item->category->key,
+                    'borderColor' => catColor($item->category->key),
+                    'backgroundColor' => catColor($item->category->key),
+                    'data' => [],
+                    'order' => 1
+                ];
+            }
+
+            if ($categoryKey == null) {
+                $scenarioId = $item->scenario_id;
+                $categoryKey = $item->category->key;
+                $previousYear = $item->year;
+            }
+
+            // Seed
+            if (
+                $item->scenario_id == $scenarioId
+                && $item->category->key == $categoryKey
+                && $item->year != $previousYear
+            ) {
+                // We are in between two years for a scenario, for a category, we interpolate
+                $totalArea += (($item->production + $previousProduction) / 2) * ($item->year - $previousYear);
+            } else if (
+                $item->category->key != $categoryKey
+                || $item->scenario_id != $scenarioId
+            ) {
+                // We just switched to a new category we stack the data
+                array_push($categories[$categoryKey]['data'], round($totalArea, 2));
+                $totalArea = 0;
+            }
+
+            $previousProduction = $item->production;
+            $previousYear = $item->year;
+            $scenarioId = $item->scenario_id;
+            $categoryKey = $item->category->key;
+        }
+
+        // And we push the last one
+        array_push($categories[$categoryKey]['data'], round($totalArea, 2));
+
+        $labels = Scenario::orderBy('id')->get()->pluck('name')->toArray();
+
+        $config = [
+            'type' => 'bar',
+            'data' => [
+                'labels' => $labels,
+                'datasets' => array_values($categories)
+            ],
+            'options' => [
+                'maintainAspectRatio' => false,
+                'spanGaps' => true,
+                'legend' => [
+                    'position' => 'right'
+                ],
+                'scales' => [
+                    'y' => [
+                        'stacked' => true,
+                        'title' => [
+                            'display' => true,
+                            'text' => 'TWh'
+                        ]
+                    ],
+                    'x' => [
+                        'stacked' => true,
+                    ]
+                ],
+                'interaction' => [
+                    'mode' => 'nearest',
+                    'axis' => 'x',
+                    'intersect' => false
+                ],
+            ]
+        ];
+
+        return view('impacts.production.show_final', [
+            'year' => $this->year,
+            'jsonConfig' => json_encode($config),
+            'resources' => resources()
         ]);
     }
 

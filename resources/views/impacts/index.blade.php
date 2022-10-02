@@ -17,7 +17,10 @@
                 <h5 class="card-title">Électricité totale produite</h5>
                 <p class="card-text">
                     <i class="fa-solid fa-chart-line"></i>
-                    <a href="{{ route('impacts.show.production.total') }}">Évolution dans le temps</a>
+                    <a href="{{ route('impacts.production.show') }}">Évolution dans le temps</a><br />
+
+                    <i class="fa-solid fa-chart-column"></i>
+                    <a href="{{ route('impacts.production.show.final') }}">Production totale en 2050</a>
                 </p>
             </div>
         </div>
@@ -33,7 +36,7 @@
                     <a href="{{ route('impacts.carbon.show') }}">Émissions dans le temps</a><br />
 
                     <i class="fa-solid fa-chart-column"></i>
-                    <a href="{{ route('impacts.carbon.show.final') }}">Impact final en 2050</a>
+                    <a href="{{ route('impacts.carbon.show.final') }}">Impact total en 2050</a>
                 </p>
             </div>
         </div>
@@ -55,7 +58,7 @@
                         <a href="{{ route('impacts.resources.show', $key) }}">Évolution dans le temps</a><br />
 
                         <i class="fa-solid fa-chart-column"></i>
-                        <a href="{{ route('impacts.resources.show.final', $key) }}">Impact final en 2050</a>
+                        <a href="{{ route('impacts.resources.show.final', $key) }}">Impact total en 2050</a>
                     </p>
                 </div>
             </div>

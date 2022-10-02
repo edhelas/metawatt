@@ -113,6 +113,8 @@ class ScenarioController extends Controller
 
     public function prepareShow(int $id, string $type)
     {
+        $scenario = Scenario::where('id', $id)->firstOrFail();
+
         $items = Data::where('scenario_id', $id)
             ->orderBy('year')
             ->with('category')
@@ -181,7 +183,9 @@ class ScenarioController extends Controller
             ]
         ];
 
-        return view('scenarios.show_graph', [
+        return view('scenarios.show_' . $type, [
+            'previousScenario' => $scenario->previous(),
+            'nextScenario' => $scenario->next(),
             'scenario' => Scenario::where('id', $id)->firstOrFail(),
             'jsonConfig' => json_encode($config),
             'type' => $type

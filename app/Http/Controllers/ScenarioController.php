@@ -32,7 +32,7 @@ class ScenarioController extends Controller
                 })->values()->toArray(),
                 'datasets' => [
                     [
-                        'label' => 'TW',
+                        'label' => 'TWh',
                         'data' => $items->filter(function ($item, $key) {
                             return $item->production > 0;
                         })->map(function ($item) {

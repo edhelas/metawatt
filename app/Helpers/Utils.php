@@ -6,17 +6,19 @@ function catIcon(string $category): string
 {
     $icons = [
         'metawatt' => 'fa-bolt text-warning',
-        'nuc' => 'fa-atom text-success',
-        'hydro' => 'fa-water text-primary',
-        'wind' => 'fa-wind text-secondary',
-        'gas' => 'fa-fire-flame-simple text-success',
-        'sun' => 'fa-solar-panel text-warning',
-        'hydrowind' => 'fa-fan text-info',
-        'coal' => 'fa-leaf text-danger',
-        'h2' => 'fa-heading text-info',
-        'oil' => 'fa-gas-pump text-danger',
-        'tidal' => 'fa-water text-info',
-        'biomass' => 'fa-tree text-success',
+        'nuc' => 'fa-atom',
+        'newnuc' => 'fa-atom',
+        'hydro' => 'fa-water',
+        'step' => 'fa-battery-full',
+        'wind' => 'fa-wind',
+        'gas' => 'fa-fire-flame-simple',
+        'sun' => 'fa-solar-panel',
+        'hydrowind' => 'fa-fan',
+        'coal' => 'fa-leaf',
+        'h2' => 'fa-heading',
+        'oil' => 'fa-gas-pump',
+        'tidal' => 'fa-water',
+        'biomass' => 'fa-tree',
     ];
 
     return (array_key_exists($category, $icons))
@@ -89,7 +91,7 @@ Leur publication examine les conséquences sur le système électrique d’un mi
         'nw' => 'L’association negaWatt publie depuis plusieurs année des scénarios de transition énergétique.
 
 Partant du principe que l’énergie la moins polluante est celle qu’on ne consomme/produit pas, négaWatt propose de repenser notre vision de l’énergie en s’appuyant sur une démarche en trois étapes: sobriété, efficacité énergétique et énergies renouvelables.',
-        'ademe' => 'L’ADEME a souhaité soumettre au débat quatre chemins “types” cohérents qui présentent de manière volontairement contrastée des options économiques, techniques et de société pour atteindre la neutralité carbone en 2050.
+        'ademe' => 'L’ADEME a souhaité soumettre au débat quatre chemins “types” cohérents (dont un avec deux variantes) qui présentent de manière volontairement contrastée des options économiques, techniques et de société pour atteindre la neutralité carbone en 2050.
 
 Imaginés pour la France métropolitaine, ils reposent sur les mêmes données macroéconomiques, démographiques et d’évolution climatique (+2,1°C en 2100). Cependant, ils empruntent des voies distinctes et correspondent à des choix de société différents.',
     ];
@@ -119,7 +121,8 @@ function groupSources(string $group): array
         ],
         'belfort' => [],
         'nw' => [
-            'https://negawatt.org/Scenario-negaWatt-2017-2050' => 'Scénario négaWatt 2017'
+            'https://negawatt.org/Scenario-negaWatt-2017-2050' => 'Scénario négaWatt 2017',
+            'https://negawatt.org/Scenario-negaWatt-2022' => 'Scénario négaWatt 2022',
         ],
         'ademe' => [
             'https://librairie.ademe.fr/energies-renouvelables-reseaux-et-stockage/5352-prospective-transitions-2050-feuilleton-mix-electrique.html' => 'ADEME - La Librairie: Prospective - Transitions 2050 - Feuilleton Mix électrique'
@@ -148,7 +151,7 @@ function groupColor(string $group): string
         'belfort' => '#28a745',
         'rte' => '#2196F3',
         'nw' => '#ff5722',
-        'ademe' => '#FF9800',
+        'ademe' => '#4caf50',
     ];
 
     return (array_key_exists($group, $groups))
@@ -159,8 +162,10 @@ function groupColor(string $group): string
 function catColor(string $category): string
 {
     $colors = [
-        'nuc' => '#9C27B0',
+        'nuc' => '#851399',
+        'newnuc' => '#9C27B0',
         'hydro' => '#2196F3',
+        'step' => '#21f3b1ff',
         'wind' => '#e91e63',
         'gas' => '#ff5722',
         'sun' => '#FDD835',
@@ -181,7 +186,9 @@ function catName(string $category): string
 {
     $names = [
         'nuc' => 'Nucléaire',
+        'newnuc' => 'Nouveau nucléaire',
         'hydro' => 'Hydraulique',
+        'step' => 'STEP',
         'wind' => 'Éolien',
         'gas' => 'Gas fossile',
         'sun' => 'Photovoltaïque',

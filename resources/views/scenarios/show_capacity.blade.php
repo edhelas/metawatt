@@ -7,7 +7,7 @@
 
 <p>Capacité déployée en GW pour les différentes sources d'électricité au cours du temps.<br />
     Voir la
-    <a href="{{ route('scenarios.show.production', $scenario->id) }}" class="btn btn-secondary btn-sm">
+    <a href="{{ route('scenarios.show.production', $scenario->slug) }}" class="btn btn-secondary btn-sm">
         Production
     </a>
     électrique générée à partir de cette capacité.

@@ -7,7 +7,7 @@
 
 <p>Production électrique en TWh du scénario pour les différentes sources d'électricité au cours du temps.<br />
     Voir la
-    <a href="{{ route('scenarios.show.capacity', $scenario->id) }}" class="btn btn-secondary btn-sm">
+    <a href="{{ route('scenarios.show.capacity', $scenario->slug) }}" class="btn btn-secondary btn-sm">
         Capacité
     </a>
     déployée pour arriver à cette production.

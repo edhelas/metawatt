@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Data;
 use App\Models\Scenario;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class ImportDataCommand extends Command
 {
@@ -30,6 +31,7 @@ class ImportDataCommand extends Command
 
             $scenario = new Scenario;
             $scenario->name = $json->name;
+            $scenario->slug = Str::slug($scenario->name, '-');
             $scenario->group = $json->group;
             if (!empty($json->introduction)) $scenario->introduction = $json->introduction;
             if (!empty($json->description)) $scenario->description = preg_replace('/\\n/', "\n", $json->description);

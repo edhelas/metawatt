@@ -1,11 +1,17 @@
 <?php
 
+/**
+ * Here we assume that newnuc = new and hydro = step for the carbon and resource intensity
+ */
+
 function carbonIntensity(string $category): float
 {
     // IPCC 2014 en gCO2eq/kWh
     $intensity =  [
         'nuc'       => 4, // EDF 2022
+        'newnuc'    => 4, // EDF 2022
         'hydro'     => 24,
+        'step'      => 24,
         'wind'      => 11,
         'gas'       => 490,
         'sun'       => 45,
@@ -32,7 +38,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
         // Annexes 12-4
         'space' => [
             'nuc'       => 0.06,
+            'newnuc'    => 0.06,
             'hydro'     => 0.01,
+            'step'      => 0.01,
             'wind'      => 0.15,
             'gas'       => 0.02,
             'sun'       => 0.07, // moyenne sol 0.10 toiture 0.05
@@ -44,7 +52,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
 
             2030 => [ // /!\ Extrapolated between 2020 and 2050
                 'nuc'       => 0.05,
+                'newnuc'    => 0.05,
                 'hydro'     => 0.01,
+                'step'      => 0.01,
                 'wind'      => 0.15,
                 'gas'       => 0.02,
                 'sun'       => 0.07, // moyenne sol 0.10 toiture 0.05
@@ -57,7 +67,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
 
             2040 => [ // /!\ Extrapolated between 2020 and 2050
                 'nuc'       => 0.04,
+                'newnuc'    => 0.04,
                 'hydro'     => 0.01,
+                'step'      => 0.01,
                 'wind'      => 0.15,
                 'gas'       => 0.02,
                 'sun'       => 0.07, // moyenne sol 0.10 toiture 0.05
@@ -70,7 +82,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
 
             2050 => [
                 'nuc'       => 0.03,
+                'newnuc'    => 0.03,
                 'hydro'     => 0.01,
+                'step'      => 0.01,
                 'wind'      => 0.15,
                 'gas'       => 0.02,
                 'sun'       => 0.07, // moyenne sol 0.10 toiture 0.05
@@ -85,7 +99,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
         // Annexes 12-3
         'copper' => [
             'nuc'       => 1.6,
+            'newnuc'    => 1.6,
             'hydro'     => 0.18,
+            'step'      => 0.18,
             'wind'      => 2.6,
             'gas'       => 1.2, // combiné, combustion: 0.79
             'sun'       => 3.4,
@@ -97,7 +113,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
 
             2030 => [
                 'nuc'       => 1.6,
+                'newnuc'    => 1.6,
                 'hydro'     => 0.18,
+                'step'      => 0.18,
                 'wind'      => 2.6,
                 'gas'       => 1.2, // combiné, combustion: 0.79
                 'sun'       => 3.4,
@@ -109,7 +127,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             ],
             2040 => [
                 'nuc'       => 1.6,
+                'newnuc'    => 1.6,
                 'hydro'     => 0.18,
+                'step'      => 0.18,
                 'wind'      => 2.6,
                 'gas'       => 1.2, // combiné, combustion: 0.79
                 'sun'       => 3.2,
@@ -121,7 +141,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             ],
             2050 => [
                 'nuc'       => 1.6,
+                'newnuc'    => 1.6,
                 'hydro'     => 0.18,
+                'step'      => 0.18,
                 'wind'      => 2.6,
                 'gas'       => 1.2, // combiné, combustion: 0.79
                 'sun'       => 3.1,
@@ -134,7 +156,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
         ],
         'steel' => [
             'nuc'       => 67,
+            'newnuc'    => 67,
             'hydro'     => 98,
+            'step'      => 98,
             'wind'      => 200,
             'gas'       => 29, // combiné, combustion:6.3
             'sun'       => 34,5, // mediane PV sol-toiture
@@ -146,7 +170,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
 
             2030 => [
                 'nuc'       => 67,
+                'newnuc'    => 67,
                 'hydro'     => 98,
+                'step'      => 98,
                 'wind'      => 200,
                 'gas'       => 29, // combiné, combustion:6.3
                 'sun'       => 29,4, // mediane PV sol-toiture
@@ -158,7 +184,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             ],
             2040 => [
                 'nuc'       => 67,
+                'newnuc'    => 67,
                 'hydro'     => 98,
+                'step'      => 98,
                 'wind'      => 200,
                 'gas'       => 29, // combiné, combustion:6.3
                 'sun'       => 24,3, // mediane PV sol-toiture
@@ -170,6 +198,7 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             ],
             2050 => [
                 'nuc'       => 67,
+                'newnuc'    => 67,
                 'hydro'     => 98,
                 'wind'      => 200,
                 'gas'       => 29, // combiné, combustion:6.3
@@ -183,7 +212,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
         ],
         'concrete' => [
             'nuc'       => 533,
+            'newnuc'    => 533,
             'hydro'     => 21,
+            'step'      => 21,
             'wind'      => 450,
             'gas'       => 36, // combiné, combustion:6.3
             'sun'       => 51, // mediane PV sol-toiture
@@ -195,7 +226,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
 
             2030 => [
                 'nuc'       => 533,
+                'newnuc'    => 533,
                 'hydro'     => 21,
+                'step'      => 21,
                 'wind'      => 450,
                 'gas'       => 36, // combiné, combustion:6.3
                 'sun'       => 43, // mediane PV sol-toiture
@@ -207,7 +240,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             ],
             2040 => [
                 'nuc'       => 533,
+                'newnuc'    => 533,
                 'hydro'     => 21,
+                'step'      => 21,
                 'wind'      => 450,
                 'gas'       => 36, // combiné, combustion:6.3
                 'sun'       => 36, // mediane PV sol-toiture
@@ -219,7 +254,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             ],
             2050 => [
                 'nuc'       => 533,
+                'newnuc'    => 533,
                 'hydro'     => 21,
+                'step'      => 21,
                 'wind'      => 450,
                 'gas'       => 36, // combiné, combustion:6.3
                 'sun'       => 32, // mediane PV sol-toiture
@@ -232,7 +269,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
         ],
         'aluminium' => [
             'nuc'       => 0.35,
+            'newnuc'    => 0.35,
             'hydro'     => 0.52,
+            'step'      => 0.52,
             'wind'      => 1,
             'gas'       => 1.1, // combiné, combustion:6.3
             'sun'       => 25, // mediane PV sol-toiture
@@ -244,7 +283,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
 
             2030 => [
                 'nuc'       => 0.35,
+                'newnuc'    => 0.35,
                 'hydro'     => 0.52,
+                'step'      => 0.52,
                 'wind'      => 0.69,
                 'gas'       => 1.1, // combiné, combustion:6.3
                 'sun'       => 20, 55, // mediane PV sol-toiture
@@ -256,7 +297,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             ],
             2040 => [
                 'nuc'       => 0.35,
+                'newnuc'    => 0.35,
                 'hydro'     => 0.52,
+                'step'      => 0.52,
                 'wind'      => 0.69,
                 'gas'       => 1.1, // combiné, combustion:6.3
                 'sun'       => 16, 66, // mediane PV sol-toiture
@@ -268,7 +311,9 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             ],
             2050 => [
                 'nuc'       => 0.35,
+                'newnuc'    => 0.35,
                 'hydro'     => 0.52,
+                'step'      => 0.52,
                 'wind'      => 0.69,
                 'gas'       => 1.1, // combiné, combustion:6.3
                 'sun'       => 14, 7, // mediane PV sol-toiture

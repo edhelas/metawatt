@@ -95,7 +95,8 @@ class CategoryController extends Controller
                         'title' => [
                             'display' => true,
                             'text' => 'GW'
-                        ]
+                        ],
+                        'min' => 0,
                     ]
                 ]
             ]

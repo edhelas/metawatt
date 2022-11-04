@@ -13,11 +13,11 @@ class ScenarioController extends Controller
         return view('scenarios.index', ['groups' => Scenario::all()->groupBy('group')]);
     }
 
-    public function show(string $id)
+    public function show(string $slug)
     {
-        $scenario = Scenario::where('id', $id)->firstOrFail();
+        $scenario = Scenario::where('slug', $slug)->firstOrFail();
 
-        $items = Data::where('scenario_id', $id)
+        $items = Data::where('scenario_id', $scenario->id)
             ->where('year', 2050)
             ->with('category')
             ->get();
@@ -101,21 +101,21 @@ class ScenarioController extends Controller
         ]);
     }
 
-    public function showCapacity(int $id)
+    public function showCapacity(string $slug)
     {
-        return $this->prepareShow($id, 'capacity');
+        return $this->prepareShow($slug, 'capacity');
     }
 
-    public function showProduction(int $id)
+    public function showProduction(string $slug)
     {
-        return $this->prepareShow($id, 'production');
+        return $this->prepareShow($slug, 'production');
     }
 
-    public function prepareShow(int $id, string $type)
+    public function prepareShow(string $slug, string $type)
     {
-        $scenario = Scenario::where('id', $id)->firstOrFail();
+        $scenario = Scenario::where('slug', $slug)->firstOrFail();
 
-        $items = Data::where('scenario_id', $id)
+        $items = Data::where('scenario_id', $scenario->id)
             ->orderBy('year')
             ->with('category')
             ->get();
@@ -142,7 +142,7 @@ class ScenarioController extends Controller
             );
         }
 
-        $labels = Data::distinct('year')->where('scenario_id', $id)->get()->pluck('year');
+        $labels = Data::distinct('year')->where('scenario_id', $scenario->id)->get()->pluck('year');
 
         foreach ($categories as $key => $dataset) {
             $notEmpty = false;
@@ -186,7 +186,7 @@ class ScenarioController extends Controller
         return view('scenarios.show_' . $type, [
             'previousScenario' => $scenario->previous(),
             'nextScenario' => $scenario->next(),
-            'scenario' => Scenario::where('id', $id)->firstOrFail(),
+            'scenario' => $scenario,
             'jsonConfig' => json_encode($config),
             'type' => $type
         ]);

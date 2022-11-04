@@ -26,7 +26,7 @@
                             {{ $totalCapacity }}
                             <small class="text-muted">GW déployé</small>
                         </h4>
-                        <a href="{{ route('scenarios.show.capacity', $scenario->id) }}"
+                        <a href="{{ route('scenarios.show.capacity', $scenario->slug) }}"
                             class="btn btn-secondary btn-sm">
                             <i class="fa-solid fa-chart-line"></i> Capacité
                         </a>
@@ -36,7 +36,7 @@
                             {{ $totalProduction }}
                             <small class="text-muted">TWh produit</small>
                         </h4>
-                        <a href="{{ route('scenarios.show.production', $scenario->id) }}"
+                        <a href="{{ route('scenarios.show.production', $scenario->slug) }}"
                             class="btn btn-secondary btn-sm">
                             <i class="fa-solid fa-chart-line"></i> Production
                         </a>
@@ -70,7 +70,8 @@
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-4 text-center nopadding">
-            <p>L'année 2050</p>
+            <h5>L'année 2050</h5>
+            <p>Capacité déployée & production correspondante</p>
             @include('parts.graph', ['style' => 'height: 60vh;'])
         </div>
 

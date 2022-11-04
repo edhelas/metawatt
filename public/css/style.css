@@ -58,3 +58,19 @@ div.alert a,
 p > a {
     text-decoration: underline;
 }
+
+th.line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+span.bar {
+    display: block;
+    height: 1.5rem;
+    float: left;
+    text-align: center;
+    line-height: 1.5rem;
+    color: white;
+    font-size: 0.8rem;
+}

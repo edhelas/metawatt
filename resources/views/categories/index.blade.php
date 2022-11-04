@@ -5,7 +5,7 @@
 
 @section('content')
 
-<p>Les scénarios compilés par Metawatt développent différentes sources d'énergies qui sont présentées ici.</p>
+<p>Metawatt compare pour chaque source d'énergie retenues par les scénarios compilés, les production, capacité et facteur de charge.</p>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
     @foreach($categories as $category)

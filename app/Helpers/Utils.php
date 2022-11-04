@@ -161,20 +161,21 @@ function groupColor(string $group): string
 
 function catColor(string $category): string
 {
+    // Reuse RTE color chart
     $colors = [
-        'nuc' => '#851399',
-        'newnuc' => '#9C27B0',
-        'hydro' => '#2196F3',
-        'step' => '#21f3b1ff',
-        'wind' => '#e91e63',
-        'gas' => '#ff5722',
-        'sun' => '#FDD835',
-        'hydrowind' => '#4caf50',
-        'coal' => '#607d8b',
+        'nuc' => 'rgb(245, 179, 0)',
+        'newnuc' => 'rgb(249, 193, 37)',
+        'hydro' => 'rgb(39, 114, 178)',
+        'step' => 'rgb(107, 144, 176)',
+        'wind' => 'rgb(116, 205, 185)',
+        'gas' => 'rgb(243, 10, 10)',
+        'sun' => 'rgb(242, 116, 6)',
+        'hydrowind' => 'rgb(130, 205, 200)',
+        'coal' => 'rgb(172, 140, 53)',
         'h2' => '#00bcd4',
-        'oil' => '#795548',
+        'oil' => 'rgb(131, 146, 162)',
         'tidal' => '#03a9f4',
-        'biomass' => '#009688',
+        'biomass' => 'rgb(22, 106, 87)',
     ];
 
     return (array_key_exists($category, $colors))

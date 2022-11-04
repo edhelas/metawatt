@@ -61,7 +61,8 @@
             @hasSection('title')
                 <h1>
                     @hasSection('title-icon')
-                        <i class="fa-solid @yield('title-icon')"></i>
+                        <i @hasSection('title-icon-color') style="color: @yield('title-icon-color'); " @endif
+                            class="fa-solid @yield('title-icon')"></i>
                     @endif
                     @yield('title')
                     @hasSection('subtitle')

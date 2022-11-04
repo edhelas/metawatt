@@ -3,6 +3,7 @@
 @section('title', catName($category->key))
 @section('subtitle', 'Capacité')
 @section('title-icon', catIcon($category->key))
+@section('title-icon-color', catColor($category->key))
 
 @section('content')
 

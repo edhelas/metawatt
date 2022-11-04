@@ -9,6 +9,7 @@
 <p>Artificialisation au sol en hectares final pour chaque scénario envisagé en {{ $year }}</p>
 @else
 <p>Mobilisation de la resource finale en tonnes pour chaque scénario envisagé en {{ $year }}</p>
+<p>Le losange blanc ⬦ présente la production totale d'électricitée à l'issue de ces transition en {{ $year }}</p>
 @endif
 
 @include('parts.graph')

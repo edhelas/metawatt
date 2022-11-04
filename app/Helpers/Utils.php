@@ -45,6 +45,7 @@ function groupName(string $group): string
         'belfort' => 'Belfort',
         'nw' => 'negaWatt',
         'ademe' => 'ADEME',
+        'vdn' => 'Voix du Nucléaire',
     ];
 
     return (array_key_exists($group, $groups))
@@ -59,6 +60,7 @@ function groupNameSecond(string $group): string
         'belfort' => 'Scénarios du discours de Belfort',
         'nw' => 'Scénarios negaWatt',
         'ademe' => 'Transition(s) 2050',
+        'vdn' => 'TerraWater',
     ];
 
     return (array_key_exists($group, $groups))
@@ -72,6 +74,7 @@ function groupLogo(string $group): string
         'rte' => 'rte.svg',
         'nw' => 'negawatt.jpg',
         'ademe' => 'ademe.svg',
+        'vdn' => 'vdn.svg',
     ];
 
     return (array_key_exists($group, $groups))
@@ -94,6 +97,8 @@ Partant du principe que l’énergie la moins polluante est celle qu’on ne con
         'ademe' => 'L’ADEME a souhaité soumettre au débat quatre chemins “types” cohérents (dont un avec deux variantes) qui présentent de manière volontairement contrastée des options économiques, techniques et de société pour atteindre la neutralité carbone en 2050.
 
 Imaginés pour la France métropolitaine, ils reposent sur les mêmes données macroéconomiques, démographiques et d’évolution climatique (+2,1°C en 2100). Cependant, ils empruntent des voies distinctes et correspondent à des choix de société différents.',
+
+        'vdn' => 'Dans le cadre de la nécessaire révision de la Programmation Pluriannuelle de l’Énergie et de la Loi sur la Transition Énergétique, pour faire suite au rapport de RTE sur les scénarios France 2050, publié en 2022, les Voix du Nucléaire souhaitent proposer au débat une vision alternative de la trajectoire de transition énergétique que pourrait suivre la France'
     ];
 
 
@@ -126,6 +131,9 @@ function groupSources(string $group): array
         ],
         'ademe' => [
             'https://librairie.ademe.fr/energies-renouvelables-reseaux-et-stockage/5352-prospective-transitions-2050-feuilleton-mix-electrique.html' => 'ADEME - La Librairie: Prospective - Transitions 2050 - Feuilleton Mix électrique'
+        ],
+        'vdn' => [
+            'https://www.voix-du-nucleaire.org/terrawater-telechargement/' => 'Ressources pour le scénario TerraWater'
         ],
     ];
 
@@ -167,6 +175,9 @@ function groupColor(string $group, string $slug = null): string
             'ademe-s3-nuc' => '#4caf50',
             'ademe-s3-offshore' => '#46A34A',
             'ademe-s4' => '#3C8A3F'
+        ],
+        'vdn' => [
+            'terrawater' => '#287e8aff'
         ],
     ];
 

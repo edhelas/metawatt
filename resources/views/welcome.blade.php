@@ -22,6 +22,9 @@
         <a href="https://negawatt.org/Scenario-negaWatt-2017-2050">
             <img src="img/negawatt.jpg" target="_blank">
         </a>
+        <a href="https://www.voix-du-nucleaire.org/">
+            <img src="img/vdn.svg" target="_blank">
+        </a>
     </div>
     <p>Metawatt présente et compare les scénarios énergétiques français pour le volet production électrique.</p>
 

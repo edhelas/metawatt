@@ -33,7 +33,7 @@
         </div>
 
         <div class="col-12 col-lg-6 mb-4 nopadding">
-            <h4>L'efficacité</h4>
+            <h4>1. L'efficacité</h4>
 
             <p>L'amélioration des techniques permet de limiter les pertes liées à leurs usages et ainsi de rendre plus efficiente nos objets et machines du quotidien.</p>
 
@@ -43,28 +43,28 @@
                 <i class="fa-solid fa-circle-info text-info mr-2"></i> En améliorant l'isolation thermique d'un bâtiment nous pouvons réduire sa consommation d'énergie totale pour le chauffer ou le refroidir, qu'elle soit de nature électrique (climatisation, radiateur électrique, pompe à chaleur...) que par combustion (poêle à bois ou granulés...).</p>
             </div>
 
-            <p>Les différents <a href="{{ route('scenarios.index') }}">scénarios proposés sur Metawatt</a> proposent plusieurs visions où ces améliorations techniques et changement de parc sont déployés sur notre territoire, certains scénarios estiment que certaines améliorations techniques futures seront limitées alors que d'autres font de nombreux paris technologiques.</p>
+            <p>Les différents <a href="{{ route('scenarios.index') }}">scénarios analysés sur Metawatt</a> proposent plusieurs visions où ces améliorations techniques et changement de parc sont déployés sur notre territoire. Certains scénarios estiment que certaines améliorations techniques futures seront limitées alors que d'autres font de nombreux paris technologiques.</p>
 
-            <p>L'efficacité est bien souvent le premier levier qui est utilisé afin de réduire nos consommations d'énergie. Nous avons néanmoins tendance à augmenter par la suite l'usage de cet outil annulant une partie ou la totalité du gain engendré par les améliorations d'efficacité apportées.</p>
+            <p>L'efficacité est bien souvent le premier levier qui est utilisé afin de réduire nos consommations d'énergie. Nous avons néanmoins tendance à augmenter par la suite l'usage de ces objets ou machines, annulant une partie ou la totalité du gain engendré par les améliorations d'efficacité apportées.</p>
 
             <p>Par exemple le gain d'efficacité issue des améliorations techniques des moteurs des véhicules thermiques de ces dernières décennies a été gommé par l'augmentation de l'usage de ces même véhicules ainsi que par l'augmentation de leur poids moyen total. Nous parlons alors <a href="https://fr.wikipedia.org/wiki/Effet_rebond_(%C3%A9conomie)">d'effet rebond</a>.</p>
         </div>
 
         <div class="col-12 col-lg-6 mb-4">
-            <h4>La sobriété</h4>
+            <h4>2. La sobriété</h4>
 
-            <p>La sobriété énergétique est la diminution des consommations d'énergie par des changements de modes de vie et des transformations sociales. Ce concept politique se traduit notamment par la limitation, à un niveau suffisant, des biens et services, produits et consommés.</p>
+            <p>La sobriété énergétique est la diminution des consommations d'énergie par des changements de modes de vie et des transformations sociales. Ce concept politique se traduit notamment par la limitation de la production et de la consommation des biens et services à un niveau bas mais suffisant.</p>
 
-            <p>Les objectifs fixés par la SNBC ne peuvent pas être atteint uniquement par l'amélioration de l'efficacité de nos machines. De nombreux comportements et modes de devront changer afin de s'assurer que nous restons dans les trajectoires.</p>
+            <p>Les objectifs fixés par la SNBC ne peuvent pas être atteint uniquement par l'amélioration de l'efficacité de nos machines. De nombreux comportements et modes de consommation devront changer afin de s'assurer que nous restons dans les trajectoires.</p>
 
             <p>Tout comme pour l'efficacité, certains des scénarios proposent des trajectoires où nos usages resteront plus ou moins constant dans le temps là où d'autres poussent de nombreux plans de réduction et réorganisation de nos consommations et usages.</p>
 
             <p>La sobriété ne doit pas être uniquement perçue comme une limitation. Par exemple mieux anticiper ses déplacements et voyager avec des modes de transports plus efficaces (train, vélo) peut être considéré comme une forme de sobriété.</p>
         </div>
 
-    <h4>La réduction des émissions carbones de nos sources d'énergie</h4>
+    <h4>3. La réduction des émissions carbones de nos sources d'énergie</h4>
 
-    <p>Pour finalement s'assurer d'atteindre l'obectif de l'Accord de Paris l'efficacité et la sobriété ne suffira pas. Il nous faut nous assurer que les machines et outils dont nous faisons usage, même de façon plus sobre fonctionnent avec des énergies qui n'émettent pas ou peu de CO2.</p>
+    <p>Pour finalement s'assurer d'atteindre l'objectif de l'Accord de Paris l'efficacité et la sobriété ne suffiront pas. Il nous faut nous assurer que les machines et outils dont nous faisons usage, même de façon plus sobre, fonctionnent avec des énergies qui n'émettent pas ou peu de CO2.</p>
 
     <div class="alert">
         <i class="fa-solid fa-circle-info text-info mr-2"></i> Si nous électrifions massivement nos transports (gain en efficacité) et que nous réduisons certains de nos usages (sobriété) nous devons nous assurer que l'électricité utilisée dans ces véhicules émette peu de CO2 lors de sa production.

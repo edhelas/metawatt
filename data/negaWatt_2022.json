@@ -2,6 +2,7 @@
     "name": "negaWatt 2022",
     "group": "nw",
     "introduction": "Sobriété, efficacité et renouvelables",
+    "description": "Le scénario négaWatt s’inscrit dans une démarche globale de soutenabilité. Il vise à répondre aux impératifs énergétiques et climatiques, tout en nous orientant vers une société plus durable, plus équitable et plus résiliente, en traitant également les enjeux de biodiversité, de précarité, de pollution de l’air, etc. \n\n Par sa dimension systémique, ce scénario contribue pleinement à l’atteinte des 17 objectifs de développement durable définis par l’Organisation des Nations Unies. Ce référentiel, bien qu’ayant ses propres limites, propose un socle pertinent pour considérer la diversité des enjeux sociaux, économiques et environnementaux autour des choix de transition énergétique.",
     "years": [2020, 2030, 2040, 2050],
     "_source": "https://www.negawatt.org/IMG/pdf/scenario-negawatt-2022-rapport-complet-partie4.pdf",
     "_comment": "Values extracted from the text and from re-ploted graphs",

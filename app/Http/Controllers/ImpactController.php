@@ -35,7 +35,7 @@ class ImpactController extends Controller
                 $scenarios[$item->scenario->name] = [
                     'label' => $item->scenario->name,
                     'tension' => 0.3,
-                    'borderColor' => groupColor($item->scenario->group),
+                    'borderColor' => groupColor($item->scenario->group, $item->scenario->slug),
                     'data' => []
                 ];
             }

@@ -7,7 +7,7 @@ function scenarioBaseConfig($scenario): array
         'tension' => 0.3,
         'hitRadius' => 4,
         'pointRadius' => 6,
-        'borderColor' => groupColor($scenario->group),
+        'borderColor' => groupColor($scenario->group, $scenario->slug),
         'data' => []
     ];
 }

@@ -145,17 +145,37 @@ function resources(): array
     ];
 }
 
-function groupColor(string $group): string
+function groupColor(string $group, string $slug = null): string
 {
     $groups = [
-        'belfort' => '#28a745',
-        'rte' => '#2196F3',
-        'nw' => '#ff5722',
-        'ademe' => '#4caf50',
+        'belfort' => ['#28a745'],
+        'rte' => [
+            'rte-m0' => '#00AFDE',
+            'rte-m1' => '#01C0FF',
+            'rte-m23' => '#61D8FF',
+            'rte-n1' => '#2ECBFF',
+            'rte-n2' => '#009CD0',
+            'rte-n03' => '#00769D'
+        ],
+        'nw' => [
+            'negawatt-2017' => '#ff5722',
+            'negawatt-2022' => '#EE3900'
+        ],
+        'ademe' => [
+            'ademe-s1' => '#4BAE4F',
+            'ademe-s2' => '#6EC071',
+            'ademe-s3-nuc' => '#4caf50',
+            'ademe-s3-offshore' => '#46A34A',
+            'ademe-s4' => '#3C8A3F'
+        ],
     ];
 
+    if (array_key_exists($group, $groups) && $slug && array_key_exists($slug, $groups[$group])) {
+        return $groups[$group][$slug];
+    }
+
     return (array_key_exists($group, $groups))
-        ? $groups[$group]
+        ? array_values($groups[$group])[0]
         : 'white';
 }
 

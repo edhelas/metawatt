@@ -50,7 +50,7 @@
                             <i class="fa-solid fa-chart-bar"></i> Comparateur
                         </a>
                         <p class="mt-1">
-                            {{ compareCarbon2021($totalCarbon) }}x la moyenne en 2021 (<a href="https://ourworldindata.org/grapher/carbon-intensity-electricity?tab=chart&country=~FRA">58gCO2eq/kWh</a>)
+                            {{ compareCarbon2021($totalCarbon) }}x la moyenne de 2021 (<a href="https://ourworldindata.org/grapher/carbon-intensity-electricity?tab=chart&country=~FRA">58gCO2eq/kWh</a>)
                         </p>
                     </div>
                     <div class="col-6 mt-2 nopadding">

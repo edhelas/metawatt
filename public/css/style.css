@@ -74,3 +74,8 @@ span.bar {
     color: white;
     font-size: 0.8rem;
 }
+
+.btn-mw {
+    color: white;
+    text-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
+}

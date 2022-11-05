@@ -26,7 +26,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark@1.0.0/dist/css/bootstrap-dark.min.css" />
-    <link href="{{ asset('css/style.css?1') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css?2') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome/css/all.css') }}" rel="stylesheet">
 </head>
 

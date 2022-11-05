@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-12">
-        <p>Nous comparons ici certains des impacts en ressources ou sur l'environnement des différents scénarios compilés par Metawatt.</p>
+        <p>Comparez ici certains des impacts en ressources ou sur l'environnement des différents scénarios compilés par Metawatt.</p>
     </div>
 
     <div class="col-12 col-lg-6">

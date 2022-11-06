@@ -7,7 +7,7 @@
 
 @section('content')
 
-<p>Production en TWh pour les différent scénarios au fil du temps.</p>
+<p>Production en TWh pour les différents scénarios au fil du temps.</p>
 
 @include('parts.graph')
 

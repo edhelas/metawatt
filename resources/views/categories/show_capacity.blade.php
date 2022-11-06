@@ -7,7 +7,7 @@
 
 @section('content')
 
-<p>Capacité en GW déployée pour les différent scénarios au fil du temps.</p>
+<p>Capacité en GW déployée pour les différents scénarios au fil du temps.</p>
 
 @include('parts.graph')
 

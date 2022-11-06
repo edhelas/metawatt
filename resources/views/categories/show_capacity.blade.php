@@ -7,7 +7,11 @@
 
 @section('content')
 
-<p>Capacité en GW déployée pour les différents scénarios au fil du temps.</p>
+@if ($category->key == 'step')
+    <p>Parc déployée en turbinage pour les différents scénarios au fil du temps.</p>
+@else
+    <p>Parc déployée en GW pour les différents scénarios au fil du temps.</p>
+@endif
 
 @include('parts.graph')
 

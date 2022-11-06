@@ -26,7 +26,7 @@ class ScenarioController extends Controller
             'type' => 'doughnut',
             'data' => [
                 'labels' => $items->filter(function ($item, $key) {
-                    return $item->capacity > 0;
+                    return $item->production > 0 && $item->capacity > 0;
                 })->map(function ($item) {
                     return (string)$item->category->name;
                 })->values()->toArray(),
@@ -34,12 +34,12 @@ class ScenarioController extends Controller
                     [
                         'label' => 'TWh',
                         'data' => $items->filter(function ($item, $key) {
-                            return $item->production > 0;
+                            return $item->production > 0 && $item->capacity > 0;
                         })->map(function ($item) {
                             return (string)$item->production;
                         })->values()->toArray(),
                         'backgroundColor' => $items->filter(function ($item, $key) {
-                            return $item->production > 0;
+                            return $item->production > 0 && $item->capacity > 0;
                         })->map(function ($item) {
                             return catColor($item->category->name);
                         })->values()->toArray(),
@@ -48,12 +48,12 @@ class ScenarioController extends Controller
                     [
                         'label' => 'GW',
                         'data' => $items->filter(function ($item, $key) {
-                            return $item->capacity > 0;
+                            return $item->production > 0 && $item->capacity > 0;
                         })->map(function ($item) {
                             return (string)$item->capacity;
                         })->values()->toArray(),
                         'backgroundColor' => $items->filter(function ($item, $key) {
-                            return $item->capacity > 0;
+                            return $item->production > 0 && $item->capacity > 0;
                         })->map(function ($item) {
                             return catColor($item->category->name);
                         })->values()->toArray(),

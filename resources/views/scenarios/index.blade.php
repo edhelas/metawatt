@@ -15,7 +15,7 @@
 
     <p>{!! groupIntroduction($group) !!}</p>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4" style="clear: both;">
         @foreach($scenarios as $scenario)
             <div class="col">
                 @include('parts.scenario_card', ['scenario' => $scenario])

@@ -19,13 +19,15 @@
                 </h5>
                 <p class="card-text">
                     <i class="fa-solid fa-chart-line"></i>
-                    <a href="{{ route('categories.show.production', $category->key) }}">Production dans le temps</a><br />
-
-                    <i class="fa-solid fa-chart-line"></i>
                     <a href="{{ route('categories.show.capacity', $category->key) }}">Capacité déployée dans le temps</a><br />
 
-                    <i class="fa-solid fa-chart-line"></i>
-                    <a href="{{ route('categories.show.load.factor', $category->key) }}">Évolution du facteur de charge</a>
+                    @if ($category->key != 'step')
+                        <i class="fa-solid fa-chart-line"></i>
+                        <a href="{{ route('categories.show.production', $category->key) }}">Production dans le temps</a><br />
+
+                        <i class="fa-solid fa-chart-line"></i>
+                        <a href="{{ route('categories.show.load.factor', $category->key) }}">Évolution du facteur de charge</a>
+                    @endif
                 </p>
             </div>
         </div>

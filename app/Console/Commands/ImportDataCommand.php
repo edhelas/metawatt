@@ -38,6 +38,9 @@ class ImportDataCommand extends Command
             $scenario->save();
 
             foreach ($json->data->volume as $key => $values) {
+                // Pass the comments
+                if (substr($key, 0, 1) == '_') continue;
+
                 if (!in_array($key, $categories->keys()->toArray())) {
                     $category = new Category;
                     $category->key = $key;
@@ -56,7 +59,7 @@ class ImportDataCommand extends Command
                         ? (int)substr($json->years[$i], 1)
                         : (int)$json->years[$i];
 
-                    $resolvedProduction = $missingYear
+                    $resolvedProduction = $missingYear && $json->data->volume->{$key}[$i] == '*'
                         ? ($json->data->volume->{$key}[$i - 1] + $json->data->volume->{$key}[$i + 1]) / 2
                         : $json->data->volume->{$key}[$i];
 
@@ -64,7 +67,7 @@ class ImportDataCommand extends Command
                         $resolvedProduction = capacityToProduction($json->data->capacity->{$key}[$i]) * ademeLoadFactor($key);
                     }
 
-                    if ($scenario->group == 'ademe' && $year == 2040) {
+                    if ($json->data->capacity->{$key}[$i] == '*' && $scenario->group == 'ademe' && $year == 2040) {
                         $resolvedProduction = (
                             (capacityToProduction($json->data->capacity->{$key}[$i - 1]) +
                              capacityToProduction($json->data->capacity->{$key}[$i + 1])

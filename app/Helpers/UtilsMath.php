@@ -21,6 +21,7 @@ function ademeLoadFactor(string $category): float
         'hydro' => 0.2338,
         'wind' => 0.3165,
         'sun' => 0.1466,
+        'gas' => 0.24, // From RTE, sorry ADEME but I don't have the data
         'hydrowind' => 0.4142,
     ];
 

@@ -18,6 +18,7 @@ class ScenarioController extends Controller
         $scenario = Scenario::where('slug', $slug)->firstOrFail();
 
         $items = Data::where('scenario_id', $scenario->id)
+            ->noStorage()
             ->where('year', 2050)
             ->with('category')
             ->get();
@@ -115,8 +116,13 @@ class ScenarioController extends Controller
     {
         $scenario = Scenario::where('slug', $slug)->firstOrFail();
 
-        $items = Data::where('scenario_id', $scenario->id)
-            ->orderBy('year')
+        $items = Data::where('scenario_id', $scenario->id);
+
+        if ($type == 'production') {
+            $item = $items->noStorage();
+        }
+
+        $items = $items->orderBy('year')
             ->with('category')
             ->get();
 

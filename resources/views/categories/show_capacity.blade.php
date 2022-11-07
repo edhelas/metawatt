@@ -8,9 +8,9 @@
 @section('content')
 
 @if ($category->key == 'step')
-    <p>Parc déployée en turbinage pour les différents scénarios au fil du temps.</p>
+    <p>Parc déployé en turbines (lignes pleines) et volume de stockage (lignes pointillées) pour les différents scénarios au fil du temps.</p>
 @else
-    <p>Parc déployée en GW pour les différents scénarios au fil du temps.</p>
+    <p>Parc déployé en GW pour les différents scénarios au fil du temps.</p>
 @endif
 
 @include('parts.graph')

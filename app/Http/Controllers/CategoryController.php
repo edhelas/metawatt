@@ -74,9 +74,27 @@ class CategoryController extends Controller
         foreach ($items as $item) {
             if (!in_array($item->scenario->name, array_keys($scenarios))) {
                 $scenarios[$item->scenario->name] = scenarioBaseConfig($item->scenario);
+
+                if ($category == 'step') {
+                    $scenarios[$item->scenario->name . '_capacity'] = scenarioBaseConfig($item->scenario);
+                    $scenarios[$item->scenario->name . '_capacity']['label'] = $item->scenario->name . ' stockage';
+                    $scenarios[$item->scenario->name . '_capacity']['yAxisID'] = "y1";
+                    $scenarios[$item->scenario->name . '_capacity']['borderDash'] = [4, 2];
+                }
             }
 
             array_push($scenarios[$item->scenario->name]['data'], (float)$item->capacity);
+
+            if ($category == 'step') {
+                array_push($scenarios[$item->scenario->name . '_capacity']['data'], (float)$item->production);
+            }
+        }
+
+        // Cleanup empty dataset
+        foreach ($scenarios as $name => $scenario) {
+            if (empty(array_filter($scenario['data']))) {
+                unset($scenarios[$name]);
+            }
         }
 
         $labels = Data::distinct('year')->get()->pluck('year');
@@ -101,6 +119,18 @@ class CategoryController extends Controller
                 ]
             ]
         ];
+
+        if ($category == 'step') {
+            $config['options']['scales']['y1'] = [
+                'display' => true,
+                'position' => 'right',
+                'title' => [
+                    'display' => true,
+                    'text' => 'GWh'
+                ],
+                'min' => 0,
+            ];
+        }
 
         return view('categories.show_capacity', [
             'category' => Category::where('key', $category)->firstOrFail(),

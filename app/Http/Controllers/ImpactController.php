@@ -21,6 +21,7 @@ class ImpactController extends Controller
     public function production()
     {
         $items = Data::selectRaw('scenario_id, year, sum(production) as sum')
+            ->noStorage()
             ->groupBy('scenario_id')
             ->groupBy('year')
             ->orderBy('scenario_id')
@@ -73,6 +74,7 @@ class ImpactController extends Controller
     public function productionFinal(Request $request)
     {
         $items = Data::with(['category', 'scenario'])
+            ->noStorage()
             ->orderBy('scenario_id')
             ->orderBy('category_id')
             ->orderBy('year')
@@ -189,6 +191,7 @@ class ImpactController extends Controller
     public function carbon(Request $request)
     {
         $items = Data::orderBy('scenario_id')
+            ->noStorage()
             ->orderBy('year')
             ->orderBy('category_id')
             ->with(['scenario', 'category'])
@@ -251,6 +254,7 @@ class ImpactController extends Controller
     public function carbonFinal(Request $request)
     {
         $items = Data::with(['category', 'scenario'])
+            ->noStorage()
             ->orderBy('scenario_id')
             ->orderBy('category_id')
             ->orderBy('year')
@@ -356,6 +360,7 @@ class ImpactController extends Controller
     public function resource(Request $request, string $resource)
     {
         $items = Data::orderBy('scenario_id')
+            ->noStorage()
             ->orderBy('year')
             ->orderBy('category_id')
             ->with(['scenario', 'category'])
@@ -420,12 +425,14 @@ class ImpactController extends Controller
     public function resourceFinal(Request $request, string $resource)
     {
         $referenceItems = Data::where('year', $this->referenceYear)
+            ->noStorage()
             ->where('scenario_id', 2)
             ->with(['category', 'scenario'])
             ->orderBy('category_id')
             ->get();
 
         $items = Data::where('year', $this->year)
+            ->noStorage()
             ->with(['category', 'scenario'])
             ->orderBy('category_id')
             ->orderBy('scenario_id')
@@ -504,6 +511,7 @@ class ImpactController extends Controller
             'label' => 'Production',
             'data' =>
             (array)Data::selectRaw('scenario_id, year, sum(production) as sum')
+                ->noStorage()
                 ->groupBy('scenario_id', 'year')
                 ->orderBy('scenario_id')
                 ->orderBy('year')

@@ -18,4 +18,13 @@ class Data extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function scopeNoStorage($query)
+    {
+        return $query->whereNotIn('category_id', function ($query) {
+            $query->select('id')
+                  ->from('categories')
+                  ->where('key', 'step');
+        });
+    }
 }

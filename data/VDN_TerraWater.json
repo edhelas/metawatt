@@ -2,7 +2,7 @@
     "name": "TerraWater",
     "group": "vdn",
     "introduction": "Scénario énergétique réaliste pour la neutralité carbone de la France en 2050 et au-delà",
-    "description": "Le scénario des Voix se veut débarrassé des contraintes politiques et idéologiques qui semblent peser sur les choix techniques des scénarios existants et pénalisent la crédibilité des trajectoires qu’ils proposent. Affranchi autant que possible de paris techniques, sociétaux et géopolitiques, le scénario des Voix propose une vision avant tout réaliste, évitant ce que nous considérons comme des écueils.",
+    "description": "Le scénario des Voix se veut débarrassé des contraintes politiques et idéologiques qui semblent peser sur les choix techniques des scénarios existants et pénalisent la crédibilité des trajectoires qu’ils proposent. Affranchi autant que possible de paris techniques, sociétaux et géopolitiques, le scénario des Voix propose une vision avant tout réaliste, évitant ce que ils considèrent comme des écueils.",
     "years": [2020, 2030, 2040, 2050, 2060],
     "data": {
         "volume": {
@@ -11,8 +11,8 @@
             "wind":      [19.7, 30.9, 58.1, 55.1, 46.2],
             "hydrowind": [0, 12.8, 67.9, 69.9, 53.4],
             "sun":       [10.9, 23.2, 59.9, 59.1, 45.0],
-            "nuc":       [366.2, 396.9, 419.2, 559.6, 596.6],
-            "newnuc":    [0, 0, 0, 0, 0],
+            "nuc":       [366.2, 386.9, 368.0, 323.2, 106.6], "_comment_nuc": "Extrapolated from total volume and actual capacity, total volume: 366.2, 396.9, 419.2, 559.6, 596.6",
+            "newnuc":    [0, 9.9, 51.2, 236.4, 489.9], "_comment_newnuc": "Extrapolated from total volume and actual capacity, total volume: 366.2, 396.9, 419.2, 559.6, 596.6",
             "gas":       [25.8, 13.5, 0, 0, 0],
             "oil":       [0, 0, 0, 0, 0],
             "coal":      [0, 0, 0, 0, 0],
@@ -31,7 +31,7 @@
             "gas":       [12, 12, 0, 0, 0],
             "oil":       [0, 0, 0, 0, 0],
             "coal":      [0, 0, 0, 0, 0],
-            "biomass":   [0, 0, 0, 0, 0],
+            "biomass":   [0, 10, 20, 20, 20],
             "tidal":     [0, 0, 0, 0, 0],
             "h2":        [0, 0, 0, 0, 0]
         }

@@ -19,7 +19,10 @@
     <meta property="twitter:card" content="summary"/>
     <meta property="twitter:site" content="Metawatt"/>
 
-    <link rel="icon" type="image/svg" href="/img/bolt.png" sizes="128x128">
+    <meta property="og:image" content="/img/banner.png"/>
+    <meta name="twitter:image" content="/img/banner.png"/>
+
+    <link rel="icon" type="image/png" href="/img/bolt.png" sizes="128x128">
     <link rel="manifest" href="manifest.json" />
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -74,7 +77,14 @@
         </div>
     </main>
     <footer class="mt-auto text-white-50">
-        <div class="container mt-5">
+        <p class="text-center">
+            Soutenez-nous sur Patreon<br />
+            <a target="_blank" href="http://patreon.com/metawatt">
+                <img style="width: 10rem;" src="img/patreon.png" class="mt-2">
+            </a>
+        </p>
+
+        <div class="container mt-3">
             <p class="text-center">Metawatt by
                 <a href="https://edhelas.movim.eu" class="text-white">Timothée Jaussoin</a>
                 - <a href="https://github.com/edhelas/metawatt" class="text-white">Fork me on Github</a>

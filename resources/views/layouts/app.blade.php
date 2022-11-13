@@ -80,7 +80,7 @@
         <p class="text-center">
             Soutenez-nous sur Patreon<br />
             <a target="_blank" href="http://patreon.com/metawatt">
-                <img style="width: 10rem;" src="img/patreon.png" class="mt-2">
+                <img style="width: 10rem;" src="/img/patreon.png" class="mt-2">
             </a>
         </p>
 

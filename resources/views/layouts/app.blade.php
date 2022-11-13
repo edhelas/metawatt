@@ -77,13 +77,6 @@
         </div>
     </main>
     <footer class="mt-auto text-white-50">
-        <p class="text-center">
-            Soutenez-nous sur Patreon<br />
-            <a target="_blank" href="http://patreon.com/metawatt">
-                <img style="width: 10rem;" src="/img/patreon.png" class="mt-2">
-            </a>
-        </p>
-
         <div class="container mt-3">
             <p class="text-center">Metawatt by
                 <a href="https://edhelas.movim.eu" class="text-white">Timothée Jaussoin</a>

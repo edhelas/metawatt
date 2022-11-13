@@ -30,5 +30,12 @@
 
     <hr />
     <p>Les données représentées sur ce site peuvent comporter des erreurs ou des imprécisions.<br />N'hésitez pas à les notifier et/ou à les corriger directement en contribuant au projet.</p>
+
+    <p class="text-center">
+        Soutenez-nous sur Patreon<br />
+        <a target="_blank" href="http://patreon.com/metawatt">
+            <img style="width: 10rem;" src="/img/patreon.png" class="mt-2">
+        </a>
+    </p>
 </div>
 @endsection

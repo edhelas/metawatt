@@ -239,7 +239,7 @@ class ImpactController extends Controller
                     'y' => [
                         'title' => [
                             'display' => true,
-                            'text' => 'MT'
+                            'text' => 'kTCO2eq'
                         ]
                     ]
                 ]
@@ -334,7 +334,7 @@ class ImpactController extends Controller
                         'stacked' => true,
                         'title' => [
                             'display' => true,
-                            'text' => 'MT'
+                            'text' => 'kTCO2eq'
                         ]
                     ],
                     'y1' => $this->getProductionDotsScale(),

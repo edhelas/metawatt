@@ -15,6 +15,8 @@
     Sont représentées les ressources <b>mobilisées</b> l'année {{ $year }}. Ce graphique ne tiens pas compte de la ressource précédement utilisée (démantèlement, abandon d'infrastructure) ni du recyclage.</p>
 </p>
 
+@include('parts.lifetime_infrastructure')
+
 @include('parts.graph')
 
 <p>Nous avons ici projeté la capacité de chaque source d'énergie au fil des années par scénario et estimé la quantité de

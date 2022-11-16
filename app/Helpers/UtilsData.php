@@ -6,24 +6,22 @@
 
 function carbonIntensity(string $category): float
 {
-    // IPCC 2014 en gCO2eq/kWh
+    // Source ElectricityMap, November 2022
     $intensity =  [
-        'nuc'       => 4, // EDF 2022
-        'newnuc'    => 4, // EDF 2022
-        'hydro'     => 24,
-        'step'      => 24,
-        'wind'      => 11,
-        'gas'       => 490,
-        'sun'       => 45,
-        'hydrowind' => 11,
-        'coal'      => 820,
+        'nuc'       => 5, // EDF 2022
+        'newnuc'    => 5, // EDF 2022
+        'hydro'     => 11,
+        'step'      => 11,
+        'wind'      => 13,
+        'gas'       => 625,
+        'sun'       => 30,
+        'hydrowind' => 13,
+        'coal'      => 954,
         'tidal'     => 0, // To be found
         'h2'        => 0,
-        'oil'       => 650,
-        'biomass'   => 230,
+        'oil'       => 1014,
+        'biomass'   => 820,
     ];
-
-    // Autre chiffres RTE 12-2 ACV_GES
 
     if (array_key_exists($category, $intensity)) {
         return $intensity[$category];

@@ -23,7 +23,7 @@
             "h2":        [0,0,"*",0]
         },
         "capacity": {
-            "hydro":     [20.5, 20.5, 21.6, 21.6, 21.6], "_comment_hydro": "Feuilleton p43 9.3, we take the RTE data because '30GW' is not clear/realistic",
+            "hydro":     [20.5, 20.5, 21.6, 21.6], "_comment_hydro": "Feuilleton p43 9.3, we take the RTE data because '30GW' is not clear/realistic",
             "step":      [4.94, 5.5, 6.0, 6.94], "_comment_hydro_step": "Feuilleton p44 9.3",
             "wind":      [17,35,"*",57.5],
             "hydrowind": [0,7.5,"*",23.5],

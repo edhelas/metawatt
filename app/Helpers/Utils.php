@@ -19,6 +19,7 @@ function catIcon(string $category): string
         'oil' => 'fa-gas-pump',
         'tidal' => 'fa-water',
         'biomass' => 'fa-tree',
+        'final' => 'fa-circle'
     ];
 
     return (array_key_exists($category, $icons))
@@ -30,7 +31,8 @@ function typeName(string $type): string
 {
     $types = [
         'capacity' => 'Capacité',
-        'production' => 'Production'
+        'production' => 'Production',
+        'energy' => 'Énergie',
     ];
 
     return (array_key_exists($type, $types))
@@ -206,6 +208,7 @@ function catColor(string $category): string
         'oil' => 'rgb(131, 146, 162)',
         'tidal' => '#03a9f4',
         'biomass' => 'rgb(22, 106, 87)',
+        'final' => 'white'
     ];
 
     return (array_key_exists($category, $colors))
@@ -229,6 +232,7 @@ function catName(string $category): string
         'oil' => 'Pétrole',
         'tidal' => 'Hydrolien',
         'biomass' => 'Biomasse',
+        'final' => 'Énergie finale'
     ];
 
     return (array_key_exists($category, $names))

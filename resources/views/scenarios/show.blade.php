@@ -21,11 +21,43 @@
                     <div class="col-12 nopadding">
                         <h5>À l'issue de la transition, l'année 2050:</h5>
                     </div>
+                    <div class="col-6 mt-2 mb-4 nopadding">
+                        <h4 class="card-title">
+                            {{ $totalCarbon }} gCO2eq/kWh
+                            <small class="text-muted">émis</small>
+                        </h4>
+                        <p class="mt-1">
+                            {{ compareCarbon2021($totalCarbon) }}x <span class="text-muted">la moyenne de 2021(<a href="https://ourworldindata.org/grapher/carbon-intensity-electricity?tab=chart&country=~FRA">58gCO2eq/kWh</a>)</span>
+                        </p>
+                        <a href="{{ route('impacts.carbon.show.final') }}" class="btn btn-secondary btn-sm">
+                            <i class="fa-solid fa-chart-bar"></i> Comparateur carbone
+                        </a>
+                    </div>
+                    <div class="col-6 mt-2 nopadding">
+                        <h4 class="card-title">
+                            {{ $totalSpace }} ha
+                            <small class="text-muted"> artificialisés</small>
+                        </h4>
+                        <p class="mt-1">
+                            {{ compareParis($totalSpace) }}x <span class="text-muted">la superficie de
+                            <a href="https://fr.wikipedia.org/wiki/Paris" title="105,40 km2">Paris</a></span>
+                        </p>
+                        <a href="{{ route('impacts.resources.show', 'space') }}" class="btn btn-secondary btn-sm">
+                            <i class="fa-solid fa-chart-bar"></i> Comparateur
+                        </a>
+                    </div>
                     <div class="col-6 nopadding">
                         <h4 class="card-title">
-                            {{ $totalCapacity }}
-                            <small class="text-muted">GW déployé</small>
+                            {{ $totalCapacity }} GW
+                            <small class="text-muted">de capacité <i class="fa-solid fa-bolt"></i> déployé</small>
                         </h4>
+                        <p>
+                            {{ $totalLowCarbon }} GW
+                            <span class="text-muted">bas carbone, soit {{ percentage($totalLowCarbon, $totalCapacity) }}%</span>
+                            <br />
+                            {{ $totalRenewable }} GW
+                            <span class="text-muted">renouvelable, soit {{ percentage($totalRenewable, $totalCapacity) }}%</span>
+                        </p>
                         <a href="{{ route('scenarios.show.capacity', $scenario->slug) }}"
                             class="btn btn-secondary btn-sm">
                             <i class="fa-solid fa-chart-line"></i> Capacité
@@ -33,38 +65,20 @@
                     </div>
                     <div class="col-6 nopadding">
                         <h4 class="card-title">
-                            {{ $totalProduction }}
-                            <small class="text-muted">TWh produit</small>
+                            {{ $totalProduction }} TWh
+                            <small class="text-muted">d'<i class="fa-solid fa-bolt"></i> produit</small>
                         </h4>
-                        <a href="{{ route('scenarios.show.production', $scenario->slug) }}"
+
+                        @if ($finalConsumption && $finalConsumption->production > 0)
+                            <p class="mt-1">
+                                sur {{ $finalConsumption->production }} GW <span class="text-muted">, soit {{ percentage($totalProduction, $finalConsumption->production) }}%</span>
+                            </p>
+                        @endif
+
+                        <a href="{{ route('scenarios.show.energy', $scenario->slug) }}"
                             class="btn btn-secondary btn-sm">
-                            <i class="fa-solid fa-chart-line"></i> Production
+                            <i class="fa-solid fa-chart-line"></i> Énergies
                         </a>
-                    </div>
-                    <div class="col-6 mt-2 nopadding">
-                        <h4 class="card-title">
-                            {{ $totalCarbon }}
-                            <small class="text-muted">gCO2eq/kWh émis</small>
-                        </h4>
-                        <a href="{{ route('impacts.carbon.show.final') }}" class="btn btn-secondary btn-sm">
-                            <i class="fa-solid fa-chart-bar"></i> Comparateur
-                        </a>
-                        <p class="mt-1">
-                            {{ compareCarbon2021($totalCarbon) }}x la moyenne de 2021 (<a href="https://ourworldindata.org/grapher/carbon-intensity-electricity?tab=chart&country=~FRA">58gCO2eq/kWh</a>)
-                        </p>
-                    </div>
-                    <div class="col-6 mt-2 nopadding">
-                        <h4 class="card-title">
-                            {{ $totalSpace }}
-                            <small class="text-muted">ha artificialisés</small>
-                        </h4>
-                        <a href="{{ route('impacts.resources.show', 'space') }}" class="btn btn-secondary btn-sm">
-                            <i class="fa-solid fa-chart-bar"></i> Comparateur
-                        </a>
-                        <p class="mt-1">
-                            {{ compareParis($totalSpace) }}x la superficie de
-                            <a href="https://fr.wikipedia.org/wiki/Paris" title="105,40 km2">Paris</a>
-                        </p>
                     </div>
                 </div>
             </div>

@@ -30,6 +30,33 @@ function carbonIntensity(string $category): float
     return 0;
 }
 
+function renewable(): array
+{
+    return [
+        'step',
+        'hydro',
+        'wind',
+        'sun',
+        'hydrowind',
+        'tidal',
+        'biomass',
+    ];
+}
+
+function lowCarbon(): array
+{
+    return [
+        'step',
+        'nuc',
+        'newnuc',
+        'wind',
+        'sun',
+        'hydro',
+        'hydrowind',
+        'tidal',
+    ];
+}
+
 function resourceIntensityRTE(string $category, string $resource, ?int $year = null): float
 {
     $intensity = [

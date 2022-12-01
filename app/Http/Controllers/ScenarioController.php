@@ -18,16 +18,38 @@ class ScenarioController extends Controller
         $scenario = Scenario::where('slug', $slug)->firstOrFail();
 
         $items = Data::where('scenario_id', $scenario->id)
-            ->noStorage()
+            ->noStorage()->noFinal()
             ->where('year', 2050)
             ->with('category')
             ->get();
+
+        $itemsRenewable = Data::where('scenario_id', $scenario->id)
+            ->noStorage()->noFinal()->renewable()
+            ->where('year', 2050)
+            ->with('category')
+            ->get();
+
+        $itemsLowCarbon = Data::where('scenario_id', $scenario->id)
+            ->noStorage()->noFinal()->lowCarbon()
+            ->where('year', 2050)
+            ->with('category')
+            ->get();
+
+        $finalConsumption = Data::where('scenario_id', $scenario->id)
+            ->whereIn('category_id', function ($query) {
+                $query->select('id')
+                    ->from('categories')
+                    ->where('key', 'final');
+            })
+            ->where('year', 2050)
+            ->with('category')
+            ->first();
 
         $configCapacity = [
             'type' => 'doughnut',
             'data' => [
                 'labels' => $items->filter(function ($item, $key) {
-                    return $item->production > 0 && $item->capacity > 0;
+                    return $item->production > 0 || $item->capacity > 0;
                 })->map(function ($item) {
                     return (string)$item->category->name;
                 })->values()->toArray(),
@@ -35,12 +57,12 @@ class ScenarioController extends Controller
                     [
                         'label' => 'TWh',
                         'data' => $items->filter(function ($item, $key) {
-                            return $item->production > 0 && $item->capacity > 0;
+                            return $item->production > 0 || $item->capacity > 0;
                         })->map(function ($item) {
                             return (string)$item->production;
                         })->values()->toArray(),
                         'backgroundColor' => $items->filter(function ($item, $key) {
-                            return $item->production > 0 && $item->capacity > 0;
+                            return $item->production > 0 || $item->capacity > 0;
                         })->map(function ($item) {
                             return catColor($item->category->name);
                         })->values()->toArray(),
@@ -49,12 +71,12 @@ class ScenarioController extends Controller
                     [
                         'label' => 'GW',
                         'data' => $items->filter(function ($item, $key) {
-                            return $item->production > 0 && $item->capacity > 0;
+                            return $item->production > 0 || $item->capacity > 0;
                         })->map(function ($item) {
                             return (string)$item->capacity;
                         })->values()->toArray(),
                         'backgroundColor' => $items->filter(function ($item, $key) {
-                            return $item->production > 0 && $item->capacity > 0;
+                            return $item->production > 0 || $item->capacity > 0;
                         })->map(function ($item) {
                             return catColor($item->category->name);
                         })->values()->toArray(),
@@ -82,6 +104,13 @@ class ScenarioController extends Controller
             'previousScenario' => $scenario->previous(),
             'nextScenario' => $scenario->next(),
             'showLabel' => true,
+            'finalConsumption' => $finalConsumption,
+            'totalRenewable' => (int)$itemsRenewable->sum(function ($item) {
+                return $item->capacity;
+            }),
+            'totalLowCarbon' => (int)$itemsLowCarbon->sum(function ($item) {
+                return $item->capacity;
+            }),
             'totalCapacity' => (int)$items->sum(function ($item) {
                 return $item->capacity;
             }),
@@ -107,9 +136,9 @@ class ScenarioController extends Controller
         return $this->prepareShow($slug, 'capacity');
     }
 
-    public function showProduction(string $slug)
+    public function showEnergy(string $slug)
     {
-        return $this->prepareShow($slug, 'production');
+        return $this->prepareShow($slug, 'energy');
     }
 
     public function prepareShow(string $slug, string $type)
@@ -118,8 +147,8 @@ class ScenarioController extends Controller
 
         $items = Data::where('scenario_id', $scenario->id);
 
-        if ($type == 'production') {
-            $item = $items->noStorage();
+        if ($type == 'energy') {
+            $item = $items->noStorage()->noFinal();
         }
 
         $items = $items->orderBy('year')
@@ -136,7 +165,7 @@ class ScenarioController extends Controller
                     'borderColor' => catColor($item->category->name),
                     'backgroundColor' => catColor($item->category->name),
                     'data' => [],
-                    'fill' => $type == 'production'
+                    'fill' => $type == 'energy'
                 ];
             }
 
@@ -162,6 +191,10 @@ class ScenarioController extends Controller
             if (!$notEmpty) unset($categories[$key]);
         }
 
+        if ($type == 'energy') {
+            $categories['consumption'] = $this->getFinalConsumption($scenario);
+        }
+
         $config = [
             'type' => 'line',
             'data' => [
@@ -171,10 +204,10 @@ class ScenarioController extends Controller
             'options' => [
                 'maintainAspectRatio' => false,
                 'spanGaps' => true,
-                'radius' => $type == 'production' ? 0 : 6,
+                'radius' => $type == 'energy' ? 0 : 6,
                 'scales' => [
                     'y' => [
-                        'stacked' => $type == 'production',
+                        'stacked' => $type == 'energy',
                         'title' => [
                             'display' => true,
                             'text' => $type == 'capacity' ? 'GW' : 'TWh'
@@ -196,5 +229,33 @@ class ScenarioController extends Controller
             'jsonConfig' => json_encode($config),
             'type' => $type
         ]);
+    }
+
+    private function getFinalConsumption(Scenario $scenario): array
+    {
+        return [
+            'label' => 'Consommation Énergie finale',
+            'data' =>
+            (array)Data::selectRaw('year, production')
+                ->where('scenario_id', $scenario->id)
+                ->whereIn('category_id', function ($query) {
+                    $query->select('id')
+                          ->from('categories')
+                          ->where('key', 'final');
+                })
+                ->orderBy('year')
+                ->get()
+                ->map(function ($item) {
+                    return $item->production ? (float)$item->production : null;
+                })
+                ->values()
+                ->all(),
+            'borderColor' => 'transparent',
+            'backgroundColor' => 'gray',
+            'fill' => true,
+            'type' => 'line',
+            'stack' => 'other',
+            'order' => 0,
+        ];
     }
 }

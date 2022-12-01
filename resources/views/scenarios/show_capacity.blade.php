@@ -6,11 +6,11 @@
 @section('content')
 
 <p>Capacité déployée en GW pour les différentes sources d'électricité au cours du temps.<br />
-    Voir la
-    <a href="{{ route('scenarios.show.production', $scenario->slug) }}" class="btn btn-secondary btn-sm">
-        Production
+    Voir l'
+    <a href="{{ route('scenarios.show.energy', $scenario->slug) }}" class="btn btn-secondary btn-sm">
+        Énergie
     </a>
-    électrique générée à partir de cette capacité.
+    électrique générée et finale consommée à partir de cette capacité.
 </p>
 
 @include('parts.graph')

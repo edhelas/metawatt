@@ -8,6 +8,7 @@
     "_comment": "RTE as a reference for 2020 volume",
     "data": {
         "volume": {
+            "final":     [1708, 0, 0, 829], "_comment_final": "In 2021 for the origin",
             "hydro":     [59.5,0,"*",63.5],
             "step":      [0, 0, 0, 0, 0],
             "wind":      [33.9,0,"*",175.1],
@@ -23,6 +24,7 @@
             "h2":        [0,0,"*",0]
         },
         "capacity": {
+            "final":     [0, 0, 0, 0],
             "hydro":     [20.5, 20.5, 21.6, 21.6], "_comment_hydro": "Feuilleton p43 9.3, we take the RTE data because '30GW' is not clear/realistic",
             "step":      [4.94, 4.94, 4.94, 4.94],
             "wind":      [17.5,30,"*",62.5],

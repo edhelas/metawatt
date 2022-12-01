@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         return view('categories.index', [
-            'categories' => Category::all()
+            'categories' => Category::where('name', '!=', 'final')->get()
         ]);
     }
 
@@ -30,7 +30,7 @@ class CategoryController extends Controller
                 $scenarios[$item->scenario->name] = scenarioBaseConfig($item->scenario);
             }
 
-            array_push($scenarios[$item->scenario->name]['data'], (float)$item->production);
+            array_push($scenarios[$item->scenario->name]['data'], $item->production ? (float)$item->production : null);
         }
 
         $labels = Data::distinct('year')->get()->pluck('year');

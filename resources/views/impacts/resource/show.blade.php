@@ -13,4 +13,8 @@
 
 @include('parts.graph')
 
+<br />
+
+@include('parts.sources_resource_impact')
+
 @endsection

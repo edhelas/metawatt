@@ -27,4 +27,31 @@ class Data extends Model
                   ->where('key', 'step');
         });
     }
+
+    public function scopeRenewable($query)
+    {
+        return $query->whereIn('category_id', function ($query) {
+            $query->select('id')
+                  ->from('categories')
+                  ->whereIn('key', renewable());
+        });
+    }
+
+    public function scopeLowCarbon($query)
+    {
+        return $query->whereIn('category_id', function ($query) {
+            $query->select('id')
+                  ->from('categories')
+                  ->whereIn('key', lowCarbon());
+        });
+    }
+
+    public function scopeNoFinal($query)
+    {
+        return $query->whereNotIn('category_id', function ($query) {
+            $query->select('id')
+                  ->from('categories')
+                  ->where('key', 'final');
+        });
+    }
 }

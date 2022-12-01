@@ -5,13 +5,15 @@
 
 @section('content')
 
-<p>Production électrique en TWh du scénario pour les différentes sources d'électricité au cours du temps.<br />
+<p>Production électrique en TWh du scénario pour les différentes sources d'électricité au cours du temps<br />
     Voir la
     <a href="{{ route('scenarios.show.capacity', $scenario->slug) }}" class="btn btn-secondary btn-sm">
         Capacité
     </a>
     déployée pour arriver à cette production.
 </p>
+
+<p>Consommation d'énergie finale tendantielle estimée pour ce scénario.</p>
 
 @include('parts.graph')
 

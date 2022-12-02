@@ -7,6 +7,8 @@
 
 @section('content')
 
+@include('parts.category_types_card', ['category' => $category])
+
 <p>Évolution du facteur de charge en pourcent au fil des décennies.</p>
 
 @include('parts.graph')

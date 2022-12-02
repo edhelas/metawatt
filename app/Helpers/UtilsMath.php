@@ -37,7 +37,7 @@ function compareParis(float $space): float
 
 function compareCarbon2021(int $carbon): float
 {
-    return round($carbon / 58, 1);
+    return round($carbon * 100 / 58, 1);
 }
 
 function percentage(float $value, float $total, int $precision = 1)

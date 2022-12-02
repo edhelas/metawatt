@@ -7,6 +7,8 @@
 
 @section('content')
 
+@include('parts.category_types_card', ['category' => $category])
+
 <p>Production en TWh pour les différents scénarios au fil du temps.</p>
 
 @include('parts.graph')

@@ -208,7 +208,9 @@ function catColor(string $category): string
         'oil' => 'rgb(131, 146, 162)',
         'tidal' => '#03a9f4',
         'biomass' => 'rgb(22, 106, 87)',
-        'final' => 'white'
+        'final' => 'white',
+        'renewable' => '#34af3c',
+        'lowcarbon' => '#68a0d1',
     ];
 
     return (array_key_exists($category, $colors))

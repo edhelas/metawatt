@@ -27,7 +27,7 @@
                             <small class="text-muted">émis</small>
                         </h4>
                         <p class="mt-1">
-                            {{ compareCarbon2021($totalCarbon) }}x <span class="text-muted">la moyenne de 2021(<a href="https://ourworldindata.org/grapher/carbon-intensity-electricity?tab=chart&country=~FRA">58gCO2eq/kWh</a>)</span>
+                            {{ compareCarbon2021($totalCarbon) }}% <span class="text-muted"> des émissions moyenne de 2021 (<a href="https://ourworldindata.org/grapher/carbon-intensity-electricity?tab=chart&country=~FRA">58gCO2eq/kWh</a>)</span>
                         </p>
                         <a href="{{ route('impacts.carbon.show.final') }}" class="btn btn-secondary btn-sm">
                             <i class="fa-solid fa-chart-bar"></i> Comparateur carbone
@@ -49,12 +49,14 @@
                     <div class="col-6 nopadding">
                         <h4 class="card-title">
                             {{ $totalCapacity }} GW
-                            <small class="text-muted">de capacité <i class="fa-solid fa-bolt"></i> déployé</small>
+                            <small class="text-muted">de capacité <i class="fa-solid fa-bolt text-warning"></i> déployé</small>
                         </h4>
                         <p>
+                            <i style="color: {{ catColor('lowcarbon') }};" class="fa-solid fa-leaf"></i>
                             {{ $totalLowCarbon }} GW
                             <span class="text-muted">bas carbone, soit {{ percentage($totalLowCarbon, $totalCapacity) }}%</span>
                             <br />
+                            <i style="color: {{ catColor('renewable') }};" class="fa-solid fa-arrows-spin"></i>
                             {{ $totalRenewable }} GW
                             <span class="text-muted">renouvelable, soit {{ percentage($totalRenewable, $totalCapacity) }}%</span>
                         </p>
@@ -66,12 +68,12 @@
                     <div class="col-6 nopadding">
                         <h4 class="card-title">
                             {{ $totalProduction }} TWh
-                            <small class="text-muted">d'<i class="fa-solid fa-bolt"></i> produit</small>
+                            <small class="text-muted">d'<i class="fa-solid fa-bolt text-warning"></i> produit</small>
                         </h4>
 
                         @if ($finalConsumption && $finalConsumption->production > 0)
                             <p class="mt-1">
-                                sur {{ $finalConsumption->production }} GW <span class="text-muted">, soit {{ percentage($totalProduction, $finalConsumption->production) }}%</span>
+                                sur {{ $finalConsumption->production }} GW <span class="text-muted">consommé soit {{ percentage($totalProduction, $finalConsumption->production) }}%</span>
                             </p>
                         @endif
 

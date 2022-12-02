@@ -250,9 +250,10 @@ class ScenarioController extends Controller
                 })
                 ->values()
                 ->all(),
-            'borderColor' => 'transparent',
-            'backgroundColor' => 'gray',
+            'borderColor' => 'gray',
+            'backgroundColor' => 'rgba(0, 0, 0, 0.5)',
             'fill' => true,
+            'tension' => 0.3,
             'type' => 'line',
             'stack' => 'other',
             'order' => 0,

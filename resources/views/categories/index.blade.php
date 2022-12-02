@@ -23,12 +23,14 @@
 
                     @if ($category->key != 'step')
                         <i class="fa-solid fa-chart-line"></i>
-                        <a href="{{ route('categories.show.production', $category->key) }}">Production dans le temps</a><br />
+                        <a href="{{ route('categories.show.production', $category->key) }}">Volume produit dans le temps</a><br />
 
                         <i class="fa-solid fa-chart-line"></i>
                         <a href="{{ route('categories.show.load.factor', $category->key) }}">Évolution du facteur de charge</a>
                     @endif
                 </p>
+
+                @include('parts.category_types_card', ['category' => $category])
             </div>
         </div>
     </div>

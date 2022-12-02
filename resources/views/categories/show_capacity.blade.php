@@ -7,6 +7,8 @@
 
 @section('content')
 
+@include('parts.category_types_card', ['category' => $category])
+
 @if ($category->key == 'step')
     <p>Parc déployé en turbines (lignes pleines) et volume de stockage (lignes pointillées) pour les différents scénarios au fil du temps.</p>
 @else

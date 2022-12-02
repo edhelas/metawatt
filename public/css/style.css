@@ -79,3 +79,8 @@ span.bar {
     color: white;
     text-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
 }
+
+.card-img-top {
+    height: 10rem;
+    object-fit: cover;
+}

@@ -11,6 +11,8 @@
     @foreach($categories as $category)
     <div class="col">
         <div class="card mb-4">
+            <img src="{{ resourceImage($category->key) }}" class="card-img-top">
+
             <div class="card-body">
                 <h5 class="card-title">
                     <i style="color: {{ catColor($category->key) }};"

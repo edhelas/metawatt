@@ -13,6 +13,7 @@
         <h3>Production totale</h3>
         <p>Électricité totale produite au fil du temps</p>
         <div class="card mb-4">
+            <img src="{{ resourceImage('electricity') }}" class="card-img-top">
             <div class="card-body">
                 <h5 class="card-title">Électricité totale produite</h5>
                 <p class="card-text">
@@ -29,6 +30,7 @@
         <h3>Carbone</h3>
         <p>Impact carbone des différents scénarios au fil du temps</p>
         <div class="card mb-4">
+            <img src="{{ resourceImage('carbon') }}" class="card-img-top">
             <div class="card-body">
                 <h5 class="card-title">Carbone</h5>
                 <p class="card-text">
@@ -51,6 +53,7 @@
     @foreach($resources as $key => $name)
         <div class="col">
             <div class="card mb-4">
+                <img src="{{ resourceImage($key) }}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">{{ $name }}</h5>
                     <p class="card-text">

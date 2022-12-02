@@ -155,6 +155,36 @@ function resources(): array
     ];
 }
 
+function resourceImage($key): string
+{
+    $images = [
+        'copper' => 'copper.jpg',
+        'concrete' => 'sand.jpg',
+        'steel' => 'lead.jpg',
+        'aluminium' => 'beauxite.jpg',
+        'space' => 'deforestation.jpg',
+        'carbon' => 'global_warming.png',
+        'electricity' => 'lht.jpg',
+        'step' => 'step.jpg',
+        'hydro' => 'hydro.jpg',
+        'wind' => 'wind.jpg',
+        'hydrowind' => 'hydrowind.jpg',
+        'sun' => 'sun.jpg',
+        'nuc' => 'nuc.jpg',
+        'newnuc' => 'newnuc.jpg',
+        'gas' => 'gas.jpg',
+        'oil' => 'oil.jpg',
+        'biomass' => 'biomass.jpg',
+        'coal' => 'coal.jpg',
+        'tidal' => 'tidal.jpg',
+        'h2' => 'h2.jpg',
+    ];
+
+    return (array_key_exists($key, $images))
+        ? '/img/resources/' . $images[$key]
+        : '/img/resources/copper.jpg';
+}
+
 function groupColor(string $group, string $slug = null): string
 {
     $groups = [

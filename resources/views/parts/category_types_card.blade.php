@@ -11,7 +11,7 @@
     @if (in_array($category->key, lowCarbon()))
         <span class="text-muted">
             <i style="color: {{ catColor('lowcarbon') }};" class="fa-solid fa-leaf"></i>
-            Bas carbone
+            Bas carbone ({{ carbonIntensity($category->key) }}g)
         </span>
     @endif
 </p>

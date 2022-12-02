@@ -16,6 +16,16 @@
             {!! markdown($scenario->description) !!}
             @endif
 
+            @if (!empty($scenario->goals))
+                <h5>Objectifs</h5>
+
+                <ul>
+                    @foreach ($scenario->goals as $goal)
+                        <li>{{ $goal }}</li>
+                    @endforeach
+                </ul>
+            @endif
+
             <div class="container">
                 <div class="row">
                     <div class="col-12 nopadding">
@@ -26,14 +36,14 @@
                             {{ $totalCarbon }} gCO2eq/kWh
                             <small class="text-muted">émis</small>
                         </h4>
-                        <p class="mt-1">
-                            {{ compareCarbon2021($totalCarbon) }}% <span class="text-muted"> des émissions moyenne de 2021 (<a href="https://ourworldindata.org/grapher/carbon-intensity-electricity?tab=chart&country=~FRA">58gCO2eq/kWh</a>)</span>
+                        <p>
+                            {{ compareCarbon2021($totalCarbon) }}% <span class="text-muted"> des émissions moyenne de 2020 (<a href="https://ourworldindata.org/grapher/carbon-intensity-electricity?tab=chart&country=~FRA">58gCO2eq/kWh</a>)</span>
                         </p>
                         <a href="{{ route('impacts.carbon.show.final') }}" class="btn btn-secondary btn-sm">
                             <i class="fa-solid fa-chart-bar"></i> Comparateur carbone
                         </a>
                     </div>
-                    <div class="col-6 mt-2 nopadding">
+                    <!--<div class="col-6 mt-2 nopadding">
                         <h4 class="card-title">
                             {{ $totalSpace }} ha
                             <small class="text-muted"> artificialisés</small>
@@ -45,7 +55,18 @@
                         <a href="{{ route('impacts.resources.show', 'space') }}" class="btn btn-secondary btn-sm">
                             <i class="fa-solid fa-chart-bar"></i> Comparateur
                         </a>
-                    </div>
+                    </div>-->
+                    @if ($finalConsumption && $finalConsumption->production > 0)
+                        <div class="col-6 mt-2 nopadding">
+                            <h4 class="card-title">
+                                {{ sobrietyPercentage($finalConsumption->production)  }}%
+                                <small class="text-muted"> de consommation<br />d'énergie finale</small>
+                            </h4>
+                            <p>
+                                <small class="text-muted">par rapport à la <a target="_blank" href="https://www.statistiques.developpement-durable.gouv.fr/edition-numerique/chiffres-cles-energie-2021/6-bilan-energetique-de-la-france">consommation de 2021</a></small>
+                            </p>
+                        </div>
+                    @endif
                     <div class="col-6 nopadding">
                         <h4 class="card-title">
                             {{ $totalCapacity }} GW
@@ -72,7 +93,7 @@
                         </h4>
 
                         @if ($finalConsumption && $finalConsumption->production > 0)
-                            <p class="mt-1">
+                            <p>
                                 sur {{ $finalConsumption->production }} GW <span class="text-muted">consommé soit {{ percentage($totalProduction, $finalConsumption->production) }}%</span>
                             </p>
                         @endif

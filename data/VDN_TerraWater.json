@@ -3,6 +3,14 @@
     "group": "vdn",
     "introduction": "Scénario énergétique réaliste pour la neutralité carbone de la France en 2050 et au-delà",
     "description": "Le scénario des Voix se veut débarrassé des contraintes politiques et idéologiques qui semblent peser sur les choix techniques des scénarios existants et pénalisent la crédibilité des trajectoires qu’ils proposent. Affranchi autant que possible de paris techniques, sociétaux et géopolitiques, le scénario des Voix propose une vision avant tout réaliste, évitant ce que ils considèrent comme des écueils.",
+    "goals": [
+        "Décarboner le mix énergétique par l’électrification tout en minimisant les impacts environnementaux de la production énergétique",
+        "Proposer une solution de stockage de l’électricité efficace, sobre, maîtrisée et souveraine par le déploiement de nouvelles STEP",
+        "Refaire du nucléaire le socle du mix électrique",
+        "Respecter les autres usages du sol en limitant au maximum l’usage de la biomasse",
+        "Garantir la souveraineté énergétique en contribuant à la solidarité européenne",
+        "Faire des EnRi un véritable outil de décarbonation tout en limitant l’impact de l’intermittence sur le réseau"
+    ],
     "years": [2020, 2030, 2040, 2050, 2060],
     "data": {
         "volume": {

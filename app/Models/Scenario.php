@@ -14,6 +14,11 @@ class Scenario extends Model
         return $this->hasMany(Data::class);
     }
 
+    public function getGoalsAttribute()
+    {
+        return unserialize($this->attributes['goals']);
+    }
+
     public function previous()
     {
         return Scenario::where('id', '<', $this->attributes['id'])->orderBy('id', 'desc')->first();

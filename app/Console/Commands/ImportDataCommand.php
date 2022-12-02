@@ -33,6 +33,7 @@ class ImportDataCommand extends Command
             $scenario->name = $json->name;
             $scenario->slug = Str::slug($scenario->name, '-');
             $scenario->group = $json->group;
+            $scenario->goals = serialize($json->goals ?? []);
             if (!empty($json->introduction)) $scenario->introduction = $json->introduction;
             if (!empty($json->description)) $scenario->description = preg_replace('/\\n/', "\n", $json->description);
             $scenario->save();

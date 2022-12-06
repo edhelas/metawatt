@@ -25,3 +25,18 @@
         config
     );
 </script>
+
+<br />
+
+@if (!empty($sources))
+    <p class="mt-3">
+        Sources: <br />
+        @foreach ($sources as $key => $value)
+            {{ $key }}
+            <i class="fa-solid fa-link"></i>
+            <a href="{{ $value['url'] }}" target="_blank">
+                {{ $value['title'] }}
+            </a>
+        @endforeach
+    </p>
+@endif

@@ -42,7 +42,7 @@ class CategoryController extends Controller
                 'datasets' => array_values($scenarios)
             ],
             'options' => [
-                'maintainAspectRatio'=> false,
+                'maintainAspectRatio' => false,
                 'spanGaps' => true,
                 'scales' => [
                     'y' => [
@@ -99,6 +99,8 @@ class CategoryController extends Controller
 
         $labels = Data::distinct('year')->get()->pluck('year');
 
+        $this->addLimitsDots($scenarios, $category);
+
         $config = [
             'type' => 'line',
             'data' => [
@@ -106,7 +108,7 @@ class CategoryController extends Controller
                 'datasets' => array_values($scenarios)
             ],
             'options' => [
-                'maintainAspectRatio'=> false,
+                'maintainAspectRatio' => false,
                 'spanGaps' => true,
                 'scales' => [
                     'y' => [
@@ -134,7 +136,8 @@ class CategoryController extends Controller
 
         return view('categories.show_capacity', [
             'category' => Category::where('key', $category)->firstOrFail(),
-            'jsonConfig' => json_encode($config)
+            'jsonConfig' => json_encode($config),
+            'sources' => $this->sources
         ]);
     }
 
@@ -165,7 +168,7 @@ class CategoryController extends Controller
                 'datasets' => array_values($scenarios)
             ],
             'options' => [
-                'maintainAspectRatio'=> false,
+                'maintainAspectRatio' => false,
                 'spanGaps' => true,
                 'scales' => [
                     'y' => [
@@ -184,5 +187,41 @@ class CategoryController extends Controller
             'category' => Category::where('key', $category)->firstOrFail(),
             'jsonConfig' => json_encode($config)
         ]);
+    }
+
+    private function addLimitsDots(array &$scenarios, string $category)
+    {
+        switch ($category) {
+            case 'sun':
+                $scenarios['field_abandoned_zones_ademde'] = [
+                    'label' => 'Gisement Zones Délaissées*',
+                    'data' => [
+                        53, null, null, null, 53
+                    ],
+                    'borderColor' => 'transparent',
+                    'backgroundColor' => 'rgba(125, 133, 109, 1)',
+                    'fill' => true,
+                    'pointRadius' => 5,
+                    'order' => 101,
+                ];
+                $scenarios['field_parking_zones_ademde'] = [
+                    'label' => 'Gisement Parkings*',
+                    'data' => [
+                        8, null, null, null, 8
+                    ],
+                    'borderColor' => 'transparent',
+                    'backgroundColor' => 'rgba(13, 111, 180, 1)',
+                    'fill' => true,
+                    'pointRadius' => 5,
+                    'order' => 100,
+                ];
+
+                $this->addSource(
+                    '*',
+                    "ADEME 2019 - Évaluation du gisement relatif aux zones délaissées et artificialisées propices à l'implantation de centrales photovoltaïques",
+                    'https://librairie.ademe.fr/energies-renouvelables-reseaux-et-stockage/846-evaluation-du-gisement-relatif-aux-zones-delaissees-et-artificialisees-propices-a-l-implantation-de-centrales-photovoltaiques.html'
+                );
+                break;
+        }
     }
 }

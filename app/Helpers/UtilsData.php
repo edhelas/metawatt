@@ -8,8 +8,8 @@ function carbonIntensity(string $category): float
 {
     // Source ElectricityMap, November 2022
     $intensity =  [
-        'nuc'       => 5, // EDF 2022
-        'newnuc'    => 5, // EDF 2022
+        'nuc'       => 5, // UNECE 2022
+        'newnuc'    => 5, // UNECE 2022
         'hydro'     => 11,
         'step'      => 11,
         'wind'      => 13,
@@ -20,7 +20,7 @@ function carbonIntensity(string $category): float
         'tidal'     => 0, // To be found
         'h2'        => 0,
         'oil'       => 1014,
-        'biomass'   => 820,
+        'biomass'   => 230,
     ];
 
     if (array_key_exists($category, $intensity)) {

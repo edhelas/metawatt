@@ -17,7 +17,7 @@
                 <i class="fa-solid fa-circle-info text-info mr-2"></i> La SNBC, <a href="https://www.ecologie.gouv.fr/sites/default/files/19092_strategie-carbone-FR_oct-20.pdf">Stratégie Nationale Bas-Carbone"</a> est la feuille de route de la France pour réduire ses émissions de gaz à effet de serre (GES). Elle concerne tous les secteurs d'activité et doit être portée par tous : citoyens, collectivités et entreprises. Deux ambitions : <b>atteindre la neutralité carbone dès 2050 et réduire l'empreinte carbone des Français.</b>
             </div>
 
-            <p>Les émissions françaises son répartit dans différents secteurs clefs. Metawatt présente et compare le secteur de production d'énergie des différents scénarios proposés par instances publiques, associations et industriels.</p>
+            <p>Les émissions françaises son répartit dans différents secteurs clefs. Metawatt présente et compare le secteur de production d'énergie électrique des différents scénarios proposés par instances publiques, associations et industriels.</p>
         </div>
         <div class="col-12 col-lg-5 text-center nopadding">
             @include('parts.graph', ['style' => 'height: auto;'])
@@ -70,7 +70,7 @@
         <i class="fa-solid fa-circle-info text-info mr-2"></i> Si nous électrifions massivement nos transports (gain en efficacité) et que nous réduisons certains de nos usages (sobriété) nous devons nous assurer que l'électricité utilisée dans ces véhicules émette peu de CO2 lors de sa production.
     </div>
 
-    <p>Metawatt compare donc <a href="{{ route('scenarios.index') }}">l'évolution du mix énergétique des différents scénarios</a> ainsi <a href="{{ route('impacts.resources.index')}}">que leurs différents impacts</a> (<a href="{{ route('impacts.carbon.show.final') }}">carbone</a>, matériaux…) au fil des décennies.</p>
+    <p>Metawatt compare donc <a href="{{ route('scenarios.index') }}">l'évolution du mix électrique des différents scénarios</a> ainsi <a href="{{ route('impacts.resources.index')}}">que leurs différents impacts</a> (<a href="{{ route('impacts.carbon.show.final') }}">carbone</a>, matériaux…) au fil des décennies.</p>
 
     </div>
 </div>

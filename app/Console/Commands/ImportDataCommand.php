@@ -54,34 +54,19 @@ class ImportDataCommand extends Command
                 $i = 0;
 
                 foreach ($json->years as $year) {
-                    // We have a missing year to fill
-                    $missingYear = (substr($json->years[$i], 0, 1) == '*');
-                    $year = $missingYear
-                        ? (int)substr($json->years[$i], 1)
-                        : (int)$json->years[$i];
+                    $year = (int)$json->years[$i];
 
-                    $resolvedProduction = $missingYear && $json->data->volume->{$key}[$i] == '*'
-                        ? ($json->data->volume->{$key}[$i - 1] + $json->data->volume->{$key}[$i + 1]) / 2
-                        : $json->data->volume->{$key}[$i];
+                    $production = $json->data->volume->{$key}[$i];
 
-                    if ($scenario->group == 'ademe' && $year == 2030) {
-                        $resolvedProduction = capacityToProduction($json->data->capacity->{$key}[$i]) * ademeLoadFactor($key);
-                    }
-
-                    if ($json->data->capacity->{$key}[$i] == '*' && $scenario->group == 'ademe' && $year == 2040) {
-                        $resolvedProduction = (
-                            (capacityToProduction($json->data->capacity->{$key}[$i - 1]) +
-                             capacityToProduction($json->data->capacity->{$key}[$i + 1])
-                            ) / 2 * ademeLoadFactor($key));
+                    if ($production == null && $scenario->group == 'ademe') {
+                        $production = round(capacityToProduction($json->data->capacity->{$key}[$i]) * ademeLoadFactor($key), 2);
                     }
 
                     $data = new Data;
                     $data->scenario_id = $scenario->id;
                     $data->category_id = $categories[$key]->id;
-                    $data->production = $resolvedProduction;
-                    $data->capacity = $missingYear
-                        ? ($json->data->capacity->{$key}[$i - 1] + $json->data->capacity->{$key}[$i + 1]) / 2
-                        : $json->data->capacity->{$key}[$i];
+                    $data->production = $production;
+                    $data->capacity = $json->data->capacity->{$key}[$i];
                     $data->year = $year;
                     $data->save();
 

@@ -33,7 +33,6 @@ function carbonIntensity(string $category): float
 function renewable(): array
 {
     return [
-        'step',
         'hydro',
         'wind',
         'sun',

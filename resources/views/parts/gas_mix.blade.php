@@ -1,0 +1,4 @@
+<div class="alert">
+    <i class="fa-solid fa-circle-info text-info mr-2"></i> Nous n'avons pas, pour le moment, les données de production issue des centrales à gaz pour les scénarios de l'ADEME. <b class="text-info">Un facteur de charge moyen de 24% pour les capacité déployées à donc été retenu pour le moment.</b><br />
+    <i class="fa-solid fa-circle-info text-danger mr-2"></i> Nous n'avons pas, pour le moment, les données sur les différents mix gaziers des scénarios. Les émissions carbones du gaz réseau <b class="text-danger">sont donc calculés sur une base 100% fossile</b> là où de nombreux scénarios tendent vers des mix avec une part importante de bio-gaz.</b>
+</div>

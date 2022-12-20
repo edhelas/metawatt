@@ -11,7 +11,7 @@
     Sources en gCO2eq/kWh (données disponible sur <a href="https://app.electricitymaps.com/zone/FR">ElectricityMaps pour la France</a>).
 </p>
 
-@include('parts.missing_fossils_ademe')
+@include('parts.gas_mix')
 
 @include('parts.graph')
 

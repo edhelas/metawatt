@@ -6,7 +6,7 @@
 
 <p>Production totale en électricité en TWh à l'issue de la transition en {{ $year }}.</p>
 
-@include('parts.missing_fossils_ademe')
+@include('parts.gas_mix')
 
 @include('parts.graph')
 

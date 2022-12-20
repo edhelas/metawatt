@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('parts.missing_fossils_ademe')
+@include('parts.gas_mix')
 
 @include('parts.graph')
 

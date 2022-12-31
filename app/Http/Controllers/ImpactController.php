@@ -133,6 +133,8 @@ class ImpactController extends Controller
         // And we push the last one
         array_push($categories[$categoryKey]['data'], round($totalArea, 2));
 
+        $categories = $this->cleanup($categories);
+
         $labels = Scenario::orderBy('id')->get()->pluck('name')->toArray();
 
         $config = [
@@ -313,6 +315,8 @@ class ImpactController extends Controller
         // And we push the last one
         array_push($categories[$categoryKey]['data'], round(($totalArea * carbonIntensity($categoryKey)), 2) / 1000);
 
+        $categories = $this->cleanup($categories);
+
         $labels = Scenario::orderBy('id')->get()->pluck('name')->toArray();
 
         $categories['production'] = $this->getProductionDots();
@@ -393,6 +397,8 @@ class ImpactController extends Controller
 
         $labels = Data::distinct('year')->get()->pluck('year');
 
+        $scenarios = $this->cleanup($scenarios);
+
         $categories['production'] = $this->getProductionDots();
 
         $config = [
@@ -441,20 +447,34 @@ class ImpactController extends Controller
         $categories = [];
 
         foreach ($referenceItems as $item) {
-            if (!in_array($item->category->key, array_keys($categories))) {
-                $categories[$item->category->key] = [
-                    'label' => $item->category->key,
-                    'borderColor' => catColor($item->category->key),
+            if (!in_array($item->category->key . '_rte', array_keys($categories))) {
+                $categories[$item->category->key . '_rte'] = [
+                    'label' => $item->category->key . ' RTE',
                     'backgroundColor' => catColor($item->category->key),
                     'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year))],
-                    'order' => 1
+                    'order' => 1,
+                    'stack' => 'rte'
+                ];
+            }
+
+            if (!in_array($item->category->key  . '_iea', array_keys($categories))) {
+                $categories[$item->category->key . '_iea'] = [
+                    'label' => $item->category->key . ' IEA',
+                    'backgroundColor' => catColor($item->category->key),
+                    'data' => [((float)$item->capacity * (float)resourceIntensityIEA($item->category->key, $resource, (int)$item->year))],
+                    'order' => 1,
+                    'stack' => 'iea'
                 ];
             }
         }
 
         foreach ($items as $item) {
-            if (isset($categories[$item->category->name])) {
-                array_push($categories[$item->category->name]['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year)));
+            if (isset($categories[$item->category->name . '_rte'])) {
+                array_push($categories[$item->category->name . '_rte']['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year)));
+            }
+
+            if (isset($categories[$item->category->name . '_iea'])) {
+                array_push($categories[$item->category->name . '_iea']['data'], ((float)$item->capacity * (float)resourceIntensityIEA($item->category->key, $resource)));
             }
         }
 
@@ -463,6 +483,8 @@ class ImpactController extends Controller
 
         $categories['production'] = $this->getProductionDots();
         array_unshift($categories['production']['data'], 0);
+
+        $categories = $this->cleanup($categories);
 
         $config = [
             'type' => 'bar',
@@ -557,5 +579,16 @@ class ImpactController extends Controller
                 'drawOnChartArea' => false, // only want the grid lines for one axis to show up
             ],
         ];
+    }
+
+    private function cleanup(array $categories): array
+    {
+        foreach ($categories as $name => $category) {
+            if (array_unique($category['data']) == [0]) {
+                unset($categories[$name]);
+            }
+        }
+
+        return $categories;
     }
 }

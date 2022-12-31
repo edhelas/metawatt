@@ -24,7 +24,7 @@ class Data extends Model
         return $query->whereNotIn('category_id', function ($query) {
             $query->select('id')
                   ->from('categories')
-                  ->where('key', 'step');
+                  ->whereIn('key', storage());
         });
     }
 

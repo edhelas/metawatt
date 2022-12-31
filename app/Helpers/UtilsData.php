@@ -42,6 +42,15 @@ function renewable(): array
     ];
 }
 
+function storage(): array
+{
+    return [
+        'step',
+        'battery',
+        'h2'
+    ];
+}
+
 function lowCarbon(): array
 {
     return [
@@ -54,6 +63,108 @@ function lowCarbon(): array
         'hydrowind',
         'tidal',
     ];
+}
+
+/**
+ * https://www.iea.org/data-and-statistics/charts/minerals-used-in-clean-energy-technologies-compared-to-other-power-generation-sources
+ */
+function resourceIntensityIEA(string $category, string $resource): float
+{
+    $intensity = [
+        'copper' => [
+            'nuc'       => 1.473,
+            'newnuc'    => 1.473,
+            'hydro'     => 0.01, // RTE see bellow
+            'step'      => 0.01, // RTE see bellow
+            'wind'      => 2,9,
+            'gas'       => 1.1,
+            'sun'       => 2.822,
+            'hydrowind' => 8,
+            'coal'      => 1.150,
+            'h2'        => 0,
+            'tidal'     => 0,
+            'oil'       => 0
+        ],
+        'nickel' => [
+            'nuc'       => 1.297,
+            'newnuc'    => 1.297,
+            'hydro'     => 0.00,
+            'step'      => 0.00,
+            'wind'      => 0.403,
+            'gas'       => 0.15,
+            'sun'       => 0,
+            'hydrowind' => 0.24,
+            'coal'      => 0.721,
+            'h2'        => 0,
+            'tidal'     => 0,
+            'oil'       => 0,
+        ],
+        'manganese' => [
+            'nuc'       => 0.147,
+            'newnuc'    => 0.147,
+            'hydro'     => 0,
+            'step'      => 0,
+            'wind'      => 0.780,
+            'gas'       => 0,
+            'sun'       => 0,
+            'hydrowind' => 0.790,
+            'coal'      => 0,
+            'h2'        => 0,
+            'tidal'     => 0,
+            'oil'       => 0,
+        ],
+        'chrome' => [
+            'nuc'       => 2.19,
+            'newnuc'    => 2.19,
+            'hydro'     => 0,
+            'step'      => 0,
+            'wind'      => 0.470,
+            'gas'       => 0.0483,
+            'sun'       => 0,
+            'hydrowind' => 0.525,
+            'coal'      => 0.3075,
+            'h2'        => 0,
+            'tidal'     => 0,
+            'oil'       => 0,
+        ],
+        'zinc' => [
+            'nuc'       => 0,
+            'newnuc'    => 0,
+            'hydro'     => 0,
+            'step'      => 0,
+            'wind'      => 5.5,
+            'gas'       => 0,
+            'sun'       => 0.030,
+            'hydrowind' => 5.5,
+            'coal'      => 0,
+            'h2'        => 0,
+            'tidal'     => 0,
+            'oil'       => 0,
+        ],
+        'molybdenum' => [
+            'nuc'       => 2.19,
+            'newnuc'    => 2.19,
+            'hydro'     => 0,
+            'step'      => 0,
+            'wind'      => 0.470,
+            'gas'       => 0.0483,
+            'sun'       => 0,
+            'hydrowind' => 0.525,
+            'coal'      => 0.3075,
+            'h2'        => 0,
+            'tidal'     => 0,
+            'oil'       => 0,
+        ],
+    ];
+
+    if (
+        array_key_exists($resource, $intensity)
+        && array_key_exists($category, $intensity[$resource])
+    ) {
+        return $intensity[$resource][$category];
+    }
+
+    return 0;
 }
 
 function resourceIntensityRTE(string $category, string $resource, ?int $year = null): float

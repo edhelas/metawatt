@@ -11,7 +11,8 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         return view('categories.index', [
-            'categories' => Category::where('name', '!=', 'final')->get()
+            'categories' => Category::whereNotIn('name', storage())->where('name', '!=', 'final')->get(),
+            'storage' => Category::whereIn('name', storage())->where('name', '!=', 'final')->get()
         ]);
     }
 

@@ -148,6 +148,10 @@ function resources(): array
 {
     return [
         'copper' => 'Cuivre',
+        'molybdenum' => 'Molybdenum',
+        'chrome' => 'Chrome',
+        'manganese' => 'Manganese',
+        'nickel' => 'Nickel',
         'concrete' => 'Béton',
         'steel' => 'Acier',
         'aluminium' => 'Aluminium',
@@ -159,6 +163,10 @@ function resourceImage($key): string
 {
     $images = [
         'copper' => 'copper.jpg',
+        'molybdenum' => 'molybdenum.jpg',
+        'chrome' => 'chrome.jpg',
+        'manganese' => 'manganese.jpg',
+        'nickel' => 'nickel.jpg',
         'concrete' => 'sand.jpg',
         'steel' => 'lead.jpg',
         'aluminium' => 'beauxite.jpg',

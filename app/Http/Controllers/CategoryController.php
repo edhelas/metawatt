@@ -199,8 +199,8 @@ class CategoryController extends Controller
                     'data' => [
                         53, null, null, null, 53
                     ],
-                    'borderColor' => 'transparent',
-                    'backgroundColor' => 'rgba(125, 133, 109, 1)',
+                    'borderColor' => 'rgba(125, 133, 109, 1)',
+                    'backgroundColor' => 'transparent',
                     'fill' => true,
                     'pointRadius' => 5,
                     'order' => 101,
@@ -210,8 +210,8 @@ class CategoryController extends Controller
                     'data' => [
                         8, null, null, null, 8
                     ],
-                    'borderColor' => 'transparent',
-                    'backgroundColor' => 'rgba(13, 111, 180, 1)',
+                    'borderColor' => 'rgba(13, 111, 180, 1)',
+                    'backgroundColor' => 'transparent',
                     'fill' => true,
                     'pointRadius' => 5,
                     'order' => 100,

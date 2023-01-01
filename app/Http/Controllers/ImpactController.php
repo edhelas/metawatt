@@ -372,28 +372,34 @@ class ImpactController extends Controller
 
         $scenarios = [];
 
-        $capacitySum = 0;
+        $capacitySumRTE = 0;
+        $capacitySumIEA = 0;
         $oldYear = $items->first()->year;
         $oldScenario = null;
 
         foreach ($items as $item) {
-            if (!in_array($item->scenario->name, array_keys($scenarios))) {
-                $scenarios[$item->scenario->name] = scenarioBaseConfig($item->scenario);
+            if (!in_array($item->scenario->name . '_rte', array_keys($scenarios))) {
+                $scenarios[$item->scenario->name . '_rte'] = scenarioBaseConfig($item->scenario, 'RTE');
+                $scenarios[$item->scenario->name . '_iea'] = scenarioBaseConfig($item->scenario, 'AIE');
             }
 
             if ($item->year == $oldYear) {
-                $capacitySum += (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year);
+                $capacitySumRTE += (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year);
+                $capacitySumIEA += (float)$item->capacity * (float)resourceIntensityIEA($item->category->key, $resource, (int)$item->year);
             } else {
-                array_push($scenarios[$oldScenario]['data'], $capacitySum);
+                array_push($scenarios[$oldScenario . '_rte']['data'], $capacitySumRTE);
+                array_push($scenarios[$oldScenario . '_iea']['data'], $capacitySumIEA);
 
-                $capacitySum = (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year);
+                $capacitySumRTE = (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year);
+                $capacitySumIEA = (float)$item->capacity * (float)resourceIntensityIEA($item->category->key, $resource, (int)$item->year);
             }
 
             $oldYear = $item->year;
             $oldScenario = $item->scenario->name;
         }
 
-        array_push($scenarios[$items->last()->scenario->name]['data'], $capacitySum);
+        array_push($scenarios[$items->last()->scenario->name . '_rte']['data'], $capacitySumRTE);
+        array_push($scenarios[$items->last()->scenario->name . '_iea']['data'], $capacitySumIEA);
 
         $labels = Data::distinct('year')->get()->pluck('year');
 

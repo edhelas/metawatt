@@ -3,9 +3,9 @@
 
     <div class="card-body">
         <h5 class="card-title">
-            <i style="color: {{ catColor($category->key) }};"
+            <i style="color: {{ $category->color }};"
                 class="fa-solid {{ catIcon($category->key)}}"></i>
-            {{ catName($category->key)}}
+            {{ $category->title}}
         </h5>
         <p class="card-text">
             <i class="fa-solid fa-chart-line"></i>

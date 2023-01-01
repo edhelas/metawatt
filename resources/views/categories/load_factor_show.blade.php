@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', catName($category->key))
+@section('title', $category->title)
 @section('subtitle', 'Facteur de charge')
 @section('title-icon', catIcon($category->key))
-@section('title-icon-color', catColor($category->key))
+@section('title-icon-color', $category->color)
 
 @section('content')
 

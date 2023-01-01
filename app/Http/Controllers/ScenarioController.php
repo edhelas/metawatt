@@ -51,7 +51,7 @@ class ScenarioController extends Controller
                 'labels' => $items->filter(function ($item, $key) {
                     return $item->production > 0 || $item->capacity > 0;
                 })->map(function ($item) {
-                    return (string)$item->category->name;
+                    return (string)$item->category->key;
                 })->values()->toArray(),
                 'datasets' => [
                     [
@@ -64,7 +64,7 @@ class ScenarioController extends Controller
                         'backgroundColor' => $items->filter(function ($item, $key) {
                             return $item->production > 0 || $item->capacity > 0;
                         })->map(function ($item) {
-                            return catColor($item->category->name);
+                            return $item->category->color;
                         })->values()->toArray(),
                         'borderColor' => 'transparent',
                     ],
@@ -78,7 +78,7 @@ class ScenarioController extends Controller
                         'backgroundColor' => $items->filter(function ($item, $key) {
                             return $item->production > 0 || $item->capacity > 0;
                         })->map(function ($item) {
-                            return catColor($item->category->name);
+                            return $item->category->color;
                         })->values()->toArray(),
                         'borderColor' => 'transparent',
                         'spacing' => '2',
@@ -160,10 +160,10 @@ class ScenarioController extends Controller
         foreach ($items as $item) {
             if (!in_array($item->category->key, array_keys($categories))) {
                 $categories[$item->category->name] = [
-                    'label' => catName($item->category->name),
+                    'label' => $item->category->title,
                     'tension' => 0.3,
-                    'borderColor' => catColor($item->category->name),
-                    'backgroundColor' => catColor($item->category->name),
+                    'borderColor' => $item->category->color,
+                    'backgroundColor' => $item->category->color,
                     'data' => [],
                     'fill' => $type == 'energy'
                 ];

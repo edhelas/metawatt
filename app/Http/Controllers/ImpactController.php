@@ -94,8 +94,8 @@ class ImpactController extends Controller
             if (!in_array($item->category->key, array_keys($categories))) {
                 $categories[$item->category->key] = [
                     'label' => $item->category->key,
-                    'borderColor' => catColor($item->category->key),
-                    'backgroundColor' => catColor($item->category->key),
+                    'borderColor' => $item->category->color,
+                    'backgroundColor' => $item->category->color,
                     'data' => [],
                     'order' => 1
                 ];
@@ -114,7 +114,7 @@ class ImpactController extends Controller
                 && $item->year != $previousYear
             ) {
                 // We are in between two years for a scenario, for a category, we interpolate
-                $totalArea += (($item->production + $previousProduction) / 2) * ($item->year - $previousYear);
+                $totalArea += (($item->production + $previousProduction) / 2) * ($item->year - $previousYear) / 1000;
             } else if (
                 $item->category->key != $categoryKey
                 || $item->scenario_id != $scenarioId
@@ -154,7 +154,7 @@ class ImpactController extends Controller
                         'stacked' => true,
                         'title' => [
                             'display' => true,
-                            'text' => 'TWh'
+                            'text' => 'PWh'
                         ]
                     ],
                     'x' => [
@@ -276,8 +276,8 @@ class ImpactController extends Controller
             if (!in_array($item->category->key, array_keys($categories))) {
                 $categories[$item->category->key] = [
                     'label' => $item->category->key . ' (' . (carbonIntensity($item->category->key)) . 'g)',
-                    'borderColor' => catColor($item->category->key),
-                    'backgroundColor' => catColor($item->category->key),
+                    'borderColor' => $item->category->color,
+                    'backgroundColor' => $item->category->color,
                     'data' => [],
                     'order' => 1
                 ];
@@ -449,8 +449,8 @@ class ImpactController extends Controller
         foreach ($referenceItems as $item) {
             if (!in_array($item->category->key . '_rte', array_keys($categories))) {
                 $categories[$item->category->key . '_rte'] = [
-                    'label' => $item->category->key . ' RTE',
-                    'backgroundColor' => catColor($item->category->key),
+                    'label' => $item->category->title . ' RTE',
+                    'backgroundColor' => $item->category->color,
                     'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year))],
                     'order' => 1,
                     'stack' => 'rte'
@@ -459,8 +459,8 @@ class ImpactController extends Controller
 
             if (!in_array($item->category->key  . '_iea', array_keys($categories))) {
                 $categories[$item->category->key . '_iea'] = [
-                    'label' => $item->category->key . ' IEA',
-                    'backgroundColor' => catColor($item->category->key),
+                    'label' => $item->category->title . ' IEA',
+                    'backgroundColor' => $item->category->color,
                     'data' => [((float)$item->capacity * (float)resourceIntensityIEA($item->category->key, $resource, (int)$item->year))],
                     'order' => 1,
                     'stack' => 'iea'
@@ -547,7 +547,7 @@ class ImpactController extends Controller
                         $sum += (($item[$i]->sum + $item[$i + 1]->sum) * ($item[$i + 1]->year - $item[$i]->year) / 2);
                     }
 
-                    return $sum;
+                    return $sum/1000;
                 })
                 ->values()
                 ->all(),
@@ -571,7 +571,7 @@ class ImpactController extends Controller
 
             'title' => [
                 'display' => true,
-                'text' => 'TWh'
+                'text' => 'PWh'
             ],
 
             // grid line settings

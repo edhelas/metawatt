@@ -32,7 +32,7 @@
             <td style="width: 80%;">
                 @foreach ($data as $category => $value)
                     @if ($category != 'total')
-                    <span title="{{ catName($category)}} - {{ percentage($value, $data['total']) }}%" class="bar"
+                    <span title="{{ catName($category) }} - {{ percentage($value, $data['total']) }}%" class="bar"
                         style="width: {{ percentage($value * 0.99, $data['total']) }}%; background-color: {{ catColor($category) }};">
                         @if (percentage($value, $data['total']) > 3)
                             {{ percentage($value, $data['total']) }}%

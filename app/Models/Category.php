@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    function getTitleAttribute(): string
+    {
+        return catName($this->key);
+    }
+
+    function getColorAttribute(): string
+    {
+        return catColor($this->key);
+    }
 }

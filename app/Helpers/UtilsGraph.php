@@ -1,6 +1,6 @@
 <?php
 
-function scenarioBaseConfig($scenario, string $label = 'RTE', bool $hidden = false): array
+function scenarioBaseConfig($scenario, string $label = '', bool $hidden = false): array
 {
     return [
         'label' => $scenario->name . ' ' . $label,

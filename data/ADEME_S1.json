@@ -3,7 +3,7 @@
     "group": "ademe",
     "introduction": "Génération frugale",
     "description": "Des transformations importantes dans les façons de se déplacer, de se chauffer, de s’alimenter, d’acheter et d’utiliser des équipements, permettent l’atteinte de la neutralité carbone sans impliquer de technologies de captage et stockage de carbone, non éprouvées et incertaines à grande échelle. \n\n La transition est conduite principalement par la contrainte et par la sobriété. De nouvelles attentes des consommateurs, mais surtout de nouvelles pratiques, s’expriment rapidement dans les modes de consommation. La croissance de la demande énergétique qui épuise les ressources s’interrompt grâce à des innovations comportementales, organisationnelles autant que technologiques.",
-    "years": [2020, 2030, 2040, 2050],
+    "years": [2020, 2030, 2040, 2050, 2060],
     "_source": "https://data-transitions2050.ademe.fr/datasets/mix-elec-g7",
     "_comment": "RTE as a reference for 2020 volume",
     "data": {
@@ -27,7 +27,7 @@
             "final":     [0, 0, 0, 0, 0],
              "hydro":     [20.11, 20.11, 20.11, 20.11, 20.11], "_comment_hydro": "hydro - step sauf pour 2060 ?",
              "step":      [5.18, 5.18, 5.42, 6.18, 6.18], "_comment_hydro_step": "Feuilleton p44 9.3",
-             "wind":      [17,39, 29.99, 41.12, 57.74, 82.78],
+             "wind":      [17.39, 29.99, 41.12, 57.74, 82.78],
              "hydrowind": [0, 5.9, 9.64, 14.2, 13.3],
              "sun":       [10.09, 30.6, 57, 92, 101.44],
              "nuc":       [61.37, 57.25, 28.87, 0, 0],

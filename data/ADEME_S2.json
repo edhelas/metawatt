@@ -3,12 +3,12 @@
     "group": "ademe",
     "introduction": "Coopérations territoriales",
     "description": "La société se transforme dans le cadre d’une gouvernance partagée et de coopérations territoriales. Organisations non gouvernementales, institutions publiques, secteur privé et société civile trouvent des voies de coopération pragmatique qui permettent de maintenir la cohésion sociale \n\n Pour atteindre la neutralité carbone, la société mise sur une évolution progressive mais à un rythme soutenu du système économique vers une voie durable alliant sobriété et efficacité. La consommation de biens devient mesurée et responsable, le partage se généralise. L’évolution des valeurs de la société permet des investissements massifs dans les solutions d’efficacité et d’énergies renouvelables.",
-    "years": [2020, 2030, 2040, 2050],
+    "years": [2020, 2030, 2040, 2050, 2060],
     "_source": "https://data-transitions2050.ademe.fr/datasets/mix-elec-g9",
     "_comment": "RTE as a reference for 2020 volume",
     "data": {
         "volume": {
-            "final":     [1708, 0, 0, 829], "_comment_final": "In 2021 for the origin",
+            "final":     [1708, 0, 0, 829, 0], "_comment_final": "In 2021 for the origin",
             "hydro":     [59.5, null, null, 63.5, null],
             "step":      [0, 0, 0, 0, 0],
             "wind":      [33.9, null, null, 175.1, null],
@@ -17,14 +17,14 @@
             "nuc":       [379, null, null, 74.7, null],
             "newnuc":    [0, null, null, null, null],
             "gas":       [null, null, null, null, null],
-            "oil":       [0,0,0,0],
-            "coal":      [0,0,0,0],
-            "biomass":   [0,0,0,0],
-            "tidal":     [0,0,0,0],
-            "h2":        [0,0,0,0]
+            "oil":       [0,0,0,0,0],
+            "coal":      [0,0,0,0,0],
+            "biomass":   [0,0,0,0,0],
+            "tidal":     [0,0,0,0,0],
+            "h2":        [0,0,0,0,0]
         },
         "capacity": {
-            "final":     [0, 0, 0, 0],
+            "final":     [0, 0, 0, 0, 0],
              "hydro":     [20.11, 20.11, 20.11, 20.11, 20.11], "_comment_hydro": "hydro - step sauf pour 2060 ?",
              "step":      [5.18, 5.18, 5.18, 5.18, 7.18],
              "wind":      [17.39, 29.99, 43.49, 62.99, 90.71],
@@ -33,11 +33,11 @@
              "nuc":       [61.37, 57.74, 37.85, 10.35, 0],
              "newnuc":    [0, 1.6, 1.6, 1.6, 1.6],
              "gas":       [8.13, 8.54, 4.57, 1.38, 0], "_comment_gas": "CCGT + OCGT",
-            "oil":       [0,0,0,0],
+            "oil":       [0,0,0,0, 0],
              "coal":      [2.4, 0, 0, 0, 0],
              "biomass":   [0.65, 0.8, 0.8, 0.8, 0.8],
              "tidal":     [0.24, 0.24, 0.24, 0.24, 0.24],
-            "h2":        [0,0,0,0]
+            "h2":        [0,0,0,0, 0]
         }
     }
 }

@@ -208,7 +208,7 @@ class CategoryController extends Controller
                 $scenarios['field_parking_zones_ademde'] = [
                     'label' => 'Gisement Parkings*',
                     'data' => [
-                        8, null, null, null, 8
+                        4, null, null, null, 4
                     ],
                     'borderColor' => 'rgba(13, 111, 180, 1)',
                     'backgroundColor' => 'transparent',

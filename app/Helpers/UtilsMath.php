@@ -19,7 +19,7 @@ function ademeLoadFactor(string $category): float
     $names = [
         'nuc' => 0.7686,
         'newnuc' => 0.7686,
-        'hydro' => 0.2338,
+        'hydro' => 0.3604,
         'wind' => 0.3165,
         'sun' => 0.1466,
         'gas' => 0.24, // From RTE, sorry ADEME but I don't have the data

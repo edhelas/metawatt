@@ -3,12 +3,12 @@
     "group": "ademe",
     "introduction": "Pari réparateur",
     "description": "Les enjeux écologiques globaux sont perçus comme des contreparties du progrès économique et technologique : la société place sa confiance dans la capacité à gérer, voire à réparer, les systèmes sociaux et écologiques avec plus de ressources matérielles et financières pour conserver un monde vivable. \n\n Les modes de vie du début du XXIe siècle sont sauvegardés. Mais le foisonnement de biens consomme beaucoup d’énergie et de matières avec des impacts potentiellement forts sur l’environnement.",
-    "years": [2020, 2030, 2040, 2050],
+    "years": [2020, 2030, 2040, 2050, 2060],
     "_source": "https://data-transitions2050.ademe.fr/datasets/mix-elec-g14",
     "_comment": "RTE as a reference for 2020 volume",
     "data": {
         "volume": {
-            "final":     [1708, 0, 0, 1287], "_comment_final": "In 2021 for the origin",
+            "final":     [1708, 0, 0, 1287, 0], "_comment_final": "In 2021 for the origin",
             "hydro":     [59.5, null, null, 63.5, null],
             "step":      [0, 0, 0, 0, 0],
             "wind":      [33.9, null, null, 174.5, null],
@@ -17,14 +17,14 @@
             "nuc":       [379, null, null, 187.7, null],
             "newnuc":    [null, null, null, null, null],
             "gas":       [null, null, null, null, null],
-            "oil":       [0,0,0,0],
-            "coal":      [0,0,0,0],
-            "biomass":   [0,0,0,0],
-            "tidal":     [0,0,0,0],
-            "h2":        [0,0,0,0]
+            "oil":       [0,0,0,0,0],
+            "coal":      [0,0,0,0,0],
+            "biomass":   [0,0,0,0,0],
+            "tidal":     [0,0,0,0,0],
+            "h2":        [0,0,0,0,0]
         },
         "capacity": {
-            "final":     [0, 0, 0, 0],
+            "final":     [0, 0, 0, 0, 0],
              "hydro":     [20.11, 20.11, 20.11, 20.11, 20.11], "_comment_hydro": "hydro - step sauf pour 2060 ?",
              "step":      [5.18, 5.18, 7.18, 7.18, 7.18],
              "wind":      [17.29, 35, 46, 63, 90.7],
@@ -33,11 +33,11 @@
              "nuc":       [61.37, 57.74, 41.44, 13.8, 0],
              "newnuc":    [0, 1.6, 11, 17.4, 23.8],
              "gas":       [8.31, 28, 25, 25.87, 12], "_comment_gas": "CCGT + OCGT",
-            "oil":       [0,0,0,0],
+            "oil":       [0,0,0,0,0],
              "coal":      [2.4, 0, 0, 0, 0],
              "biomass":   [0.65, 0.8, 0.8, 0.8, 0.8],
              "tidal":     [0.24, 0.24, 0.24, 0.24, 0.24],
-            "h2":        [0,0,0,0]
+            "h2":        [0,0,0,0,0]
         }
     }
 }

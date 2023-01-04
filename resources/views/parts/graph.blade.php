@@ -20,6 +20,23 @@
         }
     @endif
 
+    if (config.options == undefined) {
+        config.options = {};
+    }
+
+    if (config.options.plugins == undefined) {
+        config.options.plugins = {};
+    }
+
+    config.options.plugins.legend = {};
+    config.options.plugins.legend.labels = {
+        boxWidth: 15,
+        boxHeight: 15,
+        useBorderRadius: true,
+        borderRadius: 3,
+        padding: 10
+    }
+
     new Chart(
         document.getElementById('myChart'),
         config

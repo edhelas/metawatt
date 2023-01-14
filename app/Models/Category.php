@@ -18,4 +18,9 @@ class Category extends Model
     {
         return catColor($this->key);
     }
+
+    function getDarkerColorAttribute(): string
+    {
+        return catColor($this->key, 0.7);
+    }
 }

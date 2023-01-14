@@ -1,4 +1,4 @@
-<p>Ci dessous le ratio par source d'énergie appliqué aux scénarios en @if ($resource == 'space')ha @else T @endif/ MW déployé au fil des décennies selon les hypothèses de RTE:</p>
+<p>Ci dessous le ratio par source d'énergie appliqué aux scénarios en @if (in_array($resource, array_keys(resourcesSpace())))ha @else T @endif/ MW déployé au fil des décennies selon les hypothèses de RTE:</p>
 
 <div class="container">
     <div class="row">
@@ -47,7 +47,7 @@
     </a>
 </p>
 
-<p>Ainsi que le ratio par source d'énergie appliqué aux scénarios en @if ($resource == 'space')ha @else T @endif/ MW déployé selon les hypothèses de l'AIE:</p>
+<p>Ainsi que le ratio par source d'énergie appliqué aux scénarios en @if (in_array($resource, array_keys(resourcesSpace())))ha @else T @endif/ MW déployé selon les hypothèses de l'AIE:</p>
 
 <div class="container">
     <div class="row">

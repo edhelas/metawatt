@@ -5,8 +5,8 @@
 
 @section('content')
 
-@if ($resource == 'space')
-    <p>Surface artificialisée au fil du temps</p>
+@if (in_array($resource, array_keys(resourcesSpace())))
+    <p>Surface occupée au fil du temps</p>
 @else
     <p>Mobilisation de la resource en tonnes au fil du temps</p>
 @endif

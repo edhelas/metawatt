@@ -171,7 +171,7 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
 {
     $intensity = [
         // Annexes 12-4
-        'space' => [
+        'artificialization' => [
             'nuc'       => 0.06,
             'newnuc'    => 0.06,
             'hydro'     => 0.01,
@@ -192,7 +192,7 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'step'      => 0.01,
                 'wind'      => 0.15,
                 'gas'       => 0.02,
-                'sun'       => 0.07, // moyenne sol 0.10 toiture 0.05
+                'sun'       => 0.07,
                 'hydrowind' => 0.0,
                 'coal'      => 0.02,
                 'h2'        => 0,
@@ -228,6 +228,128 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'h2'        => 0,
                 'tidal'     => 0, // To be found
                 'oil'       => 0.02,
+            ]
+        ],
+
+        // Annexes 12-4
+        'co-use' => [
+            'nuc'       => 0,
+            'newnuc'    => 0,
+            'hydro'     => 0.61,
+            'step'      => 0.61,
+            'wind'      => 12.35,
+            'gas'       => 0,
+            'sun'       => 1.125, // moyenne sol et toiture
+            'hydrowind' => 0,
+            'coal'      => 0,
+            'h2'        => 0,
+            'tidal'     => 0,
+            'oil'       => 0,
+
+            2030 => [ // /!\ Extrapolated between 2020 and 2050
+                'nuc'       => 0,
+                'newnuc'    => 0,
+                'hydro'     => 0.61,
+                'step'      => 0.61,
+                'wind'      => 12.35,
+                'gas'       => 0,
+                'sun'       => 1.11, // moyenne sol et toiture
+                'hydrowind' => 0,
+                'coal'      => 0,
+                'h2'        => 0,
+                'tidal'     => 0,
+                'oil'       => 0,
+            ],
+
+            2040 => [ // /!\ Extrapolated between 2020 and 2050
+                'nuc'       => 0,
+                'newnuc'    => 0,
+                'hydro'     => 0.61,
+                'step'      => 0.61,
+                'wind'      => 12.35,
+                'gas'       => 0,
+                'sun'       => 1.09, // moyenne sol et toiture
+                'hydrowind' => 0,
+                'coal'      => 0,
+                'h2'        => 0,
+                'tidal'     => 0,
+                'oil'       => 0,
+            ],
+
+            2050 => [
+                'nuc'       => 0,
+                'newnuc'    => 0,
+                'hydro'     => 0.61,
+                'step'      => 0.61,
+                'wind'      => 12.35,
+                'gas'       => 0,
+                'sun'       => 1.08, // moyenne sol et toiture
+                'hydrowind' => 0,
+                'coal'      => 0,
+                'h2'        => 0,
+                'tidal'     => 0,
+                'oil'       => 0,
+            ]
+        ],
+
+        // Annexes 12-4
+        'soil-sealing' => [
+            'nuc'       => 0.03,
+            'newnuc'    => 0.03,
+            'hydro'     => 0.01,
+            'step'      => 0.01,
+            'wind'      => 0.02,
+            'gas'       => 0.01,
+            'sun'       => 0.002,
+            'hydrowind' => 0,
+            'coal'      => 0.02,
+            'h2'        => 0,
+            'tidal'     => 0,
+            'oil'       => 0.01,
+
+            2030 => [ // /!\ Extrapolated between 2020 and 2050
+                'nuc'       => 0.03,
+                'newnuc'    => 0.03,
+                'hydro'     => 0.01,
+                'step'      => 0.01,
+                'wind'      => 0.02,
+                'gas'       => 0.01,
+                'sun'       => 0.002,
+                'hydrowind' => 0,
+                'coal'      => 0.01,
+                'h2'        => 0,
+                'tidal'     => 0,
+                'oil'       => 0.02,
+            ],
+
+            2040 => [ // /!\ Extrapolated between 2020 and 2050
+                'nuc'       => 0.02,
+                'newnuc'    => 0.02,
+                'hydro'     => 0.01,
+                'step'      => 0.01,
+                'wind'      => 0.02,
+                'gas'       => 0.01,
+                'sun'       => 0.002,
+                'hydrowind' => 0.0,
+                'coal'      => 0.01,
+                'h2'        => 0,
+                'tidal'     => 0,
+                'oil'       => 0.02,
+            ],
+
+            2050 => [
+                'nuc'       => 0.02,
+                'newnuc'    => 0.02,
+                'hydro'     => 0.01,
+                'step'      => 0.01,
+                'wind'      => 0.02,
+                'gas'       => 0.01,
+                'sun'       => 0.002,
+                'hydrowind' => 0,
+                'coal'      => 0.01,
+                'h2'        => 0,
+                'tidal'     => 0,
+                'oil'       => 0.01,
             ]
         ],
 

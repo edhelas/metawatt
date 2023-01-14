@@ -52,7 +52,7 @@
                             {{ compareParis($totalSpace) }}x <span class="text-muted">la superficie de
                             <a href="https://fr.wikipedia.org/wiki/Paris" title="105,40 km2">Paris</a></span>
                         </p>
-                        <a href="{{ route('impacts.resources.show', 'space') }}" class="btn btn-secondary btn-sm">
+                        <a href="{{ route('impacts.resources.show', 'artificialization') }}" class="btn btn-secondary btn-sm">
                             <i class="fa-solid fa-chart-bar"></i> Comparateur
                         </a>
                     </div>-->

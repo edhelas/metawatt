@@ -144,7 +144,17 @@ function groupSources(string $group): array
         : [];
 }
 
-function resources(): array
+function resourcesSpace(): array
+{
+    return [
+        'space' => 'Surfaces totales',
+        'artificialization' => 'Artificialisation',
+        'co-use' => 'Co-Usage',
+        'soil-sealing' => 'Imperméabilisation',
+    ];
+}
+
+function resourcesMaterial(): array
 {
     return [
         'copper' => 'Cuivre',
@@ -155,8 +165,12 @@ function resources(): array
         'concrete' => 'Béton',
         'steel' => 'Acier',
         'aluminium' => 'Aluminium',
-        'space' => 'Artificialisation',
     ];
+}
+
+function resources(): array
+{
+    return resourcesSpace() + resourcesMaterial();
 }
 
 function resourceImage($key): string
@@ -170,7 +184,10 @@ function resourceImage($key): string
         'concrete' => 'sand.jpg',
         'steel' => 'lead.jpg',
         'aluminium' => 'beauxite.jpg',
-        'space' => 'deforestation.jpg',
+        'space' => 'solar-space.jpg',
+        'artificialization' => 'deforestation.jpg',
+        'co-use' => 'agrivoltaisme.jpg',
+        'soil-sealing' => 'parking.jpg',
         'carbon' => 'global_warming.png',
         'electricity' => 'lht.jpg',
         'step' => 'step.jpg',
@@ -230,29 +247,29 @@ function groupColor(string $group, string $slug = null): string
         : 'white';
 }
 
-function catColor(string $category): string
+function catColor(string $category, $opacity = 1): string
 {
     $colors = [
-        'nuc' => 'rgb(133, 19, 153)',
-        'newnuc' => 'rgb(156, 39, 176)',
-        'hydro' => 'rgb(39, 114, 178)',
-        'step' => 'rgb(107, 144, 176)',
-        'wind' => 'rgb(43, 198, 165)',
-        'gas' => 'rgb(243, 10, 10)',
-        'sun' => 'rgb(242, 116, 6)',
-        'hydrowind' => 'rgb(57, 239, 169)',
-        'coal' => 'rgb(172, 140, 53)',
-        'h2' => '#00bcd4',
-        'oil' => 'rgb(131, 146, 162)',
-        'tidal' => '#03a9f4',
-        'biomass' => 'rgb(22, 106, 87)',
-        'final' => 'white',
-        'renewable' => '#34af3c',
-        'lowcarbon' => '#68a0d1',
+        'nuc' => '133, 19, 153',
+        'newnuc' => '156, 39, 176',
+        'hydro' => '39, 114, 178',
+        'step' => '107, 144, 176',
+        'wind' => '43, 198, 165',
+        'gas' => '243, 10, 10',
+        'sun' => '242, 116, 6',
+        'hydrowind' => '57, 239, 169',
+        'coal' => '172, 140, 53',
+        'h2' => '0, 188, 212',
+        'oil' => '131, 146, 162',
+        'tidal' => '3, 169, 244',
+        'biomass' => '22, 106, 87',
+        'final' => '255, 255, 255',
+        'renewable' => '52, 175, 60',
+        'lowcarbon' => '104, 160, 209',
     ];
 
     return (array_key_exists($category, $colors))
-        ? $colors[$category]
+        ? 'rgba(' . $colors[$category] . ',' . $opacity . ')'
         : 'white';
 }
 

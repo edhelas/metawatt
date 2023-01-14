@@ -14,7 +14,9 @@ class ImpactController extends Controller
     public function index(Request $request)
     {
         return view('impacts.index', [
-            'resources' => resources()
+            'resources' => resources(),
+            'resourcesSpace' => resourcesSpace(),
+            'resourcesMaterial' => resourcesMaterial()
         ]);
     }
 
@@ -173,7 +175,7 @@ class ImpactController extends Controller
         $percentages = [];
 
         foreach ($config['data']['labels'] as $key => $label) {
-            foreach($config['data']['datasets'] as $category) {
+            foreach ($config['data']['datasets'] as $category) {
                 $percentages[$label][$category['label']] = $category['data'][$key];
             }
         }
@@ -420,7 +422,7 @@ class ImpactController extends Controller
                     'y' => [
                         'title' => [
                             'display' => true,
-                            'text' => $resource == 'space' ? 'kha' : 'kT'
+                            'text' => in_array($resource, array_keys(resourcesSpace())) ? 'kha' : 'kT'
                         ]
                     ]
                 ]
@@ -454,13 +456,31 @@ class ImpactController extends Controller
 
         foreach ($referenceItems as $item) {
             if (!in_array($item->category->key . '_rte', array_keys($categories))) {
-                $categories[$item->category->key . '_rte'] = [
-                    'label' => $item->category->title . ' RTE',
-                    'backgroundColor' => $item->category->color,
-                    'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year))],
-                    'order' => 1,
-                    'stack' => 'rte'
-                ];
+                if ($resource == 'space') {
+                    $categories[$item->category->key . '_rte_artificialization'] = [
+                        'label' => $item->category->title . ' RTE - Artificialisation',
+                        'backgroundColor' => $item->category->color,
+                        'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, 'artificialization', (int)$item->year))],
+                        'order' => 1,
+                        'stack' => 'rte'
+                    ];
+
+                    $categories[$item->category->key . '_rte_co_use'] = [
+                        'label' => $item->category->title . ' RTE - Co-usage',
+                        'backgroundColor' => $item->category->darkerColor,
+                        'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, 'co-use', (int)$item->year))],
+                        'order' => 1,
+                        'stack' => 'rte'
+                    ];
+                } else {
+                    $categories[$item->category->key . '_rte'] = [
+                        'label' => $item->category->title . ' RTE',
+                        'backgroundColor' => $item->category->color,
+                        'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year))],
+                        'order' => 1,
+                        'stack' => 'rte'
+                    ];
+                }
             }
 
             if (!in_array($item->category->key  . '_iea', array_keys($categories))) {
@@ -475,12 +495,19 @@ class ImpactController extends Controller
         }
 
         foreach ($items as $item) {
-            if (isset($categories[$item->category->name . '_rte'])) {
-                array_push($categories[$item->category->name . '_rte']['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year)));
+            if ($resource == 'space') {
+                if (isset($categories[$item->category->name . '_rte_artificialization'])) {
+                    array_push($categories[$item->category->name . '_rte_artificialization']['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, 'artificialization', (int)$item->year)));
+                    array_push($categories[$item->category->name . '_rte_co_use']['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, 'co-use', (int)$item->year)));
+                }
+            } else {
+                if (isset($categories[$item->category->name . '_rte'])) {
+                    array_push($categories[$item->category->name . '_rte']['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year)));
+                }
             }
 
             if (isset($categories[$item->category->name . '_iea'])) {
-                array_push($categories[$item->category->name . '_iea']['data'], ((float)$item->capacity * (float)resourceIntensityIEA($item->category->key, $resource)));
+                array_push($categories[$item->category->name . '_iea']['data'], ((float)$item->capacity * (float)resourceIntensityIEA($item->category->key, $resource, (int)$item->year)));
             }
         }
 
@@ -509,7 +536,7 @@ class ImpactController extends Controller
                         'stacked' => true,
                         'title' => [
                             'display' => true,
-                            'text' => $resource == 'space' ? 'kha' : 'kT'
+                            'text' => in_array($resource, array_keys(resourcesSpace())) ? 'kha' : 'kT'
                         ]
                     ],
                     'y1' => $this->getProductionDotsScale(),
@@ -553,7 +580,7 @@ class ImpactController extends Controller
                         $sum += (($item[$i]->sum + $item[$i + 1]->sum) * ($item[$i + 1]->year - $item[$i]->year) / 2);
                     }
 
-                    return $sum/1000;
+                    return $sum / 1000;
                 })
                 ->values()
                 ->all(),

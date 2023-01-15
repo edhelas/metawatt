@@ -19,24 +19,28 @@
         </div>
     </div>
 
-    @foreach (['nuc', 'hydro', 'wind', 'hydrowind', 'gas', 'sun', 'coal'] as $category)
-    <div class="row">
-        <div class="col-4 text-right">
-            {{ catName($category) }}
-        </div>
-        <div class="col-2 text-right">
-            {{ resourceIntensityRTE($category, $resource, 2020) }}
-        </div>
-        <div class="col-2 text-right">
-            {{ resourceIntensityRTE($category, $resource, 2030) }}
-        </div>
-        <div class="col-2 text-right">
-            {{ resourceIntensityRTE($category, $resource, 2040) }}
-        </div>
-        <div class="col-2 text-right">
-            {{ resourceIntensityRTE($category, $resource, 2050) }}
-        </div>
-    </div>
+    @foreach (['nuc', 'newnuc', 'hydro', 'wind', 'hydrowind', 'gas', 'sun', 'coal'] as $category)
+        @if (resourceIntensityRTE($category, $resource, 2020) + resourceIntensityRTE($category, $resource, 2030)
+            + resourceIntensityRTE($category, $resource, 2040) + resourceIntensityRTE($category, $resource, 2050)
+            > 0)
+            <div class="row">
+                <div class="col-4 text-right">
+                    {{ catName($category) }}
+                </div>
+                <div class="col-2 text-right">
+                    {{ resourceIntensityRTE($category, $resource, 2020) }}
+                </div>
+                <div class="col-2 text-right">
+                    {{ resourceIntensityRTE($category, $resource, 2030) }}
+                </div>
+                <div class="col-2 text-right">
+                    {{ resourceIntensityRTE($category, $resource, 2040) }}
+                </div>
+                <div class="col-2 text-right">
+                    {{ resourceIntensityRTE($category, $resource, 2050) }}
+                </div>
+            </div>
+        @endif
     @endforeach
 </div>
 
@@ -59,15 +63,17 @@
         </div>
     </div>
 
-    @foreach (['nuc', 'hydro', 'wind', 'hydrowind', 'gas', 'sun', 'coal'] as $category)
-    <div class="row">
-        <div class="col-4 text-right">
-            {{ catName($category) }}
-        </div>
-        <div class="col-2 text-right">
-            {{ resourceIntensityIEA($category, $resource) }}
-        </div>
-    </div>
+    @foreach (['nuc', 'newnuc', 'hydro', 'wind', 'hydrowind', 'gas', 'sun', 'coal'] as $category)
+        @if (resourceIntensityIEA($category, $resource) > 0)
+            <div class="row">
+                <div class="col-4 text-right">
+                    {{ catName($category) }}
+                </div>
+                <div class="col-2 text-right">
+                    {{ resourceIntensityIEA($category, $resource) }}
+                </div>
+            </div>
+        @endif
     @endforeach
 </div>
 

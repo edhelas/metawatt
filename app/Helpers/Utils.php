@@ -158,7 +158,7 @@ function resourcesMaterial(): array
 {
     return [
         'copper' => 'Cuivre',
-        'molybdenum' => 'Molybdenum',
+        'molybdenum' => 'Molybdène',
         'chrome' => 'Chrome',
         'manganese' => 'Manganese',
         'nickel' => 'Nickel',

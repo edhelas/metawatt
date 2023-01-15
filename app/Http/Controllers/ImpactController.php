@@ -419,8 +419,8 @@ class ImpactController extends Controller
             $oldScenario = $item->scenario->name;
         }
 
-        array_push($scenarios[$items->last()->scenario->name . '_rte']['data'], $capacitySumRTE);
-        array_push($scenarios[$items->last()->scenario->name . '_iea']['data'], $capacitySumIEA);
+        array_push($scenarios[$items->last()->scenario->name . '_rte']['data'], $capacitySumRTE/1000);
+        array_push($scenarios[$items->last()->scenario->name . '_iea']['data'], $capacitySumIEA/1000);
 
         $labels = Data::distinct('year')->get()->pluck('year');
 

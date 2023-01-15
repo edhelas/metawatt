@@ -168,9 +168,17 @@ function resourcesMaterial(): array
     ];
 }
 
+function resourcesFuel(): array
+{
+    return [
+        'uranium' => 'Uranium',
+        'zirconium' => 'Zirconium'
+    ];
+}
+
 function resources(): array
 {
-    return resourcesSpace() + resourcesMaterial();
+    return resourcesSpace() + resourcesMaterial() + resourcesFuel();
 }
 
 function resourceImage($key): string
@@ -197,6 +205,8 @@ function resourceImage($key): string
         'sun' => 'sun.jpg',
         'nuc' => 'nuc.jpg',
         'newnuc' => 'newnuc.jpg',
+        'uranium' => 'uranium.jpg',
+        'zirconium' => 'zirconium.jpg',
         'gas' => 'gas.jpg',
         'oil' => 'oil.jpg',
         'biomass' => 'biomass.jpg',

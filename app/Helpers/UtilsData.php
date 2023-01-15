@@ -80,80 +80,42 @@ function resourceIntensityIEA(string $category, string $resource): float
             'gas'       => 1.1,
             'sun'       => 2.822,
             'hydrowind' => 8,
-            'coal'      => 1.150,
-            'h2'        => 0,
-            'tidal'     => 0,
-            'oil'       => 0
+            'coal'      => 1.150
         ],
         'nickel' => [
             'nuc'       => 1.297,
             'newnuc'    => 1.297,
-            'hydro'     => 0.00,
-            'step'      => 0.00,
             'wind'      => 0.403,
             'gas'       => 0.15,
-            'sun'       => 0,
             'hydrowind' => 0.24,
-            'coal'      => 0.721,
-            'h2'        => 0,
-            'tidal'     => 0,
-            'oil'       => 0,
+            'coal'      => 0.721
         ],
         'manganese' => [
             'nuc'       => 0.147,
             'newnuc'    => 0.147,
-            'hydro'     => 0,
-            'step'      => 0,
             'wind'      => 0.780,
-            'gas'       => 0,
-            'sun'       => 0,
-            'hydrowind' => 0.790,
-            'coal'      => 0,
-            'h2'        => 0,
-            'tidal'     => 0,
-            'oil'       => 0,
+            'hydrowind' => 0.790
         ],
         'chrome' => [
             'nuc'       => 2.19,
             'newnuc'    => 2.19,
-            'hydro'     => 0,
-            'step'      => 0,
             'wind'      => 0.470,
             'gas'       => 0.0483,
-            'sun'       => 0,
             'hydrowind' => 0.525,
             'coal'      => 0.3075,
-            'h2'        => 0,
-            'tidal'     => 0,
-            'oil'       => 0,
         ],
         'zinc' => [
-            'nuc'       => 0,
-            'newnuc'    => 0,
-            'hydro'     => 0,
-            'step'      => 0,
             'wind'      => 5.5,
-            'gas'       => 0,
             'sun'       => 0.030,
-            'hydrowind' => 5.5,
-            'coal'      => 0,
-            'h2'        => 0,
-            'tidal'     => 0,
-            'oil'       => 0,
+            'hydrowind' => 5.5
         ],
         'molybdenum' => [
             'nuc'       => 2.19,
             'newnuc'    => 2.19,
-            'hydro'     => 0,
-            'step'      => 0,
             'wind'      => 0.470,
             'gas'       => 0.0483,
-            'sun'       => 0,
             'hydrowind' => 0.525,
-            'coal'      => 0.3075,
-            'h2'        => 0,
-            'tidal'     => 0,
-            'oil'       => 0,
+            'coal'      => 0.3075
         ],
     ];
 
@@ -170,6 +132,17 @@ function resourceIntensityIEA(string $category, string $resource): float
 function resourceIntensityRTE(string $category, string $resource, ?int $year = null): float
 {
     $intensity = [
+        // Annexes 12-4, in t/TWh
+        'uranium' => [
+            'nuc'       => 19.9, // REP
+            'newnuc'    => 15.6  // EPR
+        ],
+
+        'zirconium' => [
+            'nuc'       => 0.847, // REP
+            'newnuc'    => 0.847  // EPR
+        ],
+
         // Annexes 12-4
         'artificialization' => [
             'nuc'       => 0.06,
@@ -179,10 +152,7 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             'wind'      => 0.15,
             'gas'       => 0.02,
             'sun'       => 0.07, // moyenne sol 0.10 toiture 0.05
-            'hydrowind' => 0.0,
             'coal'      => 0.02,
-            'h2'        => 0,
-            'tidal'     => 0, // To be found
             'oil'       => 0.02,
 
             2030 => [ // /!\ Extrapolated between 2020 and 2050
@@ -193,10 +163,7 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'wind'      => 0.15,
                 'gas'       => 0.02,
                 'sun'       => 0.07,
-                'hydrowind' => 0.0,
                 'coal'      => 0.02,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 0.02,
             ],
 
@@ -208,10 +175,7 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'wind'      => 0.15,
                 'gas'       => 0.02,
                 'sun'       => 0.07, // moyenne sol 0.10 toiture 0.05
-                'hydrowind' => 0.0,
                 'coal'      => 0.02,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 0.02,
             ],
 
@@ -223,72 +187,37 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'wind'      => 0.15,
                 'gas'       => 0.02,
                 'sun'       => 0.07, // moyenne sol 0.10 toiture 0.05
-                'hydrowind' => 0.0,
                 'coal'      => 0.02,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 0.02,
             ]
         ],
 
         // Annexes 12-4
         'co-use' => [
-            'nuc'       => 0,
-            'newnuc'    => 0,
             'hydro'     => 0.61,
             'step'      => 0.61,
             'wind'      => 12.35,
-            'gas'       => 0,
             'sun'       => 1.125, // moyenne sol et toiture
-            'hydrowind' => 0,
-            'coal'      => 0,
-            'h2'        => 0,
-            'tidal'     => 0,
-            'oil'       => 0,
 
             2030 => [ // /!\ Extrapolated between 2020 and 2050
-                'nuc'       => 0,
-                'newnuc'    => 0,
                 'hydro'     => 0.61,
                 'step'      => 0.61,
                 'wind'      => 12.35,
-                'gas'       => 0,
                 'sun'       => 1.11, // moyenne sol et toiture
-                'hydrowind' => 0,
-                'coal'      => 0,
-                'h2'        => 0,
-                'tidal'     => 0,
-                'oil'       => 0,
             ],
 
             2040 => [ // /!\ Extrapolated between 2020 and 2050
-                'nuc'       => 0,
-                'newnuc'    => 0,
                 'hydro'     => 0.61,
                 'step'      => 0.61,
                 'wind'      => 12.35,
-                'gas'       => 0,
                 'sun'       => 1.09, // moyenne sol et toiture
-                'hydrowind' => 0,
-                'coal'      => 0,
-                'h2'        => 0,
-                'tidal'     => 0,
-                'oil'       => 0,
             ],
 
             2050 => [
-                'nuc'       => 0,
-                'newnuc'    => 0,
                 'hydro'     => 0.61,
                 'step'      => 0.61,
                 'wind'      => 12.35,
-                'gas'       => 0,
                 'sun'       => 1.08, // moyenne sol et toiture
-                'hydrowind' => 0,
-                'coal'      => 0,
-                'h2'        => 0,
-                'tidal'     => 0,
-                'oil'       => 0,
             ]
         ],
 
@@ -301,10 +230,7 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             'wind'      => 0.02,
             'gas'       => 0.01,
             'sun'       => 0.002,
-            'hydrowind' => 0,
             'coal'      => 0.02,
-            'h2'        => 0,
-            'tidal'     => 0,
             'oil'       => 0.01,
 
             2030 => [ // /!\ Extrapolated between 2020 and 2050
@@ -315,10 +241,7 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'wind'      => 0.02,
                 'gas'       => 0.01,
                 'sun'       => 0.002,
-                'hydrowind' => 0,
                 'coal'      => 0.01,
-                'h2'        => 0,
-                'tidal'     => 0,
                 'oil'       => 0.02,
             ],
 
@@ -330,10 +253,7 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'wind'      => 0.02,
                 'gas'       => 0.01,
                 'sun'       => 0.002,
-                'hydrowind' => 0.0,
                 'coal'      => 0.01,
-                'h2'        => 0,
-                'tidal'     => 0,
                 'oil'       => 0.02,
             ],
 
@@ -345,10 +265,7 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'wind'      => 0.02,
                 'gas'       => 0.01,
                 'sun'       => 0.002,
-                'hydrowind' => 0,
                 'coal'      => 0.01,
-                'h2'        => 0,
-                'tidal'     => 0,
                 'oil'       => 0.01,
             ]
         ],
@@ -364,8 +281,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             'sun'       => 3.4,
             'hydrowind' => 8.5,
             'coal'      => 0.79,
-            'h2'        => 0,
-            'tidal'     => 0, // To be found
             'oil'       => 0.79,
 
             2030 => [
@@ -378,8 +293,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'sun'       => 3.4,
                 'hydrowind' => 8.5,
                 'coal'      => 0.79,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 0.79,
             ],
             2040 => [
@@ -392,8 +305,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'sun'       => 3.2,
                 'hydrowind' => 8.5,
                 'coal'      => 0.79,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 0.79,
             ],
             2050 => [
@@ -406,8 +317,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'sun'       => 3.1,
                 'hydrowind' => 8.5,
                 'coal'      => 0.79,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 0.79,
             ]
         ],
@@ -421,8 +330,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             'sun'       => 34,5, // mediane PV sol-toiture
             'hydrowind' => 320, // mediane posé-flottant
             'coal'      => 6.3,
-            'h2'        => 0,
-            'tidal'     => 0, // To be found
             'oil'       => 6.3,
 
             2030 => [
@@ -435,8 +342,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'sun'       => 29,4, // mediane PV sol-toiture
                 'hydrowind' => 320, // mediane posé-flottant
                 'coal'      => 6.3,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 6.3,
             ],
             2040 => [
@@ -449,8 +354,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'sun'       => 24,3, // mediane PV sol-toiture
                 'hydrowind' => 320, // mediane posé-flottant
                 'coal'      => 6.3,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 6.3,
             ],
             2050 => [
@@ -462,8 +365,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'sun'       => 23, // mediane PV sol-toiture
                 'hydrowind' => 320, // mediane posé-flottant
                 'coal'      => 6.3,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 6.3,
             ]
         ],
@@ -477,8 +378,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             'sun'       => 51, // mediane PV sol-toiture
             'hydrowind' => 1300, // mediane posé-flottant
             'coal'      => 41,
-            'h2'        => 0,
-            'tidal'     => 0, // To be found
             'oil'       => 41,
 
             2030 => [
@@ -491,8 +390,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'sun'       => 43, // mediane PV sol-toiture
                 'hydrowind' => 1300, // mediane posé-flottant
                 'coal'      => 41,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 41,
             ],
             2040 => [
@@ -505,8 +402,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'sun'       => 36, // mediane PV sol-toiture
                 'hydrowind' => 1300, // mediane posé-flottant
                 'coal'      => 41,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 41,
             ],
             2050 => [
@@ -519,8 +414,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'sun'       => 32, // mediane PV sol-toiture
                 'hydrowind' => 1300, // mediane posé-flottant
                 'coal'      => 41,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 41,
             ]
         ],
@@ -534,8 +427,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             'sun'       => 25, // mediane PV sol-toiture
             'hydrowind' => 1.05, // mediane posé-flottant
             'coal'      => 0.75,
-            'h2'        => 0,
-            'tidal'     => 0, // To be found
             'oil'       => 0.75,
 
             2030 => [
@@ -548,8 +439,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'sun'       => 20, 55, // mediane PV sol-toiture
                 'hydrowind' => 1.075, // mediane posé-flottant
                 'coal'      => 0.75,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 0.75,
             ],
             2040 => [
@@ -562,8 +451,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'sun'       => 16, 66, // mediane PV sol-toiture
                 'hydrowind' => 1.075, // mediane posé-flottant
                 'coal'      => 0.75,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 0.75,
             ],
             2050 => [
@@ -576,8 +463,6 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
                 'sun'       => 14, 7, // mediane PV sol-toiture
                 'hydrowind' => 1.075, // mediane posé-flottant
                 'coal'      => 0.75,
-                'h2'        => 0,
-                'tidal'     => 0, // To be found
                 'oil'       => 0.75,
             ]
         ],

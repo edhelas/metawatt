@@ -10,7 +10,8 @@
 <p>
     Sont représentées les surfaces <b>mobilisées</b> l'année {{ $year }}. Ce graphique ne tiens pas compte des surfaces précédement utilisées (démantèlement, abandon d'infrastructure).</p>
 </p>
-
+@elseif(in_array($resource, array_keys(resourcesFuel())))
+<p>Consommation de la resource finale en tonnes pour chaque scénario envisagé l'année {{ $year }}</p>
 @else
 <p>Mobilisation de la resource finale en tonnes pour chaque scénario envisagé l'année {{ $year }}</p>
 <p>

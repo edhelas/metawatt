@@ -26,6 +26,7 @@ Route::get('energies/{category}/load-factor', 'CategoryController@showLoadFactor
 
 Route::get('impact/production', 'ImpactController@production')->name('impacts.production.show');
 Route::get('impact/production/final', 'ImpactController@productionFinal')->name('impacts.production.show.final');
+Route::get('impact/consumption/{resource}/final', 'ImpactController@productionFinal')->name('impacts.consumption.show.final');
 Route::get('impact/carbon', 'ImpactController@carbon')->name('impacts.carbon.show');
 Route::get('impact/carbon/final', 'ImpactController@carbonFinal')->name('impacts.carbon.show.final');
 Route::get('impact/resources', 'ImpactController@index')->name('impacts.resources.index');

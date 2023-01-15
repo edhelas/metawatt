@@ -49,21 +49,10 @@
 
 <p>Impact des différent scénarios sur l'usage des sols et des surfaces</p>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    @foreach($resourcesSpace as $key => $name)
+<div class="row">
+    @foreach(resourcesSpace() as $key => $name)
         @if (in_array($key, ['space', 'soil-sealing']))
-            <div class="col">
-                <div class="card mb-4">
-                    <img src="{{ resourceImage($key) }}" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $name }}</h5>
-                        <p class="card-text">
-                            <i class="fa-solid fa-chart-column"></i>
-                            <a href="{{ route('impacts.resources.show.final', $key) }}">Impact total en 2050</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            @include('parts.impact_index_card', ['key' => $key, 'name' => $name, 'evolution' => false])
         @endif
     @endforeach
 </div>
@@ -73,22 +62,18 @@
 <p>Impact des différent scénarios sur la mobilisation de resources contraintes</p>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
-    @foreach($resourcesMaterial as $key => $name)
-        <div class="col">
-            <div class="card mb-4">
-                <img src="{{ resourceImage($key) }}" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $name }}</h5>
-                    <p class="card-text">
-                        <i class="fa-solid fa-chart-line"></i>
-                        <a href="{{ route('impacts.resources.show', $key) }}">Évolution dans le temps</a><br />
+    @foreach(resourcesMaterial() as $key => $name)
+        @include('parts.impact_index_card', ['key' => $key, 'name' => $name, 'evolution' => true])
+    @endforeach
+</div>
 
-                        <i class="fa-solid fa-chart-column"></i>
-                        <a href="{{ route('impacts.resources.show.final', $key) }}">Impact total en 2050</a>
-                    </p>
-                </div>
-            </div>
-        </div>
+<h3 class="mt-3">Combustibles et carburants</h3>
+
+<p>Consommation des différents scénarios en combustibles et carburants</p>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach(resourcesFuel() as $key => $name)
+        @include('parts.impact_index_card', ['key' => $key, 'name' => $name, 'evolution' => true])
     @endforeach
 </div>
 

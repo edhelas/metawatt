@@ -14,9 +14,7 @@ class ImpactController extends Controller
     public function index(Request $request)
     {
         return view('impacts.index', [
-            'resources' => resources(),
-            'resourcesSpace' => resourcesSpace(),
-            'resourcesMaterial' => resourcesMaterial()
+            'resources' => resources()
         ]);
     }
 
@@ -73,7 +71,7 @@ class ImpactController extends Controller
         ]);
     }
 
-    public function productionFinal(Request $request)
+    public function productionFinal(Request $request, $resource = false)
     {
         $items = Data::with(['category', 'scenario'])
             ->noStorage()->noFinal()
@@ -121,6 +119,10 @@ class ImpactController extends Controller
                 $item->category->key != $categoryKey
                 || $item->scenario_id != $scenarioId
             ) {
+                if ($resource) {
+                    $totalArea *= resourceIntensityRTE($categoryKey, $resource);
+                }
+
                 // We just switched to a new category we stack the data
                 array_push($categories[$categoryKey]['data'], round($totalArea, 2));
                 $totalArea = 0;
@@ -130,6 +132,10 @@ class ImpactController extends Controller
             $previousYear = $item->year;
             $scenarioId = $item->scenario_id;
             $categoryKey = $item->category->key;
+        }
+
+        if ($resource) {
+            $totalArea *= resourceIntensityRTE($categoryKey, $resource);
         }
 
         // And we push the last one
@@ -156,7 +162,7 @@ class ImpactController extends Controller
                         'stacked' => true,
                         'title' => [
                             'display' => true,
-                            'text' => 'PWh'
+                            'text' => $resource ? 'kT' : 'PWh'
                         ]
                     ],
                     'x' => [
@@ -188,7 +194,8 @@ class ImpactController extends Controller
             'year' => $this->year,
             'jsonConfig' => json_encode($config),
             'percentages' => $percentages,
-            'resources' => resources()
+            'resources' => resources(),
+            'resource' => $resource
         ]);
     }
 
@@ -386,14 +393,26 @@ class ImpactController extends Controller
             }
 
             if ($item->year == $oldYear) {
-                $capacitySumRTE += (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year);
-                $capacitySumIEA += (float)$item->capacity * (float)resourceIntensityIEA($item->category->key, $resource, (int)$item->year);
+                $capacitySumRTE += ((in_array($resource, array_keys(resourcesFuel())))
+                    ? (float)$item->production
+                    : (float)$item->capacity)
+                    * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year);
+                $capacitySumIEA += ((in_array($resource, array_keys(resourcesFuel())))
+                    ? (float)$item->production
+                    : (float)$item->capacity)
+                    * (float)resourceIntensityIEA($item->category->key, $resource, (int)$item->year);
             } else {
-                array_push($scenarios[$oldScenario . '_rte']['data'], $capacitySumRTE);
-                array_push($scenarios[$oldScenario . '_iea']['data'], $capacitySumIEA);
+                array_push($scenarios[$oldScenario . '_rte']['data'], $capacitySumRTE/1000);
+                array_push($scenarios[$oldScenario . '_iea']['data'], $capacitySumIEA/1000);
 
-                $capacitySumRTE = (float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year);
-                $capacitySumIEA = (float)$item->capacity * (float)resourceIntensityIEA($item->category->key, $resource, (int)$item->year);
+                $capacitySumRTE = ((in_array($resource, array_keys(resourcesFuel())))
+                    ? (float)$item->production
+                    : (float)$item->capacity)
+                    * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year);
+                $capacitySumIEA = ((in_array($resource, array_keys(resourcesFuel())))
+                    ? (float)$item->production
+                    : (float)$item->capacity)
+                    * (float)resourceIntensityIEA($item->category->key, $resource, (int)$item->year);
             }
 
             $oldYear = $item->year;
@@ -476,7 +495,10 @@ class ImpactController extends Controller
                     $categories[$item->category->key . '_rte'] = [
                         'label' => $item->category->title . ' RTE',
                         'backgroundColor' => $item->category->color,
-                        'data' => [((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year))],
+                        'data' => [(((in_array($resource, array_keys(resourcesFuel())))
+                            ? (float)$item->production
+                            : (float)$item->capacity)
+                            * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year))],
                         'order' => 1,
                         'stack' => 'rte'
                     ];
@@ -487,7 +509,10 @@ class ImpactController extends Controller
                 $categories[$item->category->key . '_iea'] = [
                     'label' => $item->category->title . ' IEA',
                     'backgroundColor' => $item->category->color,
-                    'data' => [((float)$item->capacity * (float)resourceIntensityIEA($item->category->key, $resource, (int)$item->year))],
+                    'data' => [(((in_array($resource, array_keys(resourcesFuel())))
+                        ? (float)$item->production
+                        : (float)$item->capacity)
+                        * (float)resourceIntensityIEA($item->category->key, $resource, (int)$item->year))],
                     'order' => 1,
                     'stack' => 'iea'
                 ];
@@ -497,17 +522,37 @@ class ImpactController extends Controller
         foreach ($items as $item) {
             if ($resource == 'space') {
                 if (isset($categories[$item->category->name . '_rte_artificialization'])) {
-                    array_push($categories[$item->category->name . '_rte_artificialization']['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, 'artificialization', (int)$item->year)));
-                    array_push($categories[$item->category->name . '_rte_co_use']['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, 'co-use', (int)$item->year)));
+                    array_push(
+                        $categories[$item->category->name . '_rte_artificialization']['data'],
+                        ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, 'artificialization', (int)$item->year))
+                    );
+                    array_push(
+                        $categories[$item->category->name . '_rte_co_use']['data'],
+                        ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, 'co-use', (int)$item->year))
+                    );
                 }
             } else {
                 if (isset($categories[$item->category->name . '_rte'])) {
-                    array_push($categories[$item->category->name . '_rte']['data'], ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year)));
+                    array_push(
+                        $categories[$item->category->name . '_rte']['data'],
+                        (((in_array($resource, array_keys(resourcesFuel())))
+                            ? (float)$item->production
+                            : (float)$item->capacity)
+                            * (float)resourceIntensityRTE($item->category->key, $resource, (int)$item->year)
+                        )
+                    );
                 }
             }
 
             if (isset($categories[$item->category->name . '_iea'])) {
-                array_push($categories[$item->category->name . '_iea']['data'], ((float)$item->capacity * (float)resourceIntensityIEA($item->category->key, $resource, (int)$item->year)));
+                array_push(
+                    $categories[$item->category->name . '_iea']['data'],
+                    (((in_array($resource, array_keys(resourcesFuel())))
+                        ? (float)$item->production
+                        : (float)$item->capacity)
+                        * (float)resourceIntensityIEA($item->category->key, $resource, (int)$item->year)
+                    )
+                );
             }
         }
 

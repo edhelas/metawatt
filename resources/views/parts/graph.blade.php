@@ -41,7 +41,10 @@
         callbacks: {
             footer: function(items) {
                 if (items.length > 1) {
-                    return 'Total: ' + (items.reduce((a, b) => a + b.parsed.y, 0)).toFixed(2)
+                    return 'Total: ' + (
+                        items.filter(item => item.dataset.label != 'Production')
+                             .reduce((a, b) => a + b.parsed.y, 0)
+                    ).toFixed(2)
                 }
             }
         }

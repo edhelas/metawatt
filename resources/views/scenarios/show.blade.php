@@ -94,7 +94,7 @@
 
                         @if ($finalConsumption && $finalConsumption->production > 0)
                             <p>
-                                sur {{ $finalConsumption->production }} GW <span class="text-muted">consommé soit {{ percentage($totalProduction, $finalConsumption->production) }}%</span>
+                                sur {{ $finalConsumption->production }} GW <span class="text-muted">d'énergie totale consommée soit</span> {{ percentage($totalProduction, $finalConsumption->production) }}% <span class="text-muted">d'électrification</span>
                             </p>
                         @endif
 

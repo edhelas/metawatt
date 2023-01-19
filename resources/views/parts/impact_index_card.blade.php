@@ -1,4 +1,4 @@
-<div class="col">
+<div class="col-12 col-lg-6">
     <div class="card mb-4">
         <img src="{{ resourceImage($key) }}" class="card-img-top">
         <div class="card-body">

@@ -37,6 +37,16 @@
         padding: 10
     }
 
+    config.options.plugins.tooltip = {
+        callbacks: {
+            footer: function(items) {
+                if (items.length > 1) {
+                    return 'Total: ' + (items.reduce((a, b) => a + b.parsed.y, 0)).toFixed(2)
+                }
+            }
+        }
+    };
+
     new Chart(
         document.getElementById('myChart'),
         config

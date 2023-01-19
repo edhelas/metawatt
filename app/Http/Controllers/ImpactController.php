@@ -402,8 +402,8 @@ class ImpactController extends Controller
                     : (float)$item->capacity)
                     * (float)resourceIntensityIEA($item->category->key, $resource, (int)$item->year);
             } else {
-                array_push($scenarios[$oldScenario . '_rte']['data'], $capacitySumRTE/1000);
-                array_push($scenarios[$oldScenario . '_iea']['data'], $capacitySumIEA/1000);
+                array_push($scenarios[$oldScenario . '_rte']['data'], $capacitySumRTE);
+                array_push($scenarios[$oldScenario . '_iea']['data'], $capacitySumIEA);
 
                 $capacitySumRTE = ((in_array($resource, array_keys(resourcesFuel())))
                     ? (float)$item->production
@@ -419,8 +419,8 @@ class ImpactController extends Controller
             $oldScenario = $item->scenario->name;
         }
 
-        array_push($scenarios[$items->last()->scenario->name . '_rte']['data'], $capacitySumRTE/1000);
-        array_push($scenarios[$items->last()->scenario->name . '_iea']['data'], $capacitySumIEA/1000);
+        array_push($scenarios[$items->last()->scenario->name . '_rte']['data'], $capacitySumRTE);
+        array_push($scenarios[$items->last()->scenario->name . '_iea']['data'], $capacitySumIEA);
 
         $labels = Data::distinct('year')->get()->pluck('year');
 

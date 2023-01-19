@@ -15,6 +15,8 @@
     <meta property="og:title" content="{{ config('app.name', 'Laravel') }} @hasSection('title')• @yield('title')@endif @hasSection('subtitle')- @yield('subtitle')@endif"/>
     <meta name="twitter:title" content="{{ config('app.name', 'Laravel') }} @hasSection('title')• @yield('title')@endif @hasSection('subtitle')- @yield('subtitle')@endif"/>
     <meta name="description" content="Découvrez et comparez les scénarios de transition énergétique électrique"/>
+    <meta name="og:description" content="Découvrez et comparez les scénarios de transition énergétique électrique"/>
+    <meta name="twitter:description" content="Découvrez et comparez les scénarios de transition énergétique électrique"/>
     <meta property="og:type" content="article"/>
     <meta property="twitter:card" content="summary"/>
     <meta property="twitter:site" content="Metawatt"/>

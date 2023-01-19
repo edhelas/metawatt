@@ -70,7 +70,7 @@
                     <div class="col-6 nopadding">
                         <h4 class="card-title">
                             {{ $totalCapacity }} GW
-                            <small class="text-muted">de capacité <i class="fa-solid fa-bolt text-warning"></i> déployé</small>
+                            <small class="text-muted">de capacité <i class="fa-solid fa-bolt text-warning"></i> déployée</small>
                         </h4>
                         <p>
                             <i style="color: {{ catColor('lowcarbon') }};" class="fa-solid fa-leaf"></i>
@@ -89,7 +89,7 @@
                     <div class="col-6 nopadding">
                         <h4 class="card-title">
                             {{ $totalProduction }} TWh
-                            <small class="text-muted">d'<i class="fa-solid fa-bolt text-warning"></i> produit</small>
+                            <small class="text-muted">d'<i class="fa-solid fa-bolt text-warning"></i> produite</small>
                         </h4>
 
                         @if ($finalConsumption && $finalConsumption->production > 0)

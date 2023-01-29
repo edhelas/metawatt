@@ -143,6 +143,11 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
             'newnuc'    => 0.847  // EPR
         ],
 
+        // Annexe 12-3, in t/MWh
+        'lithium' => [
+            'battery'   => 2560,
+        ],
+
         // Annexes 12-4
         'artificialization' => [
             'nuc'       => 0.06,

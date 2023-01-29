@@ -19,6 +19,7 @@ function catIcon(string $category): string
         'oil' => 'fa-gas-pump',
         'tidal' => 'fa-water',
         'biomass' => 'fa-tree',
+        'battery' => 'fa-battery',
         'final' => 'fa-circle'
     ];
 
@@ -163,6 +164,7 @@ function resourcesMaterial(): array
         'manganese' => 'Manganese',
         'nickel' => 'Nickel',
         'concrete' => 'Béton',
+        //'lithium' => 'Lithium',
         'steel' => 'Acier',
         'aluminium' => 'Aluminium',
     ];
@@ -204,6 +206,8 @@ function resourceImage($key): string
         'hydrowind' => 'hydrowind.jpg',
         'sun' => 'sun.jpg',
         'nuc' => 'nuc.jpg',
+        'lithium' => 'lithium.jpg',
+        'battery' => 'battery.jpg',
         'newnuc' => 'newnuc.jpg',
         'uranium' => 'uranium.jpg',
         'zirconium' => 'zirconium.jpg',
@@ -276,6 +280,7 @@ function catColor(string $category, $opacity = 1): string
         'final' => '255, 255, 255',
         'renewable' => '52, 175, 60',
         'lowcarbon' => '104, 160, 209',
+        'battery' => '65, 214, 42',
     ];
 
     return (array_key_exists($category, $colors))
@@ -297,6 +302,7 @@ function catName(string $category): string
         'coal' => 'Charbon',
         'h2' => 'Hydrogène',
         'oil' => 'Pétrole',
+        'battery' => 'Batteries',
         'tidal' => 'Hydrolien',
         'biomass' => 'Biomasse',
         'final' => 'Énergie finale'

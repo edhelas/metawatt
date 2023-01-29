@@ -11,7 +11,7 @@
             <i class="fa-solid fa-chart-line"></i>
             <a href="{{ route('categories.show.capacity', $category->key) }}">Capacité déployée dans le temps</a><br />
 
-            @if ($category->key != 'step')
+            @if (!in_array($category->key, ['step', 'battery']))
                 <i class="fa-solid fa-chart-line"></i>
                 <a href="{{ route('categories.show.production', $category->key) }}">Volume produit dans le temps</a><br />
 

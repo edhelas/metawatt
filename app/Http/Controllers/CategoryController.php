@@ -31,7 +31,7 @@ class CategoryController extends Controller
                 $scenarios[$item->scenario->name] = scenarioBaseConfig($item->scenario);
             }
 
-            array_push($scenarios[$item->scenario->name]['data'], $item->production ? (float)$item->production : null);
+            array_push($scenarios[$item->scenario->name]['data'], $item->production ? (float)$item->production : 0);
         }
 
         $labels = Data::distinct('year')->get()->pluck('year');

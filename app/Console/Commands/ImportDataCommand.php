@@ -58,15 +58,6 @@ class ImportDataCommand extends Command
 
                     $production = $json->data->volume->{$key}[$i];
 
-                    if ($production == null && $scenario->group == 'ademe') {
-                        if (!isset($json->data->capacity->{$key}[$i])) {
-                            $this->error('Error while importing capacity for ' . $key . ' element ' . $i);
-                            exit;
-                        }
-
-                        $production = round(capacityToProduction($json->data->capacity->{$key}[$i]) * ademeLoadFactor($key), 2);
-                    }
-
                     $data = new Data;
                     $data->scenario_id = $scenario->id;
                     $data->category_id = $categories[$key]->id;

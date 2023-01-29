@@ -7,30 +7,6 @@ function loadFactor(float $capacity, float $production): int
     return (int) ($production * 1000 * 100) / ($capacity * 365 * 24);
 }
 
-function capacityToProduction(float $capacity): float
-{
-    return ($capacity * 365 * 24) / 1000;
-}
-
-// Calculated from the capacity and production in 2050
-// production*1000/365/24*100/capacity
-function ademeLoadFactor(string $category): float
-{
-    $names = [
-        'nuc' => 0.7686,
-        'newnuc' => 0.7686,
-        'hydro' => 0.3604,
-        'wind' => 0.3165,
-        'sun' => 0.1466,
-        'gas' => 0.24, // From RTE, sorry ADEME but I don't have the data
-        'hydrowind' => 0.4142,
-    ];
-
-    return (array_key_exists($category, $names))
-        ? $names[$category]
-        : 0;
-}
-
 function compareParis(float $space): float
 {
     return round(($space / 10540), 2);

@@ -181,8 +181,10 @@ class ImpactController extends Controller
         $percentages = [];
 
         foreach ($config['data']['labels'] as $key => $label) {
-            foreach ($config['data']['datasets'] as $category) {
-                $percentages[$label][$category['label']] = $category['data'][$key];
+            if ($key != 'biogas') {
+                foreach ($config['data']['datasets'] as $category) {
+                    $percentages[$label][$category['label']] = $category['data'][$key];
+                }
             }
         }
 
@@ -230,10 +232,17 @@ class ImpactController extends Controller
                     array_push($scenarios[$oldScenario]['data'], $perkWh ? $carbonSum/$productionSum : $carbonSum);
                 }
 
-                $carbonSum = (float)$item->production * (float)carbonIntensity($item->category->key);
+                $carbonSum = (float)$item->production * (float)carbonIntensity(
+                    $item->category->key,
+                    $item->category->key == 'gas' ? negaWattBiogasRatio($item->year) : 0
+                );
+
                 $productionSum = (float)$item->production;
             } else {
-                $carbonSum += (float)$item->production * (float)carbonIntensity($item->category->key);
+                $carbonSum += (float)$item->production * (float)carbonIntensity(
+                    $item->category->key,
+                    $item->category->key == 'gas' ? negaWattBiogasRatio($item->year) : 0
+                );
                 $productionSum += (float)$item->production;
             }
 
@@ -322,7 +331,9 @@ class ImpactController extends Controller
                 || $item->scenario_id != $scenarioId
             ) {
                 // We just switched to a new category we stack the data
-                array_push($categories[$categoryKey]['data'], round(($totalArea * carbonIntensity($categoryKey)), 2) / 1000);
+                array_push(
+                    $categories[$categoryKey]['data'],
+                    round(($totalArea * carbonIntensity($categoryKey, $categoryKey == 'gas' ? negaWattBiogasRatio($item->year) : 0)), 2) / 1000);
                 $totalArea = 0;
             }
 
@@ -333,9 +344,12 @@ class ImpactController extends Controller
         }
 
         // And we push the last one
-        array_push($categories[$categoryKey]['data'], round(($totalArea * carbonIntensity($categoryKey)), 2) / 1000);
+        array_push(
+            $categories[$categoryKey]['data'],
+            round(($totalArea * carbonIntensity($categoryKey, $categoryKey == 'gas' ? negaWattBiogasRatio($previousYear) : 0)), 2) / 1000
+        );
 
-        $categories = $this->cleanup($categories);
+        $categories = $this->cleanup($categories, true);
 
         $labels = Scenario::orderBy('id')->get()->pluck('name')->toArray();
 
@@ -670,12 +684,22 @@ class ImpactController extends Controller
         ];
     }
 
-    private function cleanup(array $categories): array
+    private function cleanup(array $categories, bool $addBiogas = false): array
     {
         foreach ($categories as $name => $category) {
             if (array_unique($category['data']) == [0]) {
                 unset($categories[$name]);
             }
+        }
+
+        if (array_key_exists('gas', $categories) && $addBiogas) {
+            $categories['biogas'] = [
+                'label' => 'biogas (' . (carbonIntensity('biogas')) . 'g)',
+                'borderColor' => catColor('biogas'),
+                'backgroundColor' => catColor('biogas'),
+                'data' => [],
+                'order' => 1
+            ];
         }
 
         return $categories;

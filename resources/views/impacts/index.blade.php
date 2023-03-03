@@ -37,6 +37,9 @@
                     <i class="fa-solid fa-chart-line"></i>
                     <a href="{{ route('impacts.carbon.show') }}">Émissions dans le temps</a><br />
 
+                    <i class="fa-solid fa-chart-line"></i>
+                    <a href="{{ route('impacts.carbon.perkwh') }}">Émission moyenne par kWh dans le temps</a><br />
+
                     <i class="fa-solid fa-chart-column"></i>
                     <a href="{{ route('impacts.carbon.show.final') }}">Impact total en 2050</a>
                 </p>

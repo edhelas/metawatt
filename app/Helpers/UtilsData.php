@@ -4,7 +4,7 @@
  * Here we assume that newnuc = new and hydro = step for the carbon and resource intensity
  */
 
-function carbonIntensity(string $category): float
+function carbonIntensity(string $category, float $ratioBiogas = 0): float
 {
     // Source ElectricityMap, November 2022
     $intensity =  [
@@ -14,6 +14,7 @@ function carbonIntensity(string $category): float
         'step'      => 11,
         'wind'      => 13,
         'gas'       => 625,
+        "biogas"    => 44, // https://www.carbone4.com/publication-biomethane-climat
         'sun'       => 30,
         'hydrowind' => 13,
         'coal'      => 954,
@@ -24,7 +25,30 @@ function carbonIntensity(string $category): float
     ];
 
     if (array_key_exists($category, $intensity)) {
+        if ($category == 'gas') {
+            return ($intensity['biogas'] * $ratioBiogas) + ($intensity['gas'] * (1 - $ratioBiogas));
+        }
+
         return $intensity[$category];
+    }
+
+    return 0;
+}
+
+/**
+ * negaWatt biogas ratio
+ */
+function negaWattBiogasRatio(int $year): float
+{
+    $ratios = [
+        2020 => 0.24,
+        2030 => 0.143,
+        2040 => 0.555,
+        2050 => 0.993,
+    ];
+
+    if (array_key_exists($year, $ratios)) {
+        return $ratios[$year];
     }
 
     return 0;

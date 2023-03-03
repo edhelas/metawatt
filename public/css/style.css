@@ -84,3 +84,7 @@ span.bar {
     height: 10rem;
     object-fit: cover;
 }
+
+.nav-pills .nav-link.active {
+    background-color: gray;
+}

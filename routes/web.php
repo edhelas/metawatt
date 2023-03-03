@@ -28,6 +28,7 @@ Route::get('impact/production', 'ImpactController@production')->name('impacts.pr
 Route::get('impact/production/final', 'ImpactController@productionFinal')->name('impacts.production.show.final');
 Route::get('impact/consumption/{resource}/final', 'ImpactController@productionFinal')->name('impacts.consumption.show.final');
 Route::get('impact/carbon', 'ImpactController@carbon')->name('impacts.carbon.show');
+Route::get('impact/carbon/per-kwh', 'ImpactController@carbonPerkWh')->name('impacts.carbon.perkwh');
 Route::get('impact/carbon/final', 'ImpactController@carbonFinal')->name('impacts.carbon.show.final');
 Route::get('impact/resources', 'ImpactController@index')->name('impacts.resources.index');
 Route::get('impact/resources/{resource}', 'ImpactController@resource')->name('impacts.resources.show');

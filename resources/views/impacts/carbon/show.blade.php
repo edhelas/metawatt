@@ -10,6 +10,15 @@
 
 @include('parts.gas_mix')
 
+<ul class="nav nav-pills justify-content-center mb-3">
+    <li class="nav-item">
+        <a class="nav-link @if (!$perkWh)active @endif" href="{{ route('impacts.carbon.show') }}">Émission cumulées</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @if ($perkWh)active @endif" href="{{ route('impacts.carbon.perkwh') }}">Émissions moyenne par kWh</a>
+    </li>
+</ul>
+
 @include('parts.graph')
 
 

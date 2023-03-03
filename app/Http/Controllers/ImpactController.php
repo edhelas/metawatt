@@ -199,7 +199,12 @@ class ImpactController extends Controller
         ]);
     }
 
-    public function carbon(Request $request)
+    public function carbonPerkWh(Request $request)
+    {
+        return $this->carbon($request, true);
+    }
+
+    public function carbon(Request $request, bool $perkWh = false)
     {
         $items = Data::orderBy('scenario_id')
             ->noStorage()->noFinal()
@@ -210,8 +215,9 @@ class ImpactController extends Controller
 
         $scenarios = [];
 
+        $carbonSum = 0;
         $productionSum = 0;
-        $oldYear = $items->first()->year;
+        $oldYear = null;
         $oldScenario = null;
 
         foreach ($items as $item) {
@@ -219,19 +225,23 @@ class ImpactController extends Controller
                 $scenarios[$item->scenario->name] = scenarioBaseConfig($item->scenario);
             }
 
-            if ($item->year == $oldYear) {
-                $productionSum += (float)$item->production * (float)carbonIntensity($item->category->key);
-            } else {
-                array_push($scenarios[$oldScenario]['data'], $productionSum);
+            if ($item->year != $oldYear) {
+                if ($oldScenario) {
+                    array_push($scenarios[$oldScenario]['data'], $perkWh ? $carbonSum/$productionSum : $carbonSum);
+                }
 
-                $productionSum = (float)$item->production * (float)carbonIntensity($item->category->key);
+                $carbonSum = (float)$item->production * (float)carbonIntensity($item->category->key);
+                $productionSum = (float)$item->production;
+            } else {
+                $carbonSum += (float)$item->production * (float)carbonIntensity($item->category->key);
+                $productionSum += (float)$item->production;
             }
 
             $oldYear = $item->year;
             $oldScenario = $item->scenario->name;
         }
 
-        array_push($scenarios[$items->last()->scenario->name]['data'], $productionSum);
+        array_push($scenarios[$items->last()->scenario->name]['data'], $perkWh ? $carbonSum/$productionSum : $carbonSum);
 
         $labels = Data::distinct('year')->get()->pluck('year');
 
@@ -250,7 +260,7 @@ class ImpactController extends Controller
                     'y' => [
                         'title' => [
                             'display' => true,
-                            'text' => 'kTCO2eq'
+                            'text' => $perkWh ? 'gCO2eq/kWh' : 'kTCO2eq'
                         ]
                     ]
                 ]
@@ -258,6 +268,7 @@ class ImpactController extends Controller
         ];
 
         return view('impacts.carbon.show', [
+            'perkWh' => $perkWh,
             'jsonConfig' => json_encode($config)
         ]);
     }

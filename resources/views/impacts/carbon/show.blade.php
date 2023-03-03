@@ -6,7 +6,7 @@
 @section('content')
 
 @if ($perkWh)
-    <p>Émission moyenne en gCO2eq/kWh par kWh dans le temps.</p>
+    <p>Émission moyenne en gCO2eq/kWh dans le temps.</p>
 @else
     <p>Émissions totales en tonnes de CO2 pour la production électrique pour chaque scénario au fil du temps.</p>
 @endif

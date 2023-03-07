@@ -4,8 +4,14 @@
     "introduction": "EnR grands parcs",
     "description": "Développement très important de toutes les filières renouvelables, porté notamment par l’installation de grands parcs éoliens sur terre et en mer. \n\n  Logique d’optimisation économique et ciblage sur les technologies et les zones bénéficiant des meilleurs rendements et permettant des économies d’échelle.",
     "years": [2020, 2030, 2040, 2050, 2060],
+    "goals": [
+        "Développement poussé de l’ensemble des filières d’énergies renouvelables, sous la forme de grands parcs",
+        "Développement de l’éolien terrestre se fait à un rythme soutenu et s’articule autour de grands parcs",
+        "Aucun nouveau réacteur nucléaire n’est prévu dans ce scénario et la sortie du nucléaire est lissée dans le temps"
+    ],
     "data": {
         "volume": {
+            "final":     [1708, 0, 0, 930, 0], "_comment_final": "In 2021 for the origin",
             "hydro":     [59.5,65.6,75.7,78.2,79.0],
             "step":      [0, 0, 0, 0, 0],
             "wind":      [33.9,68.3,109.3,145.3,169.6],
@@ -22,6 +28,7 @@
             "h2":        [0.0,0.0,1.5,8.9,11.2]
         },
         "capacity": {
+            "final":     [0, 0, 0, 0, 0],
             "hydro":     [20.5, 20.5, 21.6, 21.6, 21.6],
             "step":      [4.94, 4.94, 6.6, 8.5, 8.5],
             "wind":      [16.5,33.2,54.2,72.0,84.0],

@@ -153,7 +153,7 @@ function resourceIntensityIEA(string $category, string $resource): float
     return 0;
 }
 
-function resourceIntensityRTE(string $category, string $resource, ?int $year = null): float
+function resourceIntensityRTE(string $category, string $resource, ?int $year = null, ?string $scenarioGroup = null): float
 {
     $intensity = [
         // Annexes 12-4, in t/TWh
@@ -224,27 +224,27 @@ function resourceIntensityRTE(string $category, string $resource, ?int $year = n
         // Annexes 12-4
         'co-use' => [
             'hydro'     => 0.61,
-            'step'      => 0.61,
+            'step'      => $scenarioGroup == 'vdn' ? 0.72049 : 0.61, // Terrawater = 34kha
             'wind'      => 12.35,
             'sun'       => 1.125, // moyenne sol et toiture
 
             2030 => [ // /!\ Extrapolated between 2020 and 2050
                 'hydro'     => 0.61,
-                'step'      => 0.61,
+                'step'      => $scenarioGroup == 'vdn' ? 0.72049 : 0.61, // Terrawater = 34kha
                 'wind'      => 12.35,
                 'sun'       => 1.11, // moyenne sol et toiture
             ],
 
             2040 => [ // /!\ Extrapolated between 2020 and 2050
                 'hydro'     => 0.61,
-                'step'      => 0.61,
+                'step'      => $scenarioGroup == 'vdn' ? 0.72049 : 0.61, // Terrawater = 34kha
                 'wind'      => 12.35,
                 'sun'       => 1.09, // moyenne sol et toiture
             ],
 
             2050 => [
                 'hydro'     => 0.61,
-                'step'      => 0.61,
+                'step'      => $scenarioGroup == 'vdn' ? 0.72049 : 0.61, // Terrawater = 34kha
                 'wind'      => 12.35,
                 'sun'       => 1.08, // moyenne sol et toiture
             ]

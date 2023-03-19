@@ -483,14 +483,14 @@ class ImpactController extends Controller
     public function resourceFinal(Request $request, string $resource)
     {
         $referenceItems = Data::where('year', $this->referenceYear)
-            ->noStorage()->noFinal()
+            ->noFinal()
             ->where('scenario_id', 2)
             ->with(['category', 'scenario'])
             ->orderBy('category_id')
             ->get();
 
         $items = Data::where('year', $this->year)
-            ->noStorage()->noFinal()
+            ->noFinal()
             ->with(['category', 'scenario'])
             ->orderBy('category_id')
             ->orderBy('scenario_id')
@@ -553,7 +553,7 @@ class ImpactController extends Controller
                     );
                     array_push(
                         $categories[$item->category->name . '_rte_co_use']['data'],
-                        ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, 'co-use', (int)$item->year))
+                        ((float)$item->capacity * (float)resourceIntensityRTE($item->category->key, 'co-use', (int)$item->year, $item->scenario->group))
                     );
                 }
             } else {

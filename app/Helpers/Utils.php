@@ -97,9 +97,13 @@ Leur publication examine les conséquences sur le système électrique d’un mi
         'nw' => 'L’association negaWatt publie depuis plusieurs année des scénarios de transition énergétique.
 
 Partant du principe que l’énergie la moins polluante est celle qu’on ne consomme/produit pas, négaWatt propose de repenser notre vision de l’énergie en s’appuyant sur une démarche en trois étapes: sobriété, efficacité énergétique et énergies renouvelables.',
-        'ademe' => 'L’ADEME a souhaité soumettre au débat quatre chemins “types” cohérents (dont un avec deux variantes) qui présentent de manière volontairement contrastée des options économiques, techniques et de société pour atteindre la neutralité carbone en 2050.
+        'ademe' => 'L’ADEME a souhaité soumettre au débat quatre scénarios cohérents (dont un avec deux variantes) qui présentent de manière volontairement contrastée des options économiques, techniques et de société pour atteindre la neutralité carbone en 2050.
 
-Imaginés pour la France métropolitaine, ils reposent sur les mêmes données macroéconomiques, démographiques et d’évolution climatique (+2,1°C en 2100). Cependant, ils empruntent des voies distinctes et correspondent à des choix de société différents.',
+Imaginés pour la France métropolitaine, ils reposent sur les mêmes données macroéconomiques, démographiques et d’évolution climatique (+2,1°C en 2100). Cependant, ils empruntent des voies distinctes et correspondent à des choix de société différents.
+
+En ce qui concerne l’énergie, les scénarios présentent les trajectoires d’évolution à l’horizon 2050 de tous les vecteurs énergétiques, soit l’électricité, le gaz (biométhane, pyrométhane renouvelable et non renouvelable, méthane de synthèse, et gaz naturel importé), les énergies renouvelables thermiques hors réseaux (biomasse solide, pompes à chaleur aérothermiques et géothermiques, les carburants renouvelables ou biocarburants et électrocarburant de substitution au kérosène, le solaire thermique, le biogaz utilisé directement, et les déchets), les combustibles liquides (produits pétroliers fossiles), les réseaux de chaleur (biomasse, gaz, géothermie, chaleur fatale issue d’UVE, chaleur fatale issue de sites industriels et de centrales électriques, solaire thermique), l’hydrogène et le charbon.
+
+Ainsi, les scénarios de Transition(s) 2050 de l’ADEME présentent des visions contrastées de transitions énergétiques vers la neutralité carbone, qui vont au-delà de la seule transition du système électrique.',
 
         'vdn' => 'Dans le cadre de la nécessaire révision de la Programmation Pluriannuelle de l’Énergie et de la Loi sur la Transition Énergétique, pour faire suite au rapport de RTE sur les scénarios France 2050, publié en 2022, les Voix du Nucléaire souhaitent proposer au débat une vision alternative de la trajectoire de transition énergétique que pourrait suivre la France'
     ];
@@ -133,7 +137,9 @@ function groupSources(string $group): array
             'https://negawatt.org/Scenario-negaWatt-2022' => 'Scénario négaWatt 2022',
         ],
         'ademe' => [
-            'https://librairie.ademe.fr/energies-renouvelables-reseaux-et-stockage/5352-prospective-transitions-2050-feuilleton-mix-electrique.html' => 'ADEME - La Librairie: Prospective - Transitions 2050 - Feuilleton Mix électrique'
+            'https://librairie.ademe.fr/energies-renouvelables-reseaux-et-stockage/5352-prospective-transitions-2050-feuilleton-mix-electrique.html' => 'ADEME - La Librairie: Prospective - Transitions 2050 - Feuilleton Mix électrique',
+            'https://librairie.ademe.fr/recherche-et-innovation/5072-prospective-transitions-2050-rapport.html' => 'Prospective - Transitions 2050 - Rapport',
+            'https://data-transitions2050.ademe.fr/' => 'Transitions 2050 - Portail de données'
         ],
         'vdn' => [
             'https://www.voix-du-nucleaire.org/terrawater-telechargement/' => 'Ressources pour le scénario TerraWater'

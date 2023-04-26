@@ -103,6 +103,34 @@
                             <i class="fa-solid fa-chart-line"></i> Énergies
                         </a>
                     </div>
+
+                    <div class="col-12 mt-4 nopadding">
+                        <h4>Évolution du parc <i class="fa-solid fa-bolt text-warning"></i> <small class="text-muted">entre aujourd'hui et 2050 en GW</small></h4>
+                    </div>
+                        @foreach($categories as $category)
+                            @php($evolution = $scenario->evolutionCapacity($category->key))
+
+                            @if ($evolution != 0)
+
+                            <div class="col-3 text-right ">
+                                {{ $category->title }}
+                            </div>
+                            <div class="col-2 text-right">
+                                @if ($evolution > 0)+@endif{{ $evolution }}
+                            </div>
+                            <div class="col-7">
+                                @if ($evolution > 0)
+                                    @for ($i = 0; $i < $evolution; $i++)
+                                        <i style="color: {{ $category->color }};" class="fa-solid {{ catIcon($category->key)}}"></i>
+                                    @endfor
+                                @else
+                                    @for ($i = 0; $i > $evolution; $i--)
+                                        <i style="color: {{ $category->color }}; opacity: 0.2;" class="fa-solid {{ catIcon($category->key)}}"></i>
+                                    @endfor
+                                @endif
+                            </div>
+                            @endif
+                        @endforeach
                 </div>
             </div>
         </div>

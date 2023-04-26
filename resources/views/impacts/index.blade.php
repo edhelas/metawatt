@@ -35,13 +35,13 @@
                 <h5 class="card-title">Carbone</h5>
                 <p class="card-text">
                     <i class="fa-solid fa-chart-line"></i>
-                    <a href="{{ route('impacts.carbon.show') }}">Émissions dans le temps</a><br />
+                    <a href="{{ route('impacts.carbon.show') }}">Émissions dans le temps du mix électrique</a><br />
 
                     <i class="fa-solid fa-chart-line"></i>
-                    <a href="{{ route('impacts.carbon.perkwh') }}">Émission moyenne par kWh dans le temps</a><br />
+                    <a href="{{ route('impacts.carbon.perkwh') }}">Émission moyenne du mix électrique par kWh dans le temps</a><br />
 
                     <i class="fa-solid fa-chart-column"></i>
-                    <a href="{{ route('impacts.carbon.show.final') }}">Impact total en 2050</a>
+                    <a href="{{ route('impacts.carbon.show.final') }}">Impact total du mix électrique en 2050</a>
                 </p>
             </div>
         </div>

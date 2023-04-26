@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Data;
 use App\Models\Scenario;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ScenarioController extends Controller
@@ -99,6 +100,7 @@ class ScenarioController extends Controller
 
         return view('scenarios.show', [
             'scenario' => $scenario,
+            'categories' => Category::all(),
             'withDataLabel' => true,
             'jsonConfig' => json_encode($configCapacity),
             'previousScenario' => $scenario->previous(),

@@ -113,10 +113,10 @@
                             @if ($evolution != 0)
 
                             <div class="col-3 text-right ">
-                                {{ $category->title }}
+                                <a href="{{ route('categories.show.capacity', $category->key) }}">{{ $category->title }}</a>
                             </div>
                             <div class="col-2 text-right">
-                                @if ($evolution > 0)+@endif{{ $evolution }}
+                                @if ($evolution > 0)+@endif{{ number_format($evolution, 2) }}
                             </div>
                             <div class="col-7">
                                 @if ($evolution > 0)

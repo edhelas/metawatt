@@ -41,7 +41,7 @@ function carbonIntensity(string $category, float $ratioBiogas = 0): float
 function negaWattBiogasRatio(int $year): float
 {
     $ratios = [
-        2020 => 0.24,
+        2020 => 0.024,
         2030 => 0.143,
         2040 => 0.555,
         2050 => 0.993,

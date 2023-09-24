@@ -29,7 +29,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 nopadding">
-                        <h5>À l'issue de la transition, l'année 2050:</h5>
+                        <h5>À l'issue de la transition, l'année {{ $maxYear }}:</h5>
                     </div>
                     <div class="col-6 mt-2 mb-4 nopadding">
                         <h4 class="card-title">
@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="col-12 mt-4 nopadding">
-                        <h4>Évolution du parc <i class="fa-solid fa-bolt text-warning"></i> <small class="text-muted">entre aujourd'hui et 2050 en GW</small></h4>
+                        <h4>Évolution du parc <i class="fa-solid fa-bolt text-warning"></i> <small class="text-muted">entre aujourd'hui et {{ $maxYear }} en GW</small></h4>
                     </div>
                         @foreach($categories as $category)
                             @php($evolution = $scenario->evolutionCapacity($category->key))
@@ -135,7 +135,7 @@
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-4 text-center nopadding">
-            <h5>L'année 2050</h5>
+            <h5>L'année {{ $maxYear }}</h5>
             <p>Capacité déployée & production correspondante</p>
             @include('parts.graph', ['style' => 'height: 60vh;'])
         </div>

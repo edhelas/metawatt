@@ -25,16 +25,24 @@ class CategoryController extends Controller
             ->get();
 
         $scenarios = [];
+        $labels = getYears();
 
         foreach ($items as $item) {
             if (!in_array($item->scenario->name, array_keys($scenarios))) {
                 $scenarios[$item->scenario->name] = scenarioBaseConfig($item->scenario);
+                $scenarios[$item->scenario->name]['data'] = getDataLabels();
             }
 
-            array_push($scenarios[$item->scenario->name]['data'], $item->production ? (float)$item->production : 0);
+            $scenarios[$item->scenario->name]['data'][$item->year] = $item->production ? (float)$item->production : 0;
         }
 
-        $labels = Data::distinct('year')->get()->pluck('year');
+        // Cleanup empty dataset
+        foreach ($scenarios as $name => $scenario) {
+            $scenarios[$name]['data'] = array_values($scenarios[$name]['data']);
+            if (empty(array_filter($scenario['data']))) {
+                unset($scenarios[$name]);
+            }
+        }
 
         $config = [
             'type' => 'line',
@@ -72,33 +80,37 @@ class CategoryController extends Controller
 
         $scenarios = [];
 
+        $labels = getYears();
+        $dataLabels = getDataLabels();
+
         foreach ($items as $item) {
             if (!in_array($item->scenario->name, array_keys($scenarios))) {
                 $scenarios[$item->scenario->name] = scenarioBaseConfig($item->scenario);
+                $scenarios[$item->scenario->name]['data'] = $dataLabels;
 
                 if ($category == 'step') {
                     $scenarios[$item->scenario->name . '_capacity'] = scenarioBaseConfig($item->scenario);
                     $scenarios[$item->scenario->name . '_capacity']['label'] = $item->scenario->name . ' stockage';
                     $scenarios[$item->scenario->name . '_capacity']['yAxisID'] = "y1";
                     $scenarios[$item->scenario->name . '_capacity']['borderDash'] = [4, 2];
+                    $scenarios[$item->scenario->name . '_capacity']['data'] = $dataLabels;
                 }
             }
 
-            array_push($scenarios[$item->scenario->name]['data'], (float)$item->capacity);
+            $scenarios[$item->scenario->name]['data'][$item->year] = (float)$item->capacity;
 
             if ($category == 'step') {
-                array_push($scenarios[$item->scenario->name . '_capacity']['data'], (float)$item->production);
+                $scenarios[$item->scenario->name . '_capacity']['data'][$item->year] = (float)$item->production;
             }
         }
 
         // Cleanup empty dataset
         foreach ($scenarios as $name => $scenario) {
+            $scenarios[$name]['data'] = array_values($scenarios[$name]['data']);
             if (empty(array_filter($scenario['data']))) {
                 unset($scenarios[$name]);
             }
         }
-
-        $labels = Data::distinct('year')->get()->pluck('year');
 
         $this->addLimitsDots($scenarios, $category);
 
@@ -152,15 +164,25 @@ class CategoryController extends Controller
 
         $scenarios = [];
 
+        $labels = getYears();
+        $dataLabels = getDataLabels();
+
         foreach ($items as $item) {
             if (!in_array($item->scenario->name, array_keys($scenarios))) {
                 $scenarios[$item->scenario->name] = scenarioBaseConfig($item->scenario);
+                $scenarios[$item->scenario->name]['data'] = $dataLabels;
             }
 
-            array_push($scenarios[$item->scenario->name]['data'], loadFactor((float)$item->capacity, (float)$item->production));
+            $scenarios[$item->scenario->name]['data'][$item->year] = loadFactor((float)$item->capacity, (float)$item->production);
         }
 
-        $labels = Data::distinct('year')->get()->pluck('year');
+        // Cleanup empty dataset
+        foreach ($scenarios as $name => $scenario) {
+            $scenarios[$name]['data'] = array_values($scenarios[$name]['data']);
+            if (empty(array_filter($scenario['data']))) {
+                unset($scenarios[$name]);
+            }
+        }
 
         $config = [
             'type' => 'line',

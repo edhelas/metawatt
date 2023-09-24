@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Collection;
+
 function scenarioBaseConfig($scenario, string $label = '', bool $hidden = false): array
 {
     return [
@@ -25,6 +27,10 @@ function scenarioPointSyle($scenario): string
             return 'triangle';
             break;
 
+        case 'rte_2035':
+            return 'rectRot';
+            break;
+
         case 'nw':
             return 'circle';
             break;
@@ -33,4 +39,19 @@ function scenarioPointSyle($scenario): string
             return 'star';
             break;
     }
+}
+
+function getYears(): Collection
+{
+    return collect([2020, 2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060]);
+}
+
+function getDataLabels(): array
+{
+    $dataLabels = [];
+    getYears()->each(function ($item) use (&$dataLabels) {
+        $dataLabels[$item] = null;
+    });
+
+    return $dataLabels;
 }

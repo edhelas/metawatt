@@ -21,7 +21,7 @@ class ImpactController extends Controller
     public function production()
     {
         $items = Data::selectRaw('scenario_id, year, sum(production) as sum')
-            ->noStorage()->noFinal()
+            ->noStorage()->noFinal()->noShortTerm()
             ->groupBy('scenario_id')
             ->groupBy('year')
             ->orderBy('scenario_id')
@@ -44,7 +44,7 @@ class ImpactController extends Controller
             array_push($scenarios[$item->scenario->name]['data'], (float)$item->sum);
         }
 
-        $labels = Data::distinct('year')->get()->pluck('year');
+        $labels = Data::noShortTerm()->distinct('year')->get()->pluck('year');
 
         $config = [
             'type' => 'line',
@@ -74,7 +74,7 @@ class ImpactController extends Controller
     public function productionFinal(Request $request, $resource = false)
     {
         $items = Data::with(['category', 'scenario'])
-            ->noStorage()->noFinal()
+            ->noStorage()->noFinal()->noShortTerm()
             ->orderBy('scenario_id')
             ->orderBy('category_id')
             ->orderBy('year')
@@ -143,7 +143,7 @@ class ImpactController extends Controller
 
         $categories = $this->cleanup($categories);
 
-        $labels = Scenario::orderBy('id')->get()->pluck('name')->toArray();
+        $labels = Scenario::noShortTerm()->orderBy('id')->get()->pluck('name')->toArray();
 
         $config = [
             'type' => 'bar',
@@ -209,7 +209,7 @@ class ImpactController extends Controller
     public function carbon(Request $request, bool $perkWh = false)
     {
         $items = Data::orderBy('scenario_id')
-            ->noStorage()->noFinal()
+            ->noStorage()->noFinal()->noShortTerm()
             ->orderBy('year')
             ->orderBy('category_id')
             ->with(['scenario', 'category'])
@@ -252,7 +252,7 @@ class ImpactController extends Controller
 
         array_push($scenarios[$items->last()->scenario->name]['data'], $perkWh ? $carbonSum/$productionSum : $carbonSum);
 
-        $labels = Data::distinct('year')->get()->pluck('year');
+        $labels = Data::noShortTerm()->distinct('year')->get()->pluck('year');
 
         $categories['production'] = $this->getProductionDots();
 
@@ -285,7 +285,7 @@ class ImpactController extends Controller
     public function carbonFinal(Request $request)
     {
         $items = Data::with(['category', 'scenario'])
-            ->noStorage()->noFinal()
+            ->noStorage()->noFinal()->noShortTerm()
             ->orderBy('scenario_id')
             ->orderBy('category_id')
             ->orderBy('year')
@@ -351,7 +351,7 @@ class ImpactController extends Controller
 
         $categories = $this->cleanup($categories, true);
 
-        $labels = Scenario::orderBy('id')->get()->pluck('name')->toArray();
+        $labels = Scenario::noShortTerm()->orderBy('id')->get()->pluck('name')->toArray();
 
         $categories['production'] = $this->getProductionDots();
 
@@ -398,7 +398,7 @@ class ImpactController extends Controller
     public function resource(Request $request, string $resource)
     {
         $items = Data::orderBy('scenario_id')
-            ->noStorage()->noFinal()
+            ->noStorage()->noFinal()->noShortTerm()
             ->orderBy('year')
             ->orderBy('category_id')
             ->with(['scenario', 'category'])
@@ -447,7 +447,7 @@ class ImpactController extends Controller
         array_push($scenarios[$items->last()->scenario->name . '_rte']['data'], $capacitySumRTE);
         array_push($scenarios[$items->last()->scenario->name . '_iea']['data'], $capacitySumIEA);
 
-        $labels = Data::distinct('year')->get()->pluck('year');
+        $labels = Data::noShortTerm()->distinct('year')->get()->pluck('year');
 
         $scenarios = $this->cleanup($scenarios);
 
@@ -483,14 +483,14 @@ class ImpactController extends Controller
     public function resourceFinal(Request $request, string $resource)
     {
         $referenceItems = Data::where('year', $this->referenceYear)
-            ->noFinal()
+            ->noFinal()->noShortTerm()
             ->where('scenario_id', 2)
             ->with(['category', 'scenario'])
             ->orderBy('category_id')
             ->get();
 
         $items = Data::where('year', $this->year)
-            ->noFinal()
+            ->noFinal()->noShortTerm()
             ->with(['category', 'scenario'])
             ->orderBy('category_id')
             ->orderBy('scenario_id')
@@ -581,7 +581,7 @@ class ImpactController extends Controller
             }
         }
 
-        $labels = Scenario::get()->pluck('name')->toArray();
+        $labels = Scenario::noShortTerm()->get()->pluck('name')->toArray();
         $labels = array_merge(['Référence (2020)'], $labels);
 
         $categories['production'] = $this->getProductionDots();

@@ -19,6 +19,11 @@ class Scenario extends Model
         return unserialize($this->attributes['goals']);
     }
 
+    public function scopeNoShortTerm($query)
+    {
+        return $query->whereNotIn('group', ['rte_2035']);
+    }
+
     public function previous()
     {
         return Scenario::where('id', '<', $this->attributes['id'])->orderBy('id', 'desc')->first();
@@ -31,6 +36,8 @@ class Scenario extends Model
 
     public function evolutionCapacity(string $category, int $year = 2050): float
     {
+        if ($this->group == 'rte_2035') $year = 2035;
+
         $futur = $this->data()->whereIn('category_id', function($query) use ($category) {
             $query->select('id')->from('categories')->where('key', $category);
         })->where('year', $year)->first();

@@ -19,6 +19,15 @@ class Data extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function scopeNoShortTerm($query)
+    {
+        return $query->whereNotIn('scenario_id', function ($query) {
+            $query->select('id')
+                  ->from('scenarios')
+                  ->whereIn('group', ['rte_2035']);
+        });
+    }
+
     public function scopeNoStorage($query)
     {
         return $query->whereNotIn('category_id', function ($query) {

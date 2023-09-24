@@ -18,21 +18,23 @@ class ScenarioController extends Controller
     {
         $scenario = Scenario::where('slug', $slug)->firstOrFail();
 
+        $maxYear = (int)Data::where('scenario_id', $scenario->id)->orderBy('year', 'desc')->firstOrFail()->year;
+
         $items = Data::where('scenario_id', $scenario->id)
             ->noStorage()->noFinal()
-            ->where('year', 2050)
+            ->where('year', $maxYear)
             ->with('category')
             ->get();
 
         $itemsRenewable = Data::where('scenario_id', $scenario->id)
             ->noStorage()->noFinal()->renewable()
-            ->where('year', 2050)
+            ->where('year', $maxYear)
             ->with('category')
             ->get();
 
         $itemsLowCarbon = Data::where('scenario_id', $scenario->id)
             ->noStorage()->noFinal()->lowCarbon()
-            ->where('year', 2050)
+            ->where('year', $maxYear)
             ->with('category')
             ->get();
 
@@ -42,7 +44,7 @@ class ScenarioController extends Controller
                     ->from('categories')
                     ->where('key', 'final');
             })
-            ->where('year', 2050)
+            ->where('year', $maxYear)
             ->with('category')
             ->first();
 
@@ -100,6 +102,7 @@ class ScenarioController extends Controller
 
         return view('scenarios.show', [
             'scenario' => $scenario,
+            'maxYear' => $maxYear,
             'categories' => Category::all(),
             'withDataLabel' => true,
             'jsonConfig' => json_encode($configCapacity),

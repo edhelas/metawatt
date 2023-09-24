@@ -1,0 +1,44 @@
+{
+    "name": "RTE Prev A - Bas",
+    "group": "rte_2035",
+    "introduction": "Accélération réussie - Variante basse",
+    "description": "Atteinte des objectifs de décarbonation et identifier les conditions de réussite",
+    "years": [2020, 2035],
+    "goals": [],
+    "data": {
+        "volume": {
+            "final":     [0, 0],
+            "hydro":     [59.5, 60],
+            "step":      [0, 0],
+            "wind":      [33.9,85],
+            "hydrowind": [0.0,50],
+            "sun":       [11.6,80],
+            "nuc":       [379.0,360],
+            "newnuc":    [0, 0],
+            "gas":       [0,0],
+            "oil":       [0,0],
+            "coal":      [0,0],
+            "biomass":   [0,0],
+            "tidal":     [0,0],
+            "battery":   [0,0],
+            "h2":        [0,0]
+        },
+        "capacity": {
+            "final":     [0, 0, 0, 0, 0],
+            "hydro":     [20.5, 20.5],
+            "step":      [4.94, 4.94],
+            "wind":      [16.5,39],
+            "hydrowind": [0.0,15],
+            "sun":       [9.4,65],
+            "nuc":       [63.1,60],
+            "newnuc":    [0, 3],
+            "gas":       [0,0],
+            "oil":       [0,0],
+            "coal":      [0,0],
+            "biomass":   [0,0],
+            "tidal":     [0,0],
+            "battery":   [0,0],
+            "h2":        [0,0]
+        }
+    }
+}

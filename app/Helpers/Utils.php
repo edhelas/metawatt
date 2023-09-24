@@ -45,6 +45,7 @@ function groupName(string $group): string
 {
     $groups = [
         'rte' => 'RTE',
+        'rte_2035' => 'RTE 2023-2035',
         'belfort' => 'Belfort',
         'nw' => 'negaWatt',
         'ademe' => 'ADEME',
@@ -60,6 +61,7 @@ function groupNameSecond(string $group): string
 {
     $groups = [
         'rte' => 'Futurs énergétiques 2050',
+        'rte_2035' => 'Bilan Prévisionnel 2023-2035',
         'belfort' => 'Scénarios du discours de Belfort',
         'nw' => 'Scénarios negaWatt',
         'ademe' => 'Transition(s) 2050',
@@ -75,6 +77,7 @@ function groupLogo(string $group): string
 {
     $groups = [
         'rte' => 'rte.svg',
+        'rte_2035' => 'rte.svg',
         'nw' => 'negawatt.jpg',
         'ademe' => 'ademe.svg',
         'vdn' => 'vdn.svg',
@@ -91,6 +94,9 @@ function groupIntroduction(string $group): string
         'rte' => 'En 2019, RTE a lancé une large étude sur l’évolution du système électrique intitulée « Futurs énergétiques 2050 ».
 
 Cette étude implique une démarche inédite en matière de concertation et de transparence impliquant les parties prenantes intéressées à tous les stades de construction des scénarios, jusqu’à la publication des principaux résultats à l’automne 2021 et de leur analyse complète en février 2022.',
+
+        'rte_2035' => 'Le Bilan prévisionnel 2023-2035 actualise la première période de Futurs énergétiques 2050, à mi-parcours de l’objectif de neutralité carbone du pays. Cette mise à jour intervient alors que plusieurs paramètres ont évolué depuis 2021 : contexte géopolitique et économique mondial (guerre en Ukraine, crise énergétique), volonté de la France de renforcer sa souveraineté industrielle et énergétique, nouvelles ambitions climatiques et de décarbonation.',
+
         'belfort' => 'Pierrick Dartois et Marie Suderie ont publié à l’été 2022 leur mémoire de fin de formation du Corps des ingénieurs des Mines.
 
 Leur publication examine les conséquences sur le système électrique d’un mix intégrant du nucléaire et une part importante d’énergies renouvelables selon les orientations formulées par Emmanuel MACRON à Belfort le 10 février 2022.',
@@ -130,6 +136,9 @@ function groupSources(string $group): array
     $groups = [
         'rte' => [
             'https://www.rte-france.com/analyses-tendances-et-prospectives/bilan-previsionnel-2050-futurs-energetiques#Lesdonnees' => 'Futurs énergétiques 2050: Les données'
+        ],
+        'rte_2035' => [
+            'https://www.rte-france.com/actualites/bilan-previsionnel-transformation-systeme-electrique-2023-2035' => 'Bilan Prévisionnel 2023-2035 : RTE éclaire les défis de la grande bascule vers une société décarbonée'
         ],
         'belfort' => [],
         'nw' => [
@@ -241,6 +250,14 @@ function groupColor(string $group, string $slug = null): string
             'rte-n1' => '#2ECBFF',
             'rte-n2' => '#009CD0',
             'rte-n03' => '#00769D'
+        ],
+        'rte_2035' => [
+            'rte-prev-a-bas' => '#BF55EC',
+            'rte-prev-a' => '#BF55EC',
+            'rte-prev-a-haut' => '#BF55EC',
+            'rte-prev-b' => '#8E44AD',
+            'rte-prev-c1' => '#5B3256',
+            'rte-prev-c2' => '#5B3256',
         ],
         'nw' => [
             'negawatt-2017' => '#ff5722',

@@ -636,7 +636,7 @@ class ImpactController extends Controller
             'label' => 'Production',
             'data' =>
             (array)Data::selectRaw('scenario_id, year, sum(production) as sum')
-                ->noStorage()->noFinal()
+                ->noStorage()->noFinal()->noShortTerm()
                 ->groupBy('scenario_id', 'year')
                 ->orderBy('scenario_id')
                 ->orderBy('year')

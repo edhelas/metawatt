@@ -219,7 +219,7 @@ class CategoryController extends Controller
                 $scenarios['field_abandoned_zones_ademde'] = [
                     'label' => 'Gisement Zones Délaissées*',
                     'data' => [
-                        53, null, null, null, 53
+                        53, null, null, null, null, null, null, null, 53
                     ],
                     'borderColor' => 'rgba(125, 133, 109, 1)',
                     'backgroundColor' => 'transparent',
@@ -230,7 +230,7 @@ class CategoryController extends Controller
                 $scenarios['field_parking_zones_ademde'] = [
                     'label' => 'Gisement Parkings*',
                     'data' => [
-                        4, null, null, null, 4
+                        4, null, null, null, null, null, null, null, 4
                     ],
                     'borderColor' => 'rgba(13, 111, 180, 1)',
                     'backgroundColor' => 'transparent',

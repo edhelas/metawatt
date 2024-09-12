@@ -2,9 +2,19 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-4 text-right">
-            <b>Source</b>
-        </div>
+
+        @if ($resource == 'space')
+            <div class="col-2 text-right">
+                <b>Source</b>
+            </div>
+            <div class="col-2 text-right">
+                <b>Type</b>
+            </div>
+        @else
+            <div class="col-4 text-right">
+                <b>Source</b>
+            </div>
+        @endif
         <div class="col-2 text-right">
             <b>2020</b>
         </div>
@@ -19,29 +29,60 @@
         </div>
     </div>
 
-    @foreach (['nuc', 'newnuc', 'hydro', 'wind', 'hydrowind', 'gas', 'sun', 'coal'] as $category)
-        @if (resourceIntensityRTE($category, $resource, 2020) + resourceIntensityRTE($category, $resource, 2030)
-            + resourceIntensityRTE($category, $resource, 2040) + resourceIntensityRTE($category, $resource, 2050)
-            > 0)
-            <div class="row">
-                <div class="col-4 text-right">
-                    {{ catName($category) }}
+    @if ($resource == 'space')
+        @foreach (resourcesSpace() as $resourceSpace => $resourceSpaceText)
+            @foreach (['nuc', 'newnuc', 'hydro', 'wind', 'hydrowind', 'gas', 'sun', 'coal'] as $category)
+                @if (resourceIntensityRTE($category, $resourceSpace, 2020) + resourceIntensityRTE($category, $resourceSpace, 2030)
+                    + resourceIntensityRTE($category, $resourceSpace, 2040) + resourceIntensityRTE($category, $resourceSpace, 2050)
+                    > 0)
+                    <div class="row">
+                        <div class="col-2 text-right">
+                            {{ catName($category) }}
+                        </div>
+                        <div class="col-2 text-right">
+                            {{ $resourceSpaceText }}
+                        </div>
+                        <div class="col-2 text-right">
+                            {{ resourceIntensityRTE($category, $resourceSpace, 2020) }}
+                        </div>
+                        <div class="col-2 text-right">
+                            {{ resourceIntensityRTE($category, $resourceSpace, 2030) }}
+                        </div>
+                        <div class="col-2 text-right">
+                            {{ resourceIntensityRTE($category, $resourceSpace, 2040) }}
+                        </div>
+                        <div class="col-2 text-right">
+                            {{ resourceIntensityRTE($category, $resourceSpace, 2050) }}
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        @endforeach
+    @else
+        @foreach (['nuc', 'newnuc', 'hydro', 'wind', 'hydrowind', 'gas', 'sun', 'coal'] as $category)
+            @if (resourceIntensityRTE($category, $resource, 2020) + resourceIntensityRTE($category, $resource, 2030)
+                + resourceIntensityRTE($category, $resource, 2040) + resourceIntensityRTE($category, $resource, 2050)
+                > 0)
+                <div class="row">
+                    <div class="col-4 text-right">
+                        {{ catName($category) }}
+                    </div>
+                    <div class="col-2 text-right">
+                        {{ resourceIntensityRTE($category, $resource, 2020) }}
+                    </div>
+                    <div class="col-2 text-right">
+                        {{ resourceIntensityRTE($category, $resource, 2030) }}
+                    </div>
+                    <div class="col-2 text-right">
+                        {{ resourceIntensityRTE($category, $resource, 2040) }}
+                    </div>
+                    <div class="col-2 text-right">
+                        {{ resourceIntensityRTE($category, $resource, 2050) }}
+                    </div>
                 </div>
-                <div class="col-2 text-right">
-                    {{ resourceIntensityRTE($category, $resource, 2020) }}
-                </div>
-                <div class="col-2 text-right">
-                    {{ resourceIntensityRTE($category, $resource, 2030) }}
-                </div>
-                <div class="col-2 text-right">
-                    {{ resourceIntensityRTE($category, $resource, 2040) }}
-                </div>
-                <div class="col-2 text-right">
-                    {{ resourceIntensityRTE($category, $resource, 2050) }}
-                </div>
-            </div>
-        @endif
-    @endforeach
+            @endif
+        @endforeach
+    @endif
 </div>
 
 <p class="mt-3">

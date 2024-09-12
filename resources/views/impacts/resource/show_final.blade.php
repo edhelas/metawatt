@@ -30,7 +30,7 @@
     <p>Nous avons ici projeté la capacité de chaque source d'énergie au fil des années par scénario et estimé la quantité de
         resource nécessaire à son déploiement.</p>
 
-    @include('parts.sources_resource_impact')
 @endif
+@include('parts.sources_resource_impact')
 
 @endsection

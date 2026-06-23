@@ -239,7 +239,7 @@ function resourceImage($key): string
         : '/img/resources/copper.jpg';
 }
 
-function groupColor(string $group, string $slug = null): string
+function groupColor(string $group, ?string $slug = null): string
 {
     $groups = [
         'belfort' => ['#28a745'],

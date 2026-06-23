@@ -50,6 +50,8 @@
         }
     };
 
+    Chart.defaults.color = '#fff';
+
     new Chart(
         document.getElementById('myChart'),
         config

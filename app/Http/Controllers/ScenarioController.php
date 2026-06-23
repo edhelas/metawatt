@@ -11,7 +11,13 @@ class ScenarioController extends Controller
 {
     public function index(Request $request)
     {
-        return view('scenarios.index', ['groups' => Scenario::all()->groupBy('group')]);
+        return view(
+            'scenarios.index',
+            [
+                'ppe' => Scenario::where('group', 'ppe')->first(),
+                'groups' => Scenario::whereNot('group', 'ppe')->get()->groupBy('group')
+            ]
+        );
     }
 
     public function show(string $slug)
@@ -245,8 +251,8 @@ class ScenarioController extends Controller
                 ->where('scenario_id', $scenario->id)
                 ->whereIn('category_id', function ($query) {
                     $query->select('id')
-                          ->from('categories')
-                          ->where('key', 'final');
+                        ->from('categories')
+                        ->where('key', 'final');
                 })
                 ->orderBy('year')
                 ->get()

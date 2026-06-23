@@ -1,4 +1,4 @@
-<div class="card mb-4">
+<div class="card">
     <div class="card-body">
         <a href="{{ route('scenarios.show.capacity', $scenario->slug) }}" class="btn btn-sm btn-mw" style="float: right; background-color: {{ groupColor($scenario->group, $scenario->slug) }};">Capacité</a>
         <h5 class="card-title">{{$scenario->name}}</h5>

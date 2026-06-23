@@ -38,6 +38,9 @@ function scenarioPointSyle($scenario): string
         case 'vdn':
             return 'star';
             break;
+
+        default:
+            return 'star';
     }
 }
 

@@ -1,0 +1,48 @@
+{
+    "name": "PPE 3",
+    "group": "ppe",
+    "introduction": "PPE 3 : programmation pluriannuelle de l'énergie",
+    "description": "Le 13 février 2026, le Gouvernement a publié la nouvelle édition de la Programmation pluriannuelle de l’énergie (PPE 3) et son annexe la Stratégie de développement des mobilités propres (SDMP), documents qui présentent la politique énergétique de la France pour répondre aux enjeux de consommation et de production d’énergie sur la période 2026-2035. ",
+    "years": [2030, 2035],
+    "goals": [
+        "à assurer la disponibilité de l'énergie à un coût maîtrisé",
+        "à atteindre la neutralité carbone à l'horizon 2050",
+        "à adapter la France au changement climatique"
+    ],
+    "data": {
+        "volume": {
+            "final":     [1243, 1100],
+            "hydro":     [54, 54],
+            "step":      [0, 0],
+            "wind":      [68,86],
+            "hydrowind": [14,59],
+            "sun":       [59,82.5],
+            "nuc":       [380.0,380],
+            "newnuc":    [0, 0],
+            "gas":       [0,0],
+            "oil":       [0,0],
+            "coal":      [0,0],
+            "biomass":   [0,0],
+            "tidal":     [0,0],
+            "battery":   [0,0],
+            "h2":        [0,0]
+        },
+        "capacity": {
+            "final":     [0, 0],
+            "hydro":     [26.3, 28,7],
+            "step":      [0, 0],
+            "wind":      [32,37.5],
+            "hydrowind": [3.6,15],
+            "sun":       [48,67.5],
+            "nuc":       [63.1,63],
+            "newnuc":    [0, 0],
+            "gas":       [0,0],
+            "oil":       [0,0],
+            "coal":      [0,0],
+            "biomass":   [0,0],
+            "tidal":     [0,0],
+            "battery":   [0,0],
+            "h2":        [0,0]
+        }
+    }
+}

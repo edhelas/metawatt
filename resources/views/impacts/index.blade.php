@@ -12,7 +12,7 @@
     <div class="col-12 col-lg-6">
         <h3>Production totale</h3>
         <p>Électricité totale produite au fil du temps</p>
-        <div class="card mb-4">
+        <div class="card">
             <img src="{{ resourceImage('electricity') }}" class="card-img-top">
             <div class="card-body">
                 <h5 class="card-title">Électricité totale produite</h5>
@@ -29,7 +29,7 @@
     <div class="col-12 col-lg-6">
         <h3>Carbone</h3>
         <p>Impact carbone des différents scénarios au fil du temps</p>
-        <div class="card mb-4">
+        <div class="card">
             <img src="{{ resourceImage('carbon') }}" class="card-img-top">
             <div class="card-body">
                 <h5 class="card-title">Carbone</h5>

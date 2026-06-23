@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="dark">
 
 <head>
     <meta charset="utf-8">
@@ -29,33 +29,23 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
-    @if (request('m') == 'light')
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    @else
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark@1.0.0/dist/css/bootstrap-dark.min.css" />
-    @endif
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link href="{{ asset('css/style.css?3') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome/css/all.css') }}" rel="stylesheet">
 </head>
 
 <body>
-    <header class="p-3">
+    <nav class="navbar navbar-expand mb-4">
         <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-secondary">
-                    <i class="fa-solid {{ catIcon('metawatt')}} mr-2"></i> Metawatt
-                </a>
-
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <a class="navbar-brand" href="/"><i class="fa-solid {{ catIcon('metawatt')}}"></i> Metawatt</a>
+            <ul class="navbar-nav me-auto">
                     <li><a href="{{route('info.discover')}}" class="nav-link px-2 text-white">Découvrir</a></li>
-                    <li><a href="{{route('scenarios.index')}}" class="nav-link px-2 text-white">Scénarios</a></li>
+                    <li><a href="{{route('scenarios.index')}}" class="nav-link px-2 text-white">Scénarios & PPE</a></li>
                     <li><a href="{{route('categories.index')}}" class="nav-link px-2 text-white">Énergies</a></li>
                     <li><a href="{{route('impacts.resources.index')}}" class="nav-link px-2 text-white">Impacts</a></li>
-                </ul>
-            </div>
+            </ul>
         </div>
-    </header>
+    </nav>
     <main class="@if (isset($mainclass)) {{ $mainclass }} @endif">
         <div class="container">
             @if ($errors->any())

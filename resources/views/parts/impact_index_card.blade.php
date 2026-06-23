@@ -1,5 +1,5 @@
 <div class="col-12 col-lg-6">
-    <div class="card mb-4">
+    <div class="card">
         <img src="{{ resourceImage($key) }}" class="card-img-top">
         <div class="card-body">
             <h5 class="card-title">{{ $name }}</h5>

@@ -44,6 +44,7 @@ function typeName(string $type): string
 function groupName(string $group): string
 {
     $groups = [
+        'ppe' => 'PPE',
         'rte' => 'RTE',
         'rte_2035' => 'RTE 2023-2035',
         'belfort' => 'Belfort',
@@ -60,6 +61,7 @@ function groupName(string $group): string
 function groupNameSecond(string $group): string
 {
     $groups = [
+        'ppe' => "Programmation Pluriannuelle de l'Énergie",
         'rte' => 'Futurs énergétiques 2050',
         'rte_2035' => 'Bilan Prévisionnel 2023-2035',
         'belfort' => 'Scénarios du discours de Belfort',
@@ -76,6 +78,7 @@ function groupNameSecond(string $group): string
 function groupLogo(string $group): string
 {
     $groups = [
+        'ppe' => 'ppe.jpg',
         'rte' => 'rte.svg',
         'rte_2035' => 'rte.svg',
         'nw' => 'negawatt.jpg',
@@ -91,6 +94,7 @@ function groupLogo(string $group): string
 function groupIntroduction(string $group): string
 {
     $groups = [
+        'ppe' => 'Les Programmations pluriannuelles de l’énergie (PPE), outils de pilotage de la politique énergétique, ont été créées par la loi relative à la transition énergétique pour la croissance verte. Elles concernent la métropole continentale et les zones dites non interconnectées (ZNI), à savoir la Corse, la Réunion, la Guyane, la Martinique, la Guadeloupe, Wallis et Futuna et Saint-Pierre et Miquelon. La PPE de métropole continentale est élaborée par le Gouvernement tandis que les PPE des ZNI sont co-élaborées avec les collectivités territoriales.',
         'rte' => 'En 2019, RTE a lancé une large étude sur l’évolution du système électrique intitulée « Futurs énergétiques 2050 ».
 
 Cette étude implique une démarche inédite en matière de concertation et de transparence impliquant les parties prenantes intéressées à tous les stades de construction des scénarios, jusqu’à la publication des principaux résultats à l’automne 2021 et de leur analyse complète en février 2022.',
@@ -134,6 +138,9 @@ function markdown(string $string)
 function groupSources(string $group): array
 {
     $groups = [
+        'ppe' => [
+            'https://www.economie.gouv.fr/ppe-3-programmation-pluriannuelle-de-lenergie' => "PPE 3 : programmation pluriannuelle de l'énergie",
+        ],
         'rte' => [
             'https://www.rte-france.com/analyses-tendances-et-prospectives/bilan-previsionnel-2050-futurs-energetiques#Lesdonnees' => 'Futurs énergétiques 2050: Les données'
         ],
@@ -242,6 +249,7 @@ function resourceImage($key): string
 function groupColor(string $group, ?string $slug = null): string
 {
     $groups = [
+        'ppe' => ['ppe-3' => '#DDD'],
         'belfort' => ['#28a745'],
         'rte' => [
             'rte-m0' => '#00AFDE',

@@ -1,4 +1,4 @@
-<div class="card mb-4">
+<div class="card">
     <img src="{{ resourceImage($category->key) }}" class="card-img-top">
 
     <div class="card-body">
